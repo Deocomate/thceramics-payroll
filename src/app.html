@@ -501,7 +501,8 @@ function qrCanvas(text,px=6,margin=3){
 
 /* ================= STATE ================= */
 const S={db:null,user:null,dl:null,cfg:null,kw:{},ym:nowParts().ym,role:null,ownerKey:null,dk:{},dkRaw:{},cache:{},mdoc:null,
-  tab:null,selStaff:null,modal:null,loginWho:null,keep:false,isOwnerAcct:false,loading:false,simRev:null};
+  tab:null,selStaff:null,modal:null,loginWho:null,keep:false,isOwnerAcct:false,loading:false,simRev:null,
+  server:false,admin:false,accounts:{}};   // server: running on our own server (server/runtime.js), where everyone signs in with a username
 
 /* ================= DB HELPERS ================= */
 async function dget(path){const s=await S.db.doc(path).get();return s.exists?clone(s.data()):null}
@@ -671,8 +672,8 @@ function render(){
   const app=$('#app');
   document.documentElement.dataset.tone=pageTone();
   if(!S.db){app.innerHTML=noDbView();return}
-  if(!S.cfg){app.innerHTML=S.isOwnerAcct?setupView():'<div class="login"><div class="card"><h2>Chưa thiết lập</h2><p class="muted">Chủ cửa hàng cần mở trang này và thiết lập lần đầu.</p></div></div>';return}
-  if(!S.role){app.innerHTML=loginView();const pw=$('#pw');if(pw&&S.loginWho)pw.focus();return}
+  if(!S.cfg&&(!S.server||S.admin)){app.innerHTML=S.isOwnerAcct?setupView():'<div class="login"><div class="card"><h2>Chưa thiết lập</h2><p class="muted">Chủ cửa hàng cần mở trang này và thiết lập lần đầu.</p></div></div>';return}
+  if(!S.role){app.innerHTML=S.admin?ownerGateView():loginView();const el=$('#user')||$('#pw');if(el&&(S.server||S.loginWho))el.focus();return}
   const v=S.loading?'<div class="center" style="padding:60px"><span class="spin"></span></div>':(S.role==='owner'?ownerView():staffView());
   // views with their own toolbar row embed ymSel() there; others get a right-aligned bar
   app.innerHTML=topBar()+'<div class="wrap">'+(v.includes('data-chg="ym"')?'':`<div class="ymbar">${ymSel()}</div>`)+v+'</div>';
@@ -683,7 +684,7 @@ const OWNER_TABS=[['tong','Báo cáo lương'],['cc','Chấm công'],['thuong','
 const STAFF_TABS=[['cc','Chấm công'],['luong','Lương của tôi'],['hh','Cách tính hoa hồng'],['tk','Tài khoản']];
 const ymSel=()=>`<select data-chg="ym" aria-label="Kỳ lương">${monthsList().map(m=>`<option value="${m}"${m===S.ym?' selected':''}>${ymLabel(m)}</option>`).join('')}</select>`;
 function topBar(){
-  const nm=S.role==='owner'?'Chủ cửa hàng':staffMeta(S.role).name;
+  const nm=S.admin?'Super admin':S.role==='owner'?'Chủ cửa hàng':staffMeta(S.role).name;
   const tabs=S.role==='owner'?OWNER_TABS:STAFF_TABS;
   const pend=S.role==='owner'&&!S.loading?pendingReqs(staffIds()).length:0;
   return`<div class="top"><div class="in">
@@ -704,8 +705,9 @@ function setupView(){
     {name:'Chi',title:'Sales',kind:'hour',monthly:0,hourly:50000,page:1000000,share:40,lunch:false,live:true}];
   return`<div class="wrap" style="max-width:860px"><div style="margin:36px 0 18px" class="brand"><img src="${logo()}" alt="" style="height:52px"><div class="sub"><b>Thiết lập lần đầu</b>Thông số mẫu — chỉnh theo cửa hàng của bạn.</div></div>
   <form id="setupForm" class="grid">
-  <div class="card"><h3>1. Mật khẩu chủ cửa hàng</h3><p class="small muted">Dùng để xem báo cáo của cả 3 người, đặt lại mật khẩu nhân viên. <b>Hãy ghi nhớ</b> — nếu quên, dữ liệu đã mã hóa không thể mở lại.</p>
+  <div class="card"><h3>1. Mật khẩu chủ cửa hàng</h3><p class="small muted">Dùng để xem báo cáo của cả 3 người, đặt lại mật khẩu nhân viên. ${S.server?'Nếu quên, super admin đặt lại được.':'<b>Hãy ghi nhớ</b> — nếu quên, dữ liệu đã mã hóa không thể mở lại.'}</p>
    <div class="grid g3"><label class="f">Tên cửa hàng<input type="text" name="company" value="Gốm Vũ Gia"></label>
+   ${S.server?'<label class="f">Tên đăng nhập của chủ<input type="text" name="uo" value="chu" autocapitalize="none" spellcheck="false" required></label>':''}
    <label class="f">Mật khẩu chủ<input type="password" name="opw" autocomplete="new-password" required minlength="6"></label>
    <label class="f">Nhập lại<input type="password" name="opw2" autocomplete="new-password" required></label></div></div>
   ${def.map((d,i)=>`<div class="card"><h3>${i+2}. Nhân viên ${i+1}</h3>
@@ -713,6 +715,7 @@ function setupView(){
    <label class="f">Tên<input type="text" name="name${i}" value="${d.name}" required></label>
    <label class="f">Vị trí<input type="text" name="title${i}" value="${d.title}"></label>
    <label class="f">Hình thức<select name="kind${i}"><option value="month"${d.kind==='month'?' selected':''}>${KIND.month}</option><option value="hour"${d.kind==='hour'?' selected':''}>${KIND.hour}</option></select></label>
+   ${S.server?`<label class="f">Tên đăng nhập<input type="text" name="u${i}" value="nv${i+1}" autocapitalize="none" spellcheck="false" required></label>`:''}
    <label class="f">Mật khẩu ban đầu<input type="text" name="pw${i}" value="" placeholder="tối thiểu 4 ký tự" required minlength="4"></label>
    <label class="f">Lương tháng (đ)<input type="text" inputmode="numeric" name="monthly${i}" value="${fmt(d.monthly)}"></label>
    <label class="f">Lương giờ (đ/giờ)<input type="text" inputmode="numeric" name="hourly${i}" value="${fmt(d.hourly)}"></label>
@@ -738,10 +741,17 @@ async function doSetup(form){
     if(g('pw'+i).length<4)throw uerr('Mật khẩu của '+(g('name'+i)||'nhân viên '+(i+1))+' tối thiểu 4 ký tự');
     if(!g('name'+i))throw uerr('Thiếu tên nhân viên '+(i+1));
   }
+  let recovery=null;
+  if(S.server){
+    if(new Set(['uo','u0','u1','u2'].map(k=>g(k).toLowerCase())).size<4)throw uerr('Mỗi người cần một tên đăng nhập khác nhau');
+    await S.user.setAccount('owner',{username:g('uo'),password:g('opw')});
+    for(let i=0;i<3;i++)await S.user.setAccount('nv'+(i+1),{username:g('u'+i),password:g('pw'+i)});
+    recovery=await S.user.recoveryKey();
+  }
   for(let i=0;i<3;i++){
     const id='nv'+(i+1);const raw=rand(32);const dk=await importDK(raw);
     const salt=b64(rand(16));const kek=await kdf(g('pw'+i),salt);
-    cfg.staff.push({id,name:g('name'+i),title:g('title'+i),wO:await encBytes(oKey,raw,'wrap:'+id)});
+    cfg.staff.push({id,name:g('name'+i),title:g('title'+i),wO:await encBytes(oKey,raw,'wrap:'+id),...(recovery?{wA:await encBytes(recovery,raw,'wrap:'+id)}:{})});
     await dset(P.kw(id),{salt,wS:await encBytes(kek,raw,'wrap:'+id)});
     S.dk[id]=dk;
     await putEnc(P.sal(id),id,{kind:g('kind'+i),monthly:parseMoney(g('monthly'+i)),hourly:parseMoney(g('hourly'+i)),page:parseMoney(g('page'+i)),share:shares[i],lunch:!!f.get('lunch'+i),live:!!f.get('live'+i)});
@@ -749,52 +759,98 @@ async function doSetup(form){
   }
   await dset(P.month(S.ym),{revenue:parseMoney(g('rev')),locked:{},paid:{}});
   await dset('cfg/main',cfg);
-  S.dk={};S.cfg=cfg;toast('Đã tạo xong. Đăng nhập bằng mật khẩu chủ để bắt đầu.');render();
+  S.dk={};S.cfg=cfg;
+  if(S.server){await unlock('admin');toast('Đã tạo xong.');await loadMonth();return}
+  toast('Đã tạo xong. Đăng nhập bằng mật khẩu chủ để bắt đầu.');render();
 }
 
 /* ================= LOGIN ================= */
+const loginHead=()=>`<div class="row" style="justify-content:flex-end;margin:-28px 0 4px">${themeBtn()}</div><img class="login-logo" src="${logo()}" alt="${esc(S.cfg?S.cfg.company:'Gốm Vũ Gia')}">
+  <p class="center eyebrow" style="margin-top:8px">Chấm công & bảng lương</p>`;
+const loginFoot=()=>`<p class="small faint center" style="margin-top:14px">Dữ liệu lương của mỗi người được mã hóa bằng mật khẩu riêng. Nếu không ghi nhớ đăng nhập, sẽ tự đăng xuất sau ${IDLE_MIN} phút không thao tác.</p>`;
+const keepField=()=>`<label class="row small" style="margin-top:12px"><input type="checkbox" id="keepLogin" checked> Ghi nhớ đăng nhập trên máy này</label>
+  <button class="btn pri big" style="width:100%;justify-content:center;margin-top:12px" type="submit">Vào</button>`;
 function loginView(){
+  if(S.server)return`<div class="login">${loginHead()}
+  <div class="card" style="margin-top:18px"><form id="loginForm"><label class="f">Tên đăng nhập<input type="text" id="user" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+  <label class="f" style="margin-top:10px">Mật khẩu<input type="password" id="pw" autocomplete="current-password" required></label>
+  ${keepField()}</form></div>${loginFoot()}</div>`;
   const w=S.loginWho;
-  return`<div class="login"><div class="row" style="justify-content:flex-end;margin:-28px 0 4px">${themeBtn()}</div><img class="login-logo" src="${logo()}" alt="${esc(S.cfg.company)}">
-  <p class="center eyebrow" style="margin-top:8px">Chấm công & bảng lương</p>
+  return`<div class="login">${loginHead()}
   <div class="card" style="margin-top:18px"><div class="small muted">Bạn là ai?</div>
   <div class="whogrid">${S.cfg.staff.map(s=>`<button class="whobtn t-${toneOf(s.id)}${w===s.id?' on':''}" data-act="pickWho" data-id="${s.id}"><span class="av">${initials(s.name)}</span><span><b>${esc(s.name)}</b><span>${esc(s.title||'')}</span></span></button>`).join('')}
   <button class="whobtn t-orange${w==='owner'?' on':''}" data-act="pickWho" data-id="owner"><span class="av">★</span><span><b>Chủ cửa hàng</b><span>Báo cáo cả 3 người</span></span></button></div>
   <form id="loginForm" class="${w?'':'hide'}"><label class="f">Mật khẩu<input type="password" id="pw" autocomplete="current-password" required></label>
-  <label class="row small" style="margin-top:12px"><input type="checkbox" id="keepLogin" checked> Ghi nhớ đăng nhập trên máy này</label>
-  <button class="btn pri big" style="width:100%;justify-content:center;margin-top:12px" type="submit">Vào</button></form>
-  </div><p class="small faint center" style="margin-top:14px">Dữ liệu lương của mỗi người được mã hóa bằng mật khẩu riêng. Nếu không ghi nhớ đăng nhập, sẽ tự đăng xuất sau ${IDLE_MIN} phút không thao tác.</p></div>`;
+  ${keepField()}</form>
+  </div>${loginFoot()}</div>`;
+}
+/* the super admin has no recovery wrap to open yet: a backup just restored here, or SESSION_SECRET changed */
+function ownerGateView(){
+  return`<div class="login">${loginHead()}
+  <div class="card" style="margin-top:18px"><h3>Mở khóa dữ liệu</h3><p class="small muted">Dữ liệu này chưa gắn với tài khoản super admin. Nhập mật khẩu chủ cửa hàng một lần để mở khóa, từ lần sau không cần nữa.</p>
+  <form id="ownerGateForm" style="margin-top:10px"><label class="f">Mật khẩu chủ<input type="password" id="pw" autocomplete="current-password" required></label>
+  <button class="btn pri big" style="width:100%;justify-content:center;margin-top:12px" type="submit">Mở khóa</button></form>
+  <button class="btn sm ghost" style="margin-top:10px" data-act="logout">Đăng xuất</button></div></div>`;
+}
+async function openAll(key,field){for(const s of S.cfg.staff){const raw=await decBytes(key,s[field],'wrap:'+s.id);S.dkRaw[s.id]=raw;S.dk[s.id]=await importDK(raw)}}
+/* keeps a copy of every data key under the recovery key, so the super admin can open the data when a password is forgotten */
+async function ensureRecovery(){
+  const key=await S.user.recoveryKey();
+  try{for(const s of S.cfg.staff)await decBytes(key,s.wA,'wrap:'+s.id);return}catch(e){}
+  const cfg=clone(S.cfg);for(const s of cfg.staff)s.wA=await encBytes(key,S.dkRaw[s.id],'wrap:'+s.id);
+  await dset('cfg/main',cfg);S.cfg=cfg;
+}
+async function enterAsOwner(){
+  S.role='owner';S.tab='tong';S.selStaff=S.cfg.staff[0].id;
+  if(!S.server)return;
+  await ensureRecovery();S.accounts=await S.user.accounts();
+  if(S.admin&&Object.keys(S.accounts).length<=S.cfg.staff.length)S.tab='cd';
 }
 /* key: the password-derived key of a remembered login, instead of pw. Returns the key. */
 async function unlock(who,pw,key){
-  if(who==='owner'){
+  if(who==='admin'){
+    if(!S.cfg)return null;
+    const recovery=await S.user.recoveryKey();
+    try{await openAll(recovery,'wA')}catch(e){S.dk={};S.dkRaw={};return null}
+    await enterAsOwner();
+  }else if(who==='owner'){
     key=key||await kdf(pw,S.cfg.owner.salt);
     try{await decJSON(key,S.cfg.owner.check,'owner-check')}catch(e){throw uerr('Sai mật khẩu')}
     S.ownerKey=key;
-    for(const s of S.cfg.staff){const raw=await decBytes(key,s.wO,'wrap:'+s.id);S.dkRaw[s.id]=raw;S.dk[s.id]=await importDK(raw)}
-    S.tab='tong';S.selStaff=S.cfg.staff[0].id;
+    await openAll(key,'wO');await enterAsOwner();
   }else{
     const kw=await dget(P.kw(who));if(!kw)throw uerr('Chưa có tài khoản');
     key=key||await kdf(pw,kw.salt);let raw;
     try{raw=await decBytes(key,kw.wS,'wrap:'+who)}catch(e){throw uerr('Sai mật khẩu')}
-    S.dkRaw[who]=raw;S.dk[who]=await importDK(raw);S.tab='cc';
+    S.dkRaw[who]=raw;S.dk[who]=await importDK(raw);S.tab='cc';S.role=who;
   }
-  if(S.user&&S.user.signIn)await S.user.signIn(who,S.dkRaw);   // own server only (server/runtime.js); the artifact runtime knows the viewer already
-  S.role=who;S.cache={};return key;
+  S.cache={};return key;
 }
+async function rememberLogin(who,key,keep){S.keep=keep&&await saveLogin(who,key);if(!S.keep)forgetLogin();if(S.role)await loadMonth();else render()}
 async function doLogin(pw,keep){
-  const who=S.loginWho,key=await unlock(who,pw);
-  S.keep=keep&&await saveLogin(who,key);if(!S.keep)forgetLogin();
-  await loadMonth();
+  if(!S.server){const who=S.loginWho;return rememberLogin(who,await unlock(who,pw),keep)}
+  const who=await S.user.login($('#user').value,pw,keep);
+  try{
+    await loadCfg();
+    if(!S.cfg&&who!=='admin')throw uerr('Hệ thống chưa thiết lập');
+    S.admin=who==='admin';
+    await rememberLogin(who,await unlock(who,pw),keep);
+  }catch(e){await S.user.signOut();S.cfg=null;S.admin=false;S.role=null;throw e}
 }
 /* a password change makes the saved key stop opening wS/check, so the login is dropped; a network error keeps it for the next load */
 async function restoreLogin(){
-  const saved=await readLogin();if(!saved)return;
-  try{await unlock(saved.who,null,saved.key);S.keep=true}
-  catch(e){if(e.userMsg)forgetLogin();return}
-  await loadMonth();
+  const saved=await readLogin();
+  if(!saved){if(S.server)S.user.signOut();return}
+  try{
+    if(S.server){
+      if(await S.user.me()!==saved.who)throw uerr('Hết phiên đăng nhập');
+      S.admin=saved.who==='admin';await loadCfg();
+    }
+    await unlock(saved.who,null,saved.key);S.keep=true;
+  }catch(e){if(e.userMsg)forgetLogin();S.admin=false;return}
+  if(S.role)await loadMonth();
 }
-function logout(){if(S.user&&S.user.signOut)S.user.signOut();S.showYear=false;S.year=null;S.role=null;S.ownerKey=null;S.dk={};S.dkRaw={};S.cache={};S.loginWho=null;S.keep=false;forgetLogin();S.modal=null;renderModal();render()}
+function logout(){if(S.user&&S.user.signOut)S.user.signOut();S.showYear=false;S.year=null;S.role=null;S.ownerKey=null;S.dk={};S.dkRaw={};S.cache={};S.loginWho=null;S.keep=false;if(S.server){S.cfg=null;S.admin=false;S.accounts={}}forgetLogin();S.modal=null;renderModal();render()}
 
 /* ================= TIMEKEEPING VIEWS ================= */
 function pgLabel(sal,w,days){const r=pgRate(sal,S.ym,days).rate;
@@ -1177,7 +1233,8 @@ function ownerView(){
 }
 function settingsView(ids){
   const c=S.cfg.comm,r=S.cfg.rates;
-  return`<div class="card" style="margin-top:20px"><h3>Hoa hồng & phụ cấp chung</h3>
+  const noAcct=S.server?[...ids.filter(id=>!S.accounts[id]).map(id=>staffMeta(id).name),...(S.accounts.owner?[]:['Chủ cửa hàng'])]:[];
+  return`${noAcct.length?`<div class="callout amber" style="margin-top:20px">Chưa có tài khoản đăng nhập: ${esc(noAcct.join(', '))}. Tạo tài khoản ở từng mục bên dưới.</div>`:''}<div class="card" style="margin-top:20px"><h3>Hoa hồng & phụ cấp chung</h3>
   <form id="cfgForm" class="grid g4" style="margin-top:12px">
    <label class="f">Ngưỡng bậc 1 (đ)<input type="text" name="t1" value="${fmt(c.t1)}"></label><label class="f">Ngưỡng bậc 2 (đ)<input type="text" name="t2" value="${fmt(c.t2)}"></label>
    <label class="f">Tỷ lệ bậc 1 (%)<input type="text" name="r1" value="${c.r1*100}"></label><label class="f">Tỷ lệ bậc 2 (%)<input type="text" name="r2" value="${c.r2*100}"></label>
@@ -1202,9 +1259,10 @@ function settingsView(ids){
     <label class="f">Chủ tài khoản<input type="text" name="holder" value="${esc(sp.holder||'')}"></label>
     ${(()=>{const sc=sched(sal);const tp=(k,lbl)=>`<label class="f">${lbl}<span class="row" style="gap:4px;flex-wrap:nowrap"><input type="time" name="${k}0" value="${sc[k][0]}"><input type="time" name="${k}1" value="${sc[k][1]}"></span></label>`;
       return sal.kind==='hour'?`<div style="grid-column:1/-1" class="small muted">Giờ ca chuẩn — dùng để tự điền khi quên bấm bắt đầu/kết thúc:</div>${tp('wd','Ca chính T2–T6')}${tp('sat','Ca chính T7')}${sal.live?tp('liveD','Live trưa')+tp('liveN','Live tối'):''}${pgOn(sal)?`<div style="grid-column:1/-1" class="small muted">Giờ trực page ngoài công ty. Phụ cấp Fanpage cố định, chia cho giờ trực T2–CN ra đơn giá/giờ. T7 tính từ giờ ra thực tế của ca chính (giờ bắt đầu dưới đây chỉ dùng khi T7 chưa có ca); ngày nghỉ công ty mà vẫn trực page được cộng thêm phần giờ từ đầu khung CN theo đơn giá đó:</div>${tp('pgWd','Trực page T2–T6')}${tp('pgSat','Trực page T7')}${tp('pgSun','Trực page CN')}`:''}`:''})()}
-    <div style="align-self:end" class="row"><button class="btn pri" type="submit">Lưu</button><button type="button" class="btn" data-act="resetPw" data-id="${id}">Đặt lại mật khẩu</button></div>
-   </form><p class="small faint" style="margin-top:6px">Sửa ô lương sẽ tính lại mọi tháng, kể cả tháng đã chốt.${sal.kind==='month'?' Muốn giữ nguyên các tháng trước thì nhập ở ô Tăng lương.':''}</p></div>`}).join('')}
-  <div class="card"><h3>Mật khẩu chủ cửa hàng</h3><form id="opwForm" class="row" style="align-items:flex-end;margin-top:10px">
+    <div style="align-self:end" class="row"><button class="btn pri" type="submit">Lưu</button><button type="button" class="btn" data-act="resetPw" data-id="${id}">${S.server&&!S.accounts[id]?'Tạo tài khoản':'Đặt lại mật khẩu'}</button></div>
+   </form><p class="small faint" style="margin-top:6px">${S.accounts[id]?`Tên đăng nhập: <b>${esc(S.accounts[id])}</b>. `:''}Sửa ô lương sẽ tính lại mọi tháng, kể cả tháng đã chốt.${sal.kind==='month'?' Muốn giữ nguyên các tháng trước thì nhập ở ô Tăng lương.':''}</p></div>`}).join('')}
+  <div class="card"><h3>${S.server?'Tài khoản chủ cửa hàng':'Mật khẩu chủ cửa hàng'}</h3><form id="opwForm" class="row" style="align-items:flex-end;margin-top:10px">
+   ${S.server?`<label class="f">Tên đăng nhập<input type="text" name="username" value="${esc(S.accounts.owner||'chu')}" autocapitalize="none" spellcheck="false" required></label>`:''}
    <label class="f">Mật khẩu mới<input type="password" name="p1" autocomplete="new-password" required minlength="6"></label><label class="f">Nhập lại<input type="password" name="p2" autocomplete="new-password" required></label>
    <button class="btn pri" type="submit">Đổi</button></form></div>
   <div class="card"><h3>Sao lưu dữ liệu</h3><p class="small muted" style="margin-top:6px">Tải toàn bộ dữ liệu về một file để cất giữ hoặc chuyển sang máy chủ khác. Dữ liệu lương trong file vẫn được mã hóa, mọi người giữ nguyên mật khẩu.</p><button class="btn" style="margin-top:10px" data-act="backupAll">⬇ Tải file sao lưu</button></div>`;
@@ -1329,7 +1387,7 @@ const ACT={
   rmBon:(el)=>{if(el.dataset.confirm!=='1'){el.dataset.confirm='1';el.textContent='Xóa thật?';return}
     busy(el,async()=>{const{id,k}=el.dataset;const path=P.bon(id,S.ym);const cur=(await getEnc(path,id))||{items:[]};cur.items.splice(+k,1);await putEnc(path,id,cur);S.cache[id].bon=cur.items;render();toast('Đã xóa')})},
   resetPw:(el)=>{const id=el.dataset.id;openModal(`<div class="modal-h"><h3>Đặt lại mật khẩu · ${esc(staffMeta(id).name)}</h3><div class="sp"></div><button class="btn sm ghost" data-act="close">✕</button></div>
-    <form id="resetForm" data-id="${id}" class="grid"><label class="f">Mật khẩu mới<input type="text" name="p" required minlength="4"></label><p class="small muted">Báo mật khẩu mới cho nhân viên; họ có thể tự đổi trong mục Tài khoản.</p><div class="row" style="justify-content:flex-end"><button class="btn pri" type="submit">Đặt lại</button></div></form>`)}
+    <form id="resetForm" data-id="${id}" class="grid">${S.server?`<label class="f">Tên đăng nhập<input type="text" name="username" value="${esc(S.accounts[id]||id)}" autocapitalize="none" spellcheck="false" required></label>`:''}<label class="f">Mật khẩu mới<input type="text" name="p" required minlength="4"></label><p class="small muted">Báo mật khẩu mới cho nhân viên; họ có thể tự đổi trong mục Tài khoản.</p><div class="row" style="justify-content:flex-end"><button class="btn pri" type="submit">Đặt lại</button></div></form>`)}
 };
 const CHG={
   ym:async el=>{S.ym=el.value;S.simRev=null;await loadMonth()},
@@ -1342,12 +1400,13 @@ const CHG={
 const SUBMIT={
   setupForm:f=>doSetup(f),
   loginForm:async f=>{await doLogin($('#pw').value,$('#keepLogin').checked)},
+  ownerGateForm:async f=>{await unlock('owner',$('#pw').value);await loadMonth()},
   dayForm:f=>saveDayForm(f),
   mdayForm:f=>saveMDayForm(f),
   revForm:async f=>{const fd=new FormData(f);const std=parseNum(fd.get('std'));await saveMonthDoc({revenue:parseMoney(fd.get('rev')),std:std>0?std:null});toast('Đã cập nhật doanh thu')},
   bankForm:async f=>{const fd=new FormData(f),id=f.dataset.id;const sp={bin:fd.get('bin'),acct:String(fd.get('acct')).replace(/\s/g,''),holder:String(fd.get('holder')).trim().toUpperCase()};await putEnc(P.sp(id),id,sp);S.cache[id].sp=sp;render();toast('Đã lưu tài khoản')},
   pwForm:async f=>{const fd=new FormData(f),id=f.dataset.id;const p1=fd.get('p1');if(p1.length<4)throw uerr('Tối thiểu 4 ký tự');if(p1!==fd.get('p2'))throw uerr('Hai lần nhập không khớp');await rewrapStaff(id,p1);f.reset();toast('Đã đổi mật khẩu')},
-  resetForm:async f=>{const id=f.dataset.id,p=new FormData(f).get('p');if(p.length<4)throw uerr('Tối thiểu 4 ký tự');await rewrapStaff(id,p);closeModal();toast('Đã đặt lại mật khẩu cho '+staffMeta(id).name)},
+  resetForm:async f=>{const fd=new FormData(f),id=f.dataset.id,p=fd.get('p');if(p.length<4)throw uerr('Tối thiểu 4 ký tự');await rewrapStaff(id,p,fd.get('username'));closeModal();if(S.server){S.accounts=await S.user.accounts();render()}toast('Đã đặt lại mật khẩu cho '+staffMeta(id).name)},
   bonForm:async f=>{const fd=new FormData(f),id=fd.get('id');const amt=parseMoney(fd.get('amt'));const reason=String(fd.get('reason')).trim();if(!amt)throw uerr('Nhập số tiền');if(!reason)throw uerr('Bắt buộc có lý do');
     const path=P.bon(id,S.ym);const cur=(await getEnc(path,id))||{items:[]};cur.items.push({type:fd.get('type'),amt,reason,d:fd.get('d'),at:new Date().toISOString()});await putEnc(path,id,cur);S.cache[id].bon=cur.items;render();toast('Đã thêm')},
   reqForm:async f=>{const fd=new FormData(f),id=f.dataset.id;const amt=parseMoney(fd.get('amt'));const reason=String(fd.get('reason')).trim();if(!amt)throw uerr('Nhập số tiền');if(!reason)throw uerr('Bắt buộc có lý do');
@@ -1371,11 +1430,14 @@ const SUBMIT={
     const st=staffMeta(id);if(st.name!==g('name').trim()||st.title!==g('title').trim()){const cfg=clone(S.cfg);const x=cfg.staff.find(s=>s.id===id);x.name=g('name').trim()||x.name;x.title=g('title').trim();await dset('cfg/main',cfg);S.cfg=cfg}
     render();toast('Đã lưu '+staffMeta(id).name)},
   opwForm:async f=>{const fd=new FormData(f);const p1=fd.get('p1');if(p1.length<6)throw uerr('Tối thiểu 6 ký tự');if(p1!==fd.get('p2'))throw uerr('Hai lần nhập không khớp');
+    if(S.server)await S.user.setAccount('owner',{username:fd.get('username'),password:p1,keep:S.keep});
     const cfg=clone(S.cfg);const salt=b64(rand(16));const key=await kdf(p1,salt);cfg.owner={salt,check:await encJSON(key,{ok:1},'owner-check')};
     for(const s of cfg.staff)s.wO=await encBytes(key,S.dkRaw[s.id],'wrap:'+s.id);
-    await dset('cfg/main',cfg);S.cfg=cfg;S.ownerKey=key;if(S.keep)await saveLogin('owner',key);f.reset();toast('Đã đổi mật khẩu chủ')}
+    await dset('cfg/main',cfg);S.cfg=cfg;S.ownerKey=key;if(S.keep&&!S.admin)await saveLogin('owner',key);f.reset();
+    if(S.server){S.accounts=await S.user.accounts();render()}toast('Đã đổi mật khẩu chủ')}
 };
-async function rewrapStaff(id,pw){const salt=b64(rand(16));const kek=await kdf(pw,salt);await dset(P.kw(id),{salt,wS:await encBytes(kek,S.dkRaw[id],'wrap:'+id)});if(S.keep&&S.role===id)await saveLogin(id,kek)}
+/* the account goes first: a taken username stops here, before the password has changed anywhere */
+async function rewrapStaff(id,pw,username){if(S.server)await S.user.setAccount(id,{username,password:pw,keep:S.keep});const salt=b64(rand(16));const kek=await kdf(pw,salt);await dset(P.kw(id),{salt,wS:await encBytes(kek,S.dkRaw[id],'wrap:'+id)});if(S.keep&&S.role===id)await saveLogin(id,kek)}
 
 document.addEventListener('click',e=>{const a=e.target.closest('[data-act]');if(!a)return;const fn=ACT[a.dataset.act];if(fn){if(a.tagName==='BUTTON')e.preventDefault();fn(a,e)}});
 document.addEventListener('change',e=>{const a=e.target.closest('[data-chg]');if(a&&CHG[a.dataset.chg]&&a.dataset.chg!=='sim')CHG[a.dataset.chg](a)});
@@ -1393,10 +1455,10 @@ let idleT;function bumpIdle(){clearTimeout(idleT);if(S.role&&!S.keep)idleT=setTi
   let tries=0;while(!(window.claude&&window.claude.use)&&tries<100){await new Promise(r=>setTimeout(r,100));tries++}
   if(!(window.claude&&window.claude.use)){render();return}
   const[db,user,dl]=await Promise.all([window.claude.use('db'),window.claude.use('user'),window.claude.use('downloads')]);
-  S.db=db;S.user=user;S.dl=dl;S.isOwnerAcct=!!(user&&user.isOwner&&user.isOwner());
+  S.db=db;S.user=user;S.dl=dl;S.isOwnerAcct=!!(user&&user.isOwner&&user.isOwner());S.server=!!(user&&user.login);
   if(!db){render();return}
-  try{await loadCfg()}catch(e){console.error(e);toast('Không tải được cấu hình',true)}
-  if(S.cfg)await restoreLogin();
+  if(!S.server)try{await loadCfg()}catch(e){console.error(e);toast('Không tải được cấu hình',true)}
+  if(S.cfg||S.server)await restoreLogin();
   render();
 })();
 </script>

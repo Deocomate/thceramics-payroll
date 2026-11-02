@@ -1,5 +1,5 @@
 # Coolify: Build Pack = Docker Compose. Its proxy reaches the app over the internal network,
-# so the port is only exposed, never published on the host. Set the two secrets in the Environment Variables tab.
+# so the port is only exposed, never published on the host. Set the secrets in the Environment Variables tab.
 services:
   app:
     build: .
@@ -7,7 +7,8 @@ services:
     expose:
       - "3000"
     environment:
-      - DOOR_PASSWORD=${DOOR_PASSWORD:?}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:?}
       - SESSION_SECRET=${SESSION_SECRET:?}
     volumes:
       - payroll-data:/data

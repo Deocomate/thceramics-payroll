@@ -5,7 +5,7 @@ async function openStore(url) {
   const db = createClient({ url });
   await db.batch([
     'CREATE TABLE IF NOT EXISTS docs (path TEXT PRIMARY KEY, data TEXT NOT NULL, updated_at TEXT NOT NULL)',
-    'CREATE TABLE IF NOT EXISTS auth (who TEXT PRIMARY KEY, token_hash TEXT NOT NULL)',
+    'CREATE TABLE IF NOT EXISTS accounts (who TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE, salt TEXT NOT NULL, proof_hash TEXT NOT NULL)',
   ], 'write');
 
   const setSql = 'INSERT INTO docs (path, data, updated_at) VALUES (?, ?, ?) ON CONFLICT(path) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at';
@@ -25,21 +25,23 @@ async function openStore(url) {
       const { rows } = await db.execute('SELECT COUNT(*) AS n FROM docs');
       return Number(rows[0].n);
     },
-    async getTokenHash(who) {
-      const { rows } = await db.execute({ sql: 'SELECT token_hash FROM auth WHERE who = ?', args: [who] });
-      return rows.length ? rows[0].token_hash : null;
+    async getAccount(who) {
+      const { rows } = await db.execute({ sql: 'SELECT who, username, salt, proof_hash FROM accounts WHERE who = ?', args: [who] });
+      return rows[0] || null;
     },
-    /* first owner sign-in; the WHERE keeps a second, concurrent sign-in from replacing the tokens */
-    async enroll(hashes) {
-      const [first, ...rest] = Object.entries(hashes);
-      const claimed = await db.execute({ sql: 'INSERT INTO auth (who, token_hash) SELECT ?, ? WHERE NOT EXISTS (SELECT 1 FROM auth)', args: first });
-      if (!claimed.rowsAffected) return false;
-      await db.batch(rest.map(args => ({ sql: 'INSERT INTO auth (who, token_hash) VALUES (?, ?)', args })), 'write');
-      return true;
+    async findAccount(username) {
+      const { rows } = await db.execute({ sql: 'SELECT who, username, salt, proof_hash FROM accounts WHERE username = ?', args: [username] });
+      return rows[0] || null;
     },
-    async isEnrolled() {
-      const { rows } = await db.execute('SELECT 1 FROM auth LIMIT 1');
-      return rows.length > 0;
+    async listUsernames() {
+      const { rows } = await db.execute('SELECT who, username FROM accounts');
+      return Object.fromEntries(rows.map(r => [r.who, r.username]));
+    },
+    async setAccount(who, username, salt, proofHash) {
+      await db.execute({
+        sql: 'INSERT INTO accounts (who, username, salt, proof_hash) VALUES (?, ?, ?, ?) ON CONFLICT(who) DO UPDATE SET username = excluded.username, salt = excluded.salt, proof_hash = excluded.proof_hash',
+        args: [who, username, salt, proofHash],
+      });
     },
     close() { db.close(); },
   };

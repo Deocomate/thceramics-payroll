@@ -13,7 +13,7 @@ for (const f of tracked.filter(f => /\.c?js$/.test(f))) {
 const PRIVATE = /(^|\/)\.env$|\.db$|sao-luu.*\.json$|^dist\/|^docs\/(reference|screenshots)\/|^docs\/(CALCULATIONS|PROJECT)\.md$/;
 for (const f of tracked.filter(f => PRIVATE.test(f))) problems.push(`Không được đưa lên Git: ${f}`);
 for (const f of tracked.filter(f => /^(server|scripts)\/.*\.js$|\.env\.example$/.test(f))) {
-  if (/^(DOOR_PASSWORD|SESSION_SECRET)=\S/m.test(fs.readFileSync(f, 'utf8'))) problems.push(`Có mật khẩu thật trong ${f}`);
+  if (/^(ADMIN_PASSWORD|SESSION_SECRET)=\S/m.test(fs.readFileSync(f, 'utf8'))) problems.push(`Có mật khẩu thật trong ${f}`);
 }
 
 if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
