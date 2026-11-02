@@ -1,0 +1,293 @@
+{
+  "_note": "DỮ LIỆU MẪU DẠNG RÕ (số liệu giả, tài khoản NH giả) — đây là nội dung SAU KHI giải mã. Trong DB thật các mục ghi chú [mã hóa] được lưu dạng {iv,ct,at}; xem SCHEMA.md. Kỳ mẫu: 2026-10.",
+  "cfg/main": {
+    "_public": true,
+    "v": 1,
+    "company": "Gốm Vũ Gia",
+    "owner": {
+      "salt": "<b64>",
+      "check": "<AES-GCM({ok:1}) AAD owner-check>"
+    },
+    "staff": [
+      {
+        "id": "nv1",
+        "name": "An",
+        "title": "Marketing 1",
+        "wO": "<khóa NV bọc bằng khóa chủ>"
+      },
+      {
+        "id": "nv2",
+        "name": "Bình",
+        "title": "Marketing 2",
+        "wO": "<...>"
+      },
+      {
+        "id": "nv3",
+        "name": "Chi",
+        "title": "Sales",
+        "wO": "<...>"
+      }
+    ],
+    "rates": {
+      "lunch": 30000,
+      "liveDay": 100000,
+      "liveNight": 150000,
+      "satFactor": 0.5
+    },
+    "comm": {
+      "t1": 100000000,
+      "t2": 300000000,
+      "r1": 0.01,
+      "r2": 0.02,
+      "r3": 0.03,
+      "capPct": 0.15,
+      "cogs": 0.5,
+      "ads": 0.2,
+      "damage": 0.1,
+      "other": 0
+    }
+  },
+  "kw/nv1": {
+    "_public": true,
+    "salt": "<b64>",
+    "wS": "<khóa NV bọc bằng khóa dẫn xuất từ mật khẩu NV>"
+  },
+  "months/2026-10": {
+    "_public": true,
+    "revenue": 400000000,
+    "std": null,
+    "locked": {},
+    "paid": {}
+  },
+  "sal/nv1": {
+    "_encrypted": true,
+    "kind": "month",
+    "monthly": 9600000,
+    "hourly": 0,
+    "page": 0,
+    "share": 0.3,
+    "lunch": true,
+    "live": false
+  },
+  "sal/nv2": {
+    "_encrypted": true,
+    "kind": "month",
+    "monthly": 9600000,
+    "hourly": 0,
+    "page": 0,
+    "share": 0.3,
+    "lunch": true,
+    "live": false
+  },
+  "sal/nv3": {
+    "_encrypted": true,
+    "kind": "hour",
+    "monthly": 0,
+    "hourly": 50000,
+    "page": 1000000,
+    "share": 0.4,
+    "lunch": false,
+    "live": true,
+    "sched": {
+      "wd": [
+        "09:00",
+        "16:00"
+      ],
+      "sat": [
+        "09:30",
+        "12:30"
+      ],
+      "liveD": [
+        "12:00",
+        "14:00"
+      ],
+      "liveN": [
+        "19:00",
+        "21:00"
+      ],
+      "pgWd": [
+        "16:00",
+        "23:00"
+      ],
+      "pgSat": [
+        "12:30",
+        "23:00"
+      ],
+      "pgSun": [
+        "09:00",
+        "23:00"
+      ]
+    }
+  },
+  "sp/nv3": {
+    "_encrypted": true,
+    "bin": "970436",
+    "acct": "0000000000",
+    "holder": "NGUYEN VAN A"
+  },
+  "sd/nv1_2026-10": {
+    "_encrypted": true,
+    "days": {
+      "01": {
+        "st": "work",
+        "lunch": false
+      },
+      "02": {
+        "st": "work",
+        "lunch": true
+      },
+      "03": {
+        "st": "work"
+      },
+      "05": {
+        "st": "half",
+        "lunch": true,
+        "note": "Đi khám",
+        "ts": "2026-10-30T03:30:00.000Z",
+        "by": "self",
+        "late": true
+      },
+      "06": {
+        "st": "work",
+        "lunch": false
+      },
+      "07": {
+        "st": "paid",
+        "note": "Nghỉ phép"
+      }
+    }
+  },
+  "sd/nv3_2026-10": {
+    "_encrypted": true,
+    "days": {
+      "30": {
+        "seg": [
+          {
+            "t": "main",
+            "in": "09:00",
+            "out": "",
+            "src": "auto"
+          }
+        ],
+        "ts": "2026-10-30T03:30:00.000Z",
+        "by": "self",
+        "late": false
+      },
+      "01": {
+        "seg": [
+          {
+            "t": "main",
+            "in": "09:00",
+            "out": "16:00",
+            "src": "punch"
+          },
+          {
+            "t": "liveD",
+            "in": "12:00",
+            "out": "14:00",
+            "src": "punch"
+          }
+        ]
+      },
+      "02": {
+        "seg": [
+          {
+            "t": "main",
+            "in": "09:05",
+            "out": "",
+            "src": "punch"
+          }
+        ],
+        "note": "Quên bấm kết thúc -> tự đóng 16:00 khi tính"
+      },
+      "03": {
+        "seg": [
+          {
+            "t": "main",
+            "in": "09:30",
+            "out": "12:30",
+            "src": "punch"
+          }
+        ]
+      },
+      "04": {
+        "seg": [],
+        "pg": true,
+        "note": "Chủ nhật trực page"
+      },
+      "05": {
+        "seg": [
+          {
+            "t": "main",
+            "in": "09:00",
+            "out": "16:00",
+            "src": "punch"
+          },
+          {
+            "t": "liveN",
+            "in": "19:00",
+            "out": "",
+            "src": "punch"
+          }
+        ]
+      },
+      "06": {
+        "seg": [],
+        "pg": true,
+        "note": "Nghỉ ở công ty, vẫn trực page"
+      }
+    }
+  },
+  "bon/nv1_2026-10": {
+    "_encrypted": true,
+    "items": [
+      {
+        "type": "bonus",
+        "amt": 500000,
+        "reason": "Video đạt 100k view",
+        "d": "2026-10-28",
+        "at": "2026-10-28T09:00:00.000Z"
+      },
+      {
+        "type": "deduct",
+        "amt": 200000,
+        "reason": "Tạm ứng",
+        "d": "2026-10-15",
+        "at": "2026-10-15T09:00:00.000Z"
+      }
+    ]
+  },
+  "_expected_2026-10": {
+    "_note": "Kết quả calcPay() với dữ liệu mẫu trên, doanh thu 400.000.000, đồng hồ cố định 2026-10-30 10:30 (+07:00). Được tests/fixtures-check.js kiểm tra tự động.",
+    "nv1": {
+      "cong": 5.5,
+      "base": 2200000,
+      "lunch": 60000,
+      "comm": 2400000,
+      "bonus": 500000,
+      "deduct": 200000,
+      "net": 4960000,
+      "warn": []
+    },
+    "nv2": {
+      "cong": 0,
+      "base": 0,
+      "lunch": 0,
+      "comm": 2400000,
+      "net": 2400000,
+      "warn": []
+    },
+    "nv3": {
+      "hours": 23.917,
+      "base": 1195833,
+      "liveD": 100000,
+      "liveN": 300000,
+      "page": 1026667,
+      "comm": 3200000,
+      "net": 5822500,
+      "warn": [
+        "3 ca tự điền giờ"
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "_comment": "Khai báo khi publish (declare_capabilities). Gốc chỉ chủ ghi; kw/sd/sp cho Contributor trở lên ghi để nhân viên tự lưu chấm công, tài khoản NH, đổi mật khẩu.",
+  "capabilities": {
+    "db": {
+      "rules": [
+        {
+          "path": "",
+          "read": "view",
+          "write": "owner"
+        },
+        {
+          "path": "kw",
+          "write": "interact"
+        },
+        {
+          "path": "sd",
+          "write": "interact"
+        },
+        {
+          "path": "sp",
+          "write": "interact"
+        }
+      ]
+    },
+    "user": {},
+    "downloads": true
+  }
+}

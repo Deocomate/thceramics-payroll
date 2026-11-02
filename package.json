@@ -1,0 +1,23 @@
+{
+  "name": "gom-vu-gia-payroll",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chấm công & bảng lương Gốm Vũ Gia — single-file web app",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "check": "node scripts/check.js",
+    "import": "node --env-file-if-exists=.env server/import.js",
+    "test": "node build.js && node --test tests/server.test.js && node tests/e2e.js && node tests/fixtures-check.js && node tests/e2e-server.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.18.0",
+    "express": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=22.9"
+  }
+}

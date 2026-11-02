@@ -1,0 +1,23 @@
+node_modules/
+tests/out/
+data/
+dist/
+*.db
+*.db-*
+
+# local secrets
+.env
+.env.*
+!.env.example
+
+# backups exported from the app
+*sao-luu*.json
+
+# tool settings
+.claude/
+
+# business data and notes kept on this machine only
+docs/reference/
+docs/screenshots/
+docs/CALCULATIONS.md
+docs/PROJECT.md

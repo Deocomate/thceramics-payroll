@@ -1,0 +1,22 @@
+# Coolify: Build Pack = Docker Compose. Its proxy reaches the app over the internal network,
+# so the port is only exposed, never published on the host. Set the two secrets in the Environment Variables tab.
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      - DOOR_PASSWORD=${DOOR_PASSWORD:?}
+      - SESSION_SECRET=${SESSION_SECRET:?}
+    volumes:
+      - payroll-data:/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  payroll-data:

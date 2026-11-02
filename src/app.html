@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gốm Vũ Gia · Chấm công & Lương</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Opencal-style: near-white paper, dusty sage, reeded-glass stripes, hairline guides. Each person gets one tone
+     (staff by position: pink, green, blue; owner orange; purple is a status colour) — see TONE in the script. */
+  --paper:#F5F6F4; --card:rgba(255,255,255,.6); --solid:#FFFFFF; --ink:#1F2925; --ink2:#5F6A65; --ink3:#A2AAA6;
+  --line:rgba(24,38,32,.08); --line2:rgba(24,38,32,.15); --glassLine:rgba(255,255,255,.85);
+  --sage:#476C5C; --sageBg:#E5F0EC; --amber:#4E647E; --amberBg:#E4EAF1; --red:#B4574F; --redBg:#F5E1DE;
+  --blue:#9A5E3A; --blueBg:#F6EAE1; --violet:#65527A; --violetBg:#EAE5F0;
+  --work:var(--brandD); --half:#D2B055; --paid:#836F9B; --off:#B3BAB6;
+  --guide:rgba(24,38,32,.07);
+  --glassSheen:linear-gradient(180deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,.12) 35%,rgba(255,255,255,0) 100%);
+  --r:22px; --sh:inset 0 1px 0 rgba(255,255,255,.95),0 1px 2px rgba(24,38,32,.04),0 16px 36px -14px rgba(24,38,32,.16);
+  --blur:saturate(160%) blur(22px);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --brand:#709988; --brandD:#537969; --brandL:#96BBAB; --brandBg:#E5F0EC; --brandBg2:#F4F8F6; --clay:#476C5C; --glow:#ACDCB3;
+  --toneRGB:112,153,136; --glowRGB:172,220,179;
+  --brandGrad:linear-gradient(135deg,#476C5C 0%,#537969 50%,#709988 100%); --brandGradD:linear-gradient(135deg,#476C5C 0%,#537969 100%);
+}
+:root[data-tone=green],.t-green{--brand:#709988; --brandD:#537969; --brandL:#96BBAB; --brandBg:#E5F0EC; --brandBg2:#F4F8F6; --clay:#476C5C; --glow:#ACDCB3;
+  --toneRGB:112,153,136; --glowRGB:172,220,179;
+  --brandGrad:linear-gradient(135deg,#476C5C 0%,#537969 50%,#709988 100%); --brandGradD:linear-gradient(135deg,#476C5C 0%,#537969 100%);}
+:root[data-theme=dark][data-tone=green],:root[data-theme=dark] .t-green{--clay:#9DD2BC; --brandBg:#22302A; --brandBg2:#22302A}
+:root[data-tone=pink],.t-pink{--brand:#B06A7E; --brandD:#8C4D5F; --brandL:#CC93A3; --brandBg:#F4E4E9; --brandBg2:#FAF3F5; --clay:#7B4253; --glow:#EBA5B8;
+  --toneRGB:176,106,126; --glowRGB:235,165,184;
+  --brandGrad:linear-gradient(135deg,#7B4253 0%,#8C4D5F 50%,#B06A7E 100%); --brandGradD:linear-gradient(135deg,#7B4253 0%,#8C4D5F 100%);}
+:root[data-theme=dark][data-tone=pink],:root[data-theme=dark] .t-pink{--clay:#E0A0B2; --brandBg:#362027; --brandBg2:#362027}
+:root[data-tone=orange],.t-orange{--brand:#C07F56; --brandD:#9A5E3A; --brandL:#D9A582; --brandBg:#F6EAE1; --brandBg2:#FBF5F1; --clay:#87502F; --glow:#F2C29A;
+  --toneRGB:192,127,86; --glowRGB:242,194,154;
+  --brandGrad:linear-gradient(135deg,#87502F 0%,#9A5E3A 50%,#C07F56 100%); --brandGradD:linear-gradient(135deg,#87502F 0%,#9A5E3A 100%);}
+:root[data-theme=dark][data-tone=orange],:root[data-theme=dark] .t-orange{--clay:#E6B08C; --brandBg:#38271C; --brandBg2:#38271C}
+:root[data-tone=blue],.t-blue{--brand:#6A83A0; --brandD:#4E647E; --brandL:#92A7BF; --brandBg:#E4EAF1; --brandBg2:#F3F6F9; --clay:#425870; --glow:#A4C7E5;
+  --toneRGB:106,131,160; --glowRGB:164,199,229;
+  --brandGrad:linear-gradient(135deg,#425870 0%,#4E647E 50%,#6A83A0 100%); --brandGradD:linear-gradient(135deg,#425870 0%,#4E647E 100%);}
+:root[data-theme=dark][data-tone=blue],:root[data-theme=dark] .t-blue{--clay:#9AB6D6; --brandBg:#212A35; --brandBg2:#212A35}
+:root[data-tone=purple],.t-purple{--brand:#836F9B; --brandD:#65527A; --brandL:#A795BB; --brandBg:#EAE5F0; --brandBg2:#F6F4F9; --clay:#58466D; --glow:#C0AADF;
+  --toneRGB:131,111,155; --glowRGB:192,170,223;
+  --brandGrad:linear-gradient(135deg,#58466D 0%,#65527A 50%,#836F9B 100%); --brandGradD:linear-gradient(135deg,#58466D 0%,#65527A 100%);}
+:root[data-theme=dark][data-tone=purple],:root[data-theme=dark] .t-purple{--clay:#B69CD3; --brandBg:#2A2433; --brandBg2:#2A2433}
+*{box-sizing:border-box}
+/* hairline guides at the content edges, as on the reference frame */
+html{background:linear-gradient(90deg,transparent calc(50% - 601px),var(--guide) calc(50% - 601px) calc(50% - 600px),transparent calc(50% - 600px) calc(50% + 600px),var(--guide) calc(50% + 600px) calc(50% + 601px),transparent calc(50% + 601px)) fixed,var(--paper)}
+html,body{margin:0;color:var(--ink);font:15px/1.55 "Be Vietnam Pro",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+/* transparent: the artifact frame sets body{background:#fff}, which would cover the colour field below */
+body{min-height:100vh;position:relative;isolation:isolate;display:flow-root;background:transparent}
+/* colour field in the person's tone (deep at top-left, glowing toward the middle), plus a faint grain so it doesn't band */
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;transition:opacity .3s;background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .15 0 0 0 0 .22 0 0 0 0 .19 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+  radial-gradient(62vmax 54vmax at -4% -6%,rgba(var(--toneRGB),.62) 0%,rgba(var(--toneRGB),.36) 38%,rgba(var(--toneRGB),.1) 68%,rgba(var(--toneRGB),0) 100%),
+  radial-gradient(40vmax 34vmax at 34% 30%,rgba(var(--glowRGB),.55) 0%,rgba(var(--glowRGB),.24) 45%,rgba(var(--glowRGB),0) 100%),
+  radial-gradient(38vmax 32vmax at 100% 0%,rgba(255,255,255,.9) 0%,rgba(255,255,255,0) 100%),
+  radial-gradient(44vmax 38vmax at 102% 100%,rgba(var(--glowRGB),.4) 0%,rgba(var(--glowRGB),.14) 50%,rgba(var(--glowRGB),0) 100%),
+  radial-gradient(36vmax 30vmax at 0% 100%,rgba(var(--toneRGB),.18) 0%,rgba(var(--toneRGB),0) 100%)}
+/* reeded glass: fine vertical ribs over the coloured corner, fading out toward the white */
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.34) 0 1px,rgba(255,255,255,.08) 1px 3px,rgba(24,38,32,.05) 3px 4px,rgba(255,255,255,0) 4px 6px);
+  -webkit-mask-image:radial-gradient(75vmax 62vmax at 0% 0%,#000 0%,rgba(0,0,0,.7) 40%,rgba(0,0,0,0) 85%);mask-image:radial-gradient(75vmax 62vmax at 0% 0%,#000 0%,rgba(0,0,0,.7) 40%,rgba(0,0,0,0) 85%)}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-weight:600;margin:0;letter-spacing:-.02em;color:var(--ink)}
+h2{font-size:28px;line-height:1.15} h3{font-size:20px;line-height:1.25}
+h2 em,h3 em{font-family:var(--serif);font-weight:600;font-style:italic;letter-spacing:0}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--ink2)} .faint{color:var(--ink3)} .small{font-size:13px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px 70px}
+/* top bar */
+.top{position:sticky;top:10px;z-index:20;max-width:1160px;margin:10px auto 0;padding:0 20px}
+.top .in{padding:7px 10px 7px 16px;display:flex;align-items:center;gap:16px;flex-wrap:nowrap;background:rgba(255,255,255,.78);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glassLine);border-radius:999px;box-shadow:var(--sh)}
+.top .who{font-size:14px;gap:10px}
+.top .who .av{width:30px;height:30px;font-size:13px;box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 2px 6px -2px rgba(var(--toneRGB),.4)}
+.top .btn.sm{padding:4px 12px;font-size:14px;border-radius:999px;background:rgba(255,255,255,.75)}
+.top .brand,.top .who,.top .btn{flex:none}
+@media(max-width:760px){.top .in{border-radius:26px;flex-wrap:wrap;gap:10px}.top .tabs{order:5;flex-basis:100%}.top .tab{padding:8px 14px;font-size:14px}.top .who b{display:none}.top .btn.sm{padding:6px 12px;font-size:14px}}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:36px;width:auto;display:block}
+.brand .sub{font-size:12px;color:var(--ink2);border-left:1px solid var(--line2);padding-left:12px;line-height:1.25}
+.brand .sub b{display:block;font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink);font-weight:600}
+.sp{flex:1}
+.who{font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:8px}
+.who .av{width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
+.who b{color:var(--ink)}
+/* controls */
+.btn{border:1px solid var(--line2);background:rgba(255,255,255,.7);padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;transition:background .15s,border-color .15s,transform .05s,box-shadow .15s}
+.btn:hover{border-color:rgba(255,255,255,.95);background:#fff;box-shadow:0 6px 16px -8px rgba(var(--toneRGB),.35)}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(var(--toneRGB),.3)}
+.btn:active{transform:translateY(1px)}
+.btn.pri{background:var(--glassSheen),var(--brandGrad);background-origin:border-box;border-color:transparent;color:#fff;text-shadow:0 1px 1px rgba(24,38,32,.35);box-shadow:0 10px 24px -8px rgba(var(--toneRGB),.6)}
+.btn.pri:hover{background:var(--glassSheen),var(--brandGradD);background-origin:border-box;border-color:transparent}
+.btn.ok{background:var(--sage);border-color:var(--sage);color:#fff}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.sm{padding:5px 11px;font-size:13px}
+.btn.big{padding:14px 18px;font-size:16px;border-radius:14px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+input[type=text],input[type=password],input[type=number],input[type=time],input[type=date],input[type=month],select,textarea{border:1px solid var(--line2);background:rgba(255,255,255,.85);border-radius:12px;padding:8px 12px;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brandL);box-shadow:0 0 0 4px rgba(var(--toneRGB),.25)}
+input[type=checkbox]{accent-color:var(--brandL);width:17px;height:17px}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--ink2);font-weight:500}
+label.f input,label.f select{color:var(--ink);font-weight:400;font-size:15px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))} .g3{grid-template-columns:repeat(3,minmax(0,1fr))} .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.card{position:relative;background:var(--card);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glassLine);border-radius:var(--r);box-shadow:var(--sh);padding:22px}
+/* pastel glass tints, as in the reference service cards */
+/* feature card: the reference hero — person-tone glass with reeded ribs */
+.hero>.card:first-child,.split>.card:first-child,.split>div:first-child>.card:first-child{background:repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 1px,rgba(255,255,255,0) 1px 4px,rgba(24,38,32,.025) 4px 5px,rgba(255,255,255,0) 5px 6px),linear-gradient(120deg,rgba(var(--toneRGB),.3) 0%,rgba(var(--glowRGB),.3) 45%,rgba(255,255,255,.72) 85%)}
+.hero>.card:last-child,.split>.card:last-child,.split>div:last-child>.card:first-child{background:linear-gradient(150deg,rgba(255,255,255,.82),rgba(255,255,255,.6) 60%,rgba(var(--glowRGB),.22))}
+.card+.card{margin-top:16px}
+.split>.card,.hero>.card,.split>div>.card{margin-top:0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.sec{margin-top:26px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.tabs{display:flex;gap:4px;margin:22px 0 4px;overflow-x:auto;padding:5px;background:rgba(255,255,255,.5);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glassLine);border-radius:999px;width:max-content;max-width:100%;box-shadow:var(--sh);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.top .tabs{margin:0;padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;gap:6px;margin-left:8px;flex:0 1 auto;min-width:0}
+.top .tab{padding:8px 16px;font-size:16px}
+.ymbar{display:flex;justify-content:flex-end;margin-top:18px}
+.tab{padding:8px 16px;border:0;background:none;cursor:pointer;color:var(--ink2);font-weight:500;border-radius:999px;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.on{background:var(--glassSheen),var(--brandGrad);text-shadow:0 1px 1px rgba(24,38,32,.35);box-shadow:0 6px 16px -6px rgba(var(--toneRGB),.55);color:#fff;font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;white-space:nowrap}
+.p-ok{background:var(--sageBg);color:var(--sage)} .p-warn{background:var(--amberBg);color:var(--amber)} .p-bad{background:var(--redBg);color:var(--red)} .p-clay{background:var(--brandBg);color:var(--clay)} .p-mute{background:rgba(24,38,32,.07);color:var(--ink2)} .p-blue{background:var(--blueBg);color:var(--blue)}
+table{border-collapse:collapse;width:100%}
+th,td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:11px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;background:rgba(247,249,248,.95);position:sticky;top:0}
+td.r,th.r{text-align:right}
+.tbl{overflow:auto;border:1px solid var(--glassLine);border-radius:16px;background:rgba(255,255,255,.72);box-shadow:var(--sh)}
+.tbl table td{font-size:14px}
+.btn.del{color:var(--red)}
+/* 7 columns do not fit a narrow window: stack each row so the delete button is not left off-screen */
+@media(max-width:760px){.bontbl thead{display:none}.bontbl table,.bontbl tbody{display:block}.bontbl tr{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:10px 12px;border-bottom:1px solid var(--line)}.bontbl td{border:0;padding:0}.bontbl td.why{flex-basis:100%}.bontbl td.act{margin-left:auto}}
+tr.today td{background:rgba(var(--toneRGB),.08)}
+tr.tot td{font-weight:700;background:rgba(247,249,248,.95)}
+.chip{display:inline-block;font-size:11.5px;padding:1px 6px;border-radius:6px;background:rgba(24,38,32,.07);color:var(--ink);margin:1px 3px 1px 0;white-space:nowrap}
+.chip.liveD{background:var(--blueBg);color:var(--blue)}.chip.liveN{background:var(--violetBg);color:var(--violet)}.chip.open{background:var(--amberBg);color:var(--amber)}.chip.auto{outline:1px dashed var(--amber);outline-offset:-1px}
+.flag{font-size:11.5px;color:var(--amber)}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:20px}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.today-card h3{margin-bottom:4px}
+.punch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.punch .btn{justify-content:center;flex-direction:column;gap:2px;border-radius:16px}
+.punch .btn small{font-size:12px;font-weight:400;opacity:.8}
+.stbtn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.stbtn .btn{justify-content:center;border-radius:12px}
+.stbtn .btn.sel{background:var(--sage);border-color:var(--sage);color:#fff}
+.bigmoney{font-size:40px;font-weight:600;letter-spacing:-.03em;color:var(--ink);line-height:1.1}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child{border-bottom:0}
+.kv .k{color:var(--ink2)} .kv .v{font-weight:600;text-align:right}
+.kv.neg .v{color:var(--red)}
+.cnt{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;margin-left:4px;border-radius:99px;background:var(--red);color:#fff;font-size:11px;font-weight:700;line-height:1}
+.kv .acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.callout{background:var(--brandBg);border-radius:14px;padding:12px 14px;color:var(--clay);font-size:14px}
+.callout.sage{background:var(--sageBg);color:var(--sage)}
+.callout.amber{background:var(--amberBg);color:var(--amber)}
+.lunch-toggle{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.6);cursor:pointer}
+.lunch-toggle input{margin-top:2px;flex:none}
+.lunch-toggle b{display:block;font-weight:600}
+/* calendar */
+.cal{border:1px solid var(--glassLine);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:var(--sh)}
+.cal-h,.cal-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal-h div{padding:10px 8px;text-align:center;font-size:12px;font-weight:600;color:var(--ink2);background:rgba(255,255,255,.5);border-bottom:1px solid var(--line);letter-spacing:.04em}
+.cal-h div:last-child{color:var(--red)}
+.cell{min-height:112px;border:0;border-radius:0;color:inherit;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 9px;text-align:left;background:transparent;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px;position:relative;transition:background .12s}
+.cal-g .cell:nth-child(7n){border-right:0}
+.cell:hover:not(:disabled){background:rgba(255,255,255,.85)}
+.cell:disabled{cursor:default}
+.cell .dn{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600}
+.cell.out{background:rgba(24,38,32,.025);color:#BBC2BE}
+.cell.sun{background:rgba(var(--glowRGB),.1)}
+.cell.sun .dn{color:var(--red)}
+.cell.future{color:var(--ink3)}
+.cell.today{box-shadow:inset 0 0 0 2px var(--brand);background:rgba(255,255,255,.9)}
+.cell.today .dn>span:first-child{background:var(--brand);color:#fff;border-radius:99px;padding:0 7px}
+.st{display:inline-block;width:18px;height:18px;border-radius:50%;flex:none}
+.cell .st{align-self:flex-start;margin-top:2px}
+.legend .st{width:14px;height:14px}
+.st.work{background:var(--work)} .st.half{background:var(--half)} .st.paid{background:var(--paid)} .st.off{background:var(--off)} .st.none{border:1.5px dashed var(--amber)}
+/* chấm công: mỗi ngày một hình (màu vẫn theo trạng thái) */
+.st.sh0{border-radius:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon stroke='%23000' stroke-width='10' stroke-linejoin='round' points='50,8 86,29 86,71 50,92 14,71 14,29'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon stroke='%23000' stroke-width='10' stroke-linejoin='round' points='50,8 86,29 86,71 50,92 14,71 14,29'/%3E%3C/svg%3E") center/contain no-repeat}
+.st.sh1{border-radius:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon stroke='%23000' stroke-width='10' stroke-linejoin='round' points='50.0,6.0 62.0,29.2 88.1,28.0 74.0,50.0 88.1,72.0 62.0,70.8 50.0,94.0 38.0,70.8 11.9,72.0 26.0,50.0 11.9,28.0 38.0,29.2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon stroke='%23000' stroke-width='10' stroke-linejoin='round' points='50.0,6.0 62.0,29.2 88.1,28.0 74.0,50.0 88.1,72.0 62.0,70.8 50.0,94.0 38.0,70.8 11.9,72.0 26.0,50.0 11.9,28.0 38.0,29.2'/%3E%3C/svg%3E") center/contain no-repeat}
+.st.sh2{border-radius:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='34'/%3E%3Ccircle cx='80.0' cy='50.0' r='18'/%3E%3Ccircle cx='71.2' cy='71.2' r='18'/%3E%3Ccircle cx='50.0' cy='80.0' r='18'/%3E%3Ccircle cx='28.8' cy='71.2' r='18'/%3E%3Ccircle cx='20.0' cy='50.0' r='18'/%3E%3Ccircle cx='28.8' cy='28.8' r='18'/%3E%3Ccircle cx='50.0' cy='20.0' r='18'/%3E%3Ccircle cx='71.2' cy='28.8' r='18'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='34'/%3E%3Ccircle cx='80.0' cy='50.0' r='18'/%3E%3Ccircle cx='71.2' cy='71.2' r='18'/%3E%3Ccircle cx='50.0' cy='80.0' r='18'/%3E%3Ccircle cx='28.8' cy='71.2' r='18'/%3E%3Ccircle cx='20.0' cy='50.0' r='18'/%3E%3Ccircle cx='28.8' cy='28.8' r='18'/%3E%3Ccircle cx='50.0' cy='20.0' r='18'/%3E%3Ccircle cx='71.2' cy='28.8' r='18'/%3E%3C/svg%3E") center/contain no-repeat}
+.st.sh3{border-radius:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon stroke='%23000' stroke-width='10' stroke-linejoin='round' points='50,10 92,86 8,86'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon stroke='%23000' stroke-width='10' stroke-linejoin='round' points='50,10 92,86 8,86'/%3E%3C/svg%3E") center/contain no-repeat}
+.st.sh4{border-radius:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 2C57 32 68 43 98 50C68 57 57 68 50 98C43 68 32 57 2 50C32 43 43 32 50 2Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 2C57 32 68 43 98 50C68 57 57 68 50 98C43 68 32 57 2 50C32 43 43 32 50 2Z'/%3E%3C/svg%3E") center/contain no-repeat}
+.st.sh5{border-radius:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='8' width='84' height='84' rx='24' transform='rotate(-8 50 50)'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='8' width='84' height='84' rx='24' transform='rotate(-8 50 50)'/%3E%3C/svg%3E") center/contain no-repeat}
+.st.sh6{border-radius:0;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26'/%3E%3Ccircle cx='72.0' cy='50.0' r='28'/%3E%3Ccircle cx='50.0' cy='72.0' r='28'/%3E%3Ccircle cx='28.0' cy='50.0' r='28'/%3E%3Ccircle cx='50.0' cy='28.0' r='28'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='26'/%3E%3Ccircle cx='72.0' cy='50.0' r='28'/%3E%3Ccircle cx='50.0' cy='72.0' r='28'/%3E%3Ccircle cx='28.0' cy='50.0' r='28'/%3E%3Ccircle cx='50.0' cy='28.0' r='28'/%3E%3C/svg%3E") center/contain no-repeat}
+.cell .meta{font-size:11.5px;color:var(--ink2);display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}.cell .money{font-size:12px;font-weight:600;color:var(--clay);margin-top:auto}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+@media(max-width:720px){
+  .cell{min-height:64px;padding:5px}
+  .cell .st{width:12px;height:12px;margin-top:0}
+  .cell .meta,.cell .chips{display:none}
+  .cell .money{font-size:10px}
+}
+/* login */
+.login{max-width:520px;margin:44px auto;padding:0 20px}
+.login-logo{display:block;margin:0 auto 6px;width:150px;height:auto}
+.whogrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+.whobtn{border:1.5px solid var(--glassLine);background:rgba(255,255,255,.7);border-radius:16px;padding:14px;text-align:left;cursor:pointer;display:flex;gap:10px;align-items:center}
+.whobtn .av{width:36px;height:36px;border-radius:50%;background:var(--brandBg);color:var(--clay);display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+.whobtn b{display:block;font-size:16px} .whobtn span{font-size:12px;color:var(--ink2)}
+.whobtn.on{border-color:var(--brand);background:#fff;box-shadow:0 0 0 4px rgba(var(--toneRGB),.22)}
+.whobtn.on .av{background:var(--brand);color:#fff}
+/* modal */
+.modal-bg{position:fixed;inset:0;background:rgba(24,38,32,.22);backdrop-filter:blur(8px) saturate(140%);-webkit-backdrop-filter:blur(8px) saturate(140%);z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:30px 12px;overflow:auto}
+.modal{background:linear-gradient(150deg,rgba(255,255,255,.97),rgba(246,248,247,.95));border:1px solid var(--glassLine);border-radius:24px;max-width:600px;width:100%;padding:24px;box-shadow:inset 0 1px 0 #fff,0 30px 80px -20px rgba(24,38,32,.35)}
+.modal.wide{max-width:880px}
+.modal-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.choice{display:grid;gap:10px;margin-top:14px}
+.choice .btn{display:block;border-radius:14px;padding:12px 14px;text-align:left;white-space:normal}
+.choice .btn small{display:block;margin-top:2px;font-weight:400;color:var(--ink2);font-size:12.5px}
+.choice .btn.pri small{color:rgba(255,255,255,.82)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;z-index:80;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.25);max-width:90vw}
+.toast.err{background:var(--red)}
+/* slip */
+.slip{width:440px;max-width:100%;background:var(--solid);border:1px solid var(--line2);border-radius:20px;overflow:hidden;font-size:14px}
+.slip-top{background:linear-gradient(120deg,var(--brandD),var(--brand) 60%,var(--brandL));color:#fff;padding:16px 18px;display:flex;align-items:center;gap:14px}
+.slip-top img{height:46px}
+.slip-top .t2{font-size:12px;letter-spacing:.12em;opacity:.92;border-left:1px solid rgba(255,255,255,.35);padding-left:14px;line-height:1.4}
+.slip-top .t2 b{display:block;font-family:var(--serif);font-size:20px;letter-spacing:.02em}
+.slip-body{padding:14px 18px}
+.slip-name{font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.slip-net{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--brand);margin-top:8px;padding-top:10px}
+.slip-net b{font-size:28px;font-weight:600;letter-spacing:-.02em;color:var(--clay)}
+.slip-bank{margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--brandBg);line-height:1.45}
+.slip-bank .num{font-size:17px;font-weight:700;letter-spacing:.04em}
+.slip-prev{display:block;width:440px;max-width:100%;border:1px solid var(--line2);border-radius:12px}
+.slip-qr{display:flex;gap:14px;align-items:center;margin-top:14px;padding:12px;border:1px dashed var(--line2);border-radius:12px;background:#fff}
+.slip-qr canvas{width:132px;height:132px;image-rendering:pixelated;flex:none}
+.tier-bar{display:flex;height:36px;border-radius:999px;overflow:hidden;margin:10px 0 4px}
+.tier-bar div{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden}
+input[type=range]{width:100%;accent-color:var(--brandD)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.split{grid-template-columns:1fr}}
+.center{text-align:center}
+.spin{display:inline-block;width:18px;height:18px;border:2px solid var(--line2);border-top-color:var(--brandL);border-radius:50%;animation:sp 0.8s linear infinite;vertical-align:middle}
+@keyframes sp{to{transform:rotate(360deg)}}
+.hide{display:none!important}
+.stepnum{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-right:10px;flex:none}
+.step{display:flex;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.sched{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px;margin-top:8px}
+.sched span:nth-child(odd){color:var(--ink2)}
+/* 12-month overview chart (stacked net pay per staff) */
+.ylegend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink2);margin:8px 0 12px}
+.ylegend span{display:inline-flex;align-items:center;gap:6px}
+.ysw{display:inline-block;width:12px;height:12px;border-radius:3px;flex:none;vertical-align:-1px}
+.ychart{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:8px}
+.yaxis{position:relative;height:240px;min-width:40px;font-size:11px;color:var(--ink3)}
+.yaxis span{position:absolute;right:0;transform:translateY(50%);white-space:nowrap}
+.yplot{position:relative;height:240px;border-bottom:1px solid var(--line2)}
+.ygrid{position:absolute;left:0;right:0;border-top:1px solid var(--line)}
+.ycols{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
+.ycol{position:relative;height:100%;border:0;padding:0;background:none;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font:inherit;color:inherit;border-radius:8px 8px 0 0}
+.ycol:hover,.ycol:focus-visible{background:rgba(255,255,255,.5);outline:none}
+.ystack{width:min(34px,72%);display:flex;flex-direction:column-reverse;gap:2px;border-radius:4px 4px 0 0;overflow:hidden}
+.ystack i{display:block;flex-basis:0;min-height:0}
+.ytip{display:none;position:absolute;top:6px;left:50%;transform:translateX(-50%);z-index:5;width:200px;text-align:left;font-size:12.5px;padding:10px 12px;border-radius:14px;background:var(--solid);border:1px solid var(--line2);box-shadow:0 12px 30px -10px rgba(24,38,32,.35)}
+.ytip.l{left:0;transform:none}.ytip.r{left:auto;right:0;transform:none}
+.ytip .kv{padding:4px 0}
+.ycol:hover .ytip,.ycol:focus-visible .ytip{display:block}
+.ylbls{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;margin-top:6px;font-size:11.5px;color:var(--ink2);text-align:center;white-space:nowrap}
+.ylbls .on{color:var(--ink);font-weight:700}
+@media(max-width:560px){.ylbls{font-size:10.5px}.ylbls .yy{display:none}.yaxis{min-width:34px;font-size:10px}.ycols,.ylbls{gap:2px}}
+/* iOS-style glass on every control: translucent frosted fill, bright top rim, soft lift. The slip stays solid (it is exported as an image). */
+:root{
+  --glass:linear-gradient(180deg,rgba(255,255,255,.66) 0%,rgba(255,255,255,.38) 100%);
+  --glassHover:linear-gradient(180deg,rgba(255,255,255,.88) 0%,rgba(255,255,255,.6) 100%);
+  --glassRim:rgba(255,255,255,.72);
+  --glassHi:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.3),inset 0 0 0 .5px rgba(255,255,255,.45);
+  --glassLift:0 6px 18px -8px rgba(24,38,32,.28);
+  --blurS:saturate(180%) blur(14px);
+}
+.card::before,.modal::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;background:linear-gradient(165deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.12) 28%,rgba(255,255,255,0) 55%)}
+.btn{background:var(--glass);border-color:var(--glassRim);backdrop-filter:var(--blurS);-webkit-backdrop-filter:var(--blurS);box-shadow:var(--glassHi),var(--glassLift);transition:background .15s,border-color .15s,transform .12s,box-shadow .15s}
+.btn:hover{background:var(--glassHover);border-color:#fff;box-shadow:var(--glassHi),0 8px 20px -8px rgba(var(--toneRGB),.35)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{box-shadow:var(--glassHi),0 0 0 4px rgba(var(--toneRGB),.3)}
+.btn.pri{border-color:rgba(255,255,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 6px -2px rgba(24,38,32,.35),0 10px 24px -8px rgba(var(--toneRGB),.6)}
+.btn.pri:hover{border-color:rgba(255,255,255,.5)}
+.btn.ok,.stbtn .btn.sel{background:var(--glassSheen),var(--brandGrad);border-color:rgba(255,255,255,.35);color:#fff;text-shadow:0 1px 1px rgba(24,38,32,.25);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 6px -2px rgba(24,38,32,.25),0 10px 22px -8px rgba(var(--toneRGB),.55)}
+.btn.ghost{background:transparent;border-color:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.btn.ghost:hover{background:var(--glass);border-color:var(--glassRim);box-shadow:var(--glassHi)}
+.top .btn.sm{background:var(--glass)}
+.top .btn.sm:hover{background:var(--glassHover)}
+input[type=text],input[type=password],input[type=number],input[type=time],input[type=date],input[type=month],select,textarea{background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.72));border-color:var(--glassRim);backdrop-filter:var(--blurS);-webkit-backdrop-filter:var(--blurS);box-shadow:inset 0 1px 3px rgba(24,38,32,.1),inset 0 -1px 0 rgba(255,255,255,.8)}
+input:focus,select:focus,textarea:focus{background:rgba(255,255,255,.88);box-shadow:inset 0 1px 3px rgba(24,38,32,.08),0 0 0 4px rgba(var(--toneRGB),.25)}
+.tabs{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.3));box-shadow:var(--glassHi),var(--sh)}
+.tab{transition:background .15s,color .15s}
+.tab:hover:not(.on){background:rgba(255,255,255,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.tab.on{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 6px -2px rgba(24,38,32,.3),0 6px 16px -6px rgba(var(--toneRGB),.55)}
+.pill[class*=p-],.chip{background-image:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 0 0 1px rgba(255,255,255,.4)}
+.callout{position:relative;border:1px solid rgba(255,255,255,.6);background-color:color-mix(in srgb,var(--brandBg) 72%,transparent);background-image:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 60%);backdrop-filter:var(--blurS);-webkit-backdrop-filter:var(--blurS);box-shadow:var(--glassHi)}
+.callout.sage{background-color:color-mix(in srgb,var(--sageBg) 72%,transparent)}
+.callout.amber{background-color:color-mix(in srgb,var(--amberBg) 72%,transparent)}
+.lunch-toggle{background:var(--glass);border-color:var(--glassRim);backdrop-filter:var(--blurS);-webkit-backdrop-filter:var(--blurS);box-shadow:var(--glassHi)}
+.whobtn{background:var(--glass);border-color:var(--glassRim);backdrop-filter:var(--blurS);-webkit-backdrop-filter:var(--blurS);box-shadow:var(--glassHi),var(--glassLift);transition:background .15s,transform .12s,box-shadow .15s}
+.whobtn:hover{background:var(--glassHover)}
+.whobtn:active{transform:scale(.98)}
+.whobtn.on{background:var(--glassHover);box-shadow:var(--glassHi),0 0 0 4px rgba(var(--toneRGB),.22)}
+.who .av,.whobtn .av,.stepnum,.cnt,.cell.today .dn>span:first-child{background-image:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0) 60%);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 2px 6px -2px rgba(24,38,32,.35)}
+.tbl{background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.42));backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:var(--glassHi),var(--sh)}
+th,tr.tot td{background:rgba(247,249,248,.72);backdrop-filter:var(--blurS);-webkit-backdrop-filter:var(--blurS)}
+tr.today td{background:rgba(var(--toneRGB),.1)}
+.cal{background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.38));box-shadow:var(--glassHi),var(--sh)}
+.cal-h div{background:rgba(255,255,255,.4)}
+.cell:hover:not(:disabled){background:rgba(255,255,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+.cell.today{background:rgba(255,255,255,.72);box-shadow:inset 0 0 0 2px var(--brand),inset 0 3px 0 rgba(255,255,255,.9)}
+.modal{position:relative;background:linear-gradient(150deg,rgba(255,255,255,.78),rgba(246,248,247,.66));backdrop-filter:saturate(180%) blur(30px);-webkit-backdrop-filter:saturate(180%) blur(30px);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 .5px rgba(255,255,255,.6),0 30px 80px -20px rgba(24,38,32,.4)}
+.toast{background:rgba(22,30,27,.72);border:1px solid rgba(255,255,255,.18);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 30px -6px rgba(0,0,0,.3)}
+.toast.err{background:rgba(180,87,79,.8)}
+.ytip{background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.66));border-color:var(--glassRim);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);box-shadow:var(--glassHi),0 12px 30px -10px rgba(24,38,32,.35)}
+.ycol:hover,.ycol:focus-visible{background:rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.tier-bar{box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 4px 12px -6px rgba(24,38,32,.3)}
+.tier-bar div{background-image:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,0) 55%)}
+/* dark mode: same clay/melon hues on a fired-earth background. data-theme is set before first paint (script in <head>); the PNG slip is drawn on canvas and stays light. */
+.thm{font-size:15px;line-height:1;min-width:34px;justify-content:center}
+:root[data-theme=dark]{color-scheme:dark;
+  --paper:#111614; --card:rgba(30,38,35,.62); --solid:#1A211E; --ink:#E7EEEA; --ink2:#A7B3AE; --ink3:#6C7873;
+  --line:rgba(220,240,230,.08); --line2:rgba(220,240,230,.15); --glassLine:rgba(220,240,230,.12); --guide:rgba(220,240,230,.05);
+  --sage:#9DD2BC; --sageBg:#22302A; --amber:#9AB6D6; --amberBg:#212A35; --red:#EE8E84; --redBg:#3D2220;
+  --blue:#E6B08C; --blueBg:#38271C; --violet:#B69CD3; --violetBg:#2A2433; --off:#4E5853;
+  --sh:inset 0 1px 0 rgba(225,240,232,.06),0 1px 2px rgba(0,0,0,.2),0 14px 34px -12px rgba(0,0,0,.6);
+  --glass:linear-gradient(180deg,rgba(225,240,232,.11) 0%,rgba(225,240,232,.04) 100%);
+  --glassHover:linear-gradient(180deg,rgba(225,240,232,.18) 0%,rgba(225,240,232,.08) 100%);
+  --glassRim:rgba(225,240,232,.14);
+  --glassHi:inset 0 1px 0 rgba(225,240,232,.14),inset 0 0 0 .5px rgba(225,240,232,.06);
+  --glassLift:0 6px 18px -8px rgba(0,0,0,.55);
+}
+:root[data-theme=dark] body::before{opacity:.34}
+:root[data-theme=dark] body::after{opacity:.35}
+:root[data-theme=dark] .top .in{background:rgba(24,31,28,.82)}
+:root[data-theme=dark] .card::before,:root[data-theme=dark] .modal::before{background:linear-gradient(165deg,rgba(225,240,232,.08) 0%,rgba(225,240,232,0) 45%)}
+:root[data-theme=dark] .hero>.card:first-child,:root[data-theme=dark] .split>.card:first-child,:root[data-theme=dark] .split>div:first-child>.card:first-child{background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,rgba(255,255,255,0) 1px 4px,rgba(0,0,0,.08) 4px 5px,rgba(255,255,255,0) 5px 6px),linear-gradient(120deg,rgba(var(--toneRGB),.32) 0%,rgba(var(--toneRGB),.12) 50%,rgba(30,38,35,.7) 90%)}
+:root[data-theme=dark] .hero>.card:last-child,:root[data-theme=dark] .split>.card:last-child,:root[data-theme=dark] .split>div:last-child>.card:first-child{background:linear-gradient(150deg,rgba(30,38,35,.8),rgba(30,38,35,.66) 60%,rgba(var(--toneRGB),.14))}
+:root[data-theme=dark] .btn:hover,:root[data-theme=dark] .whobtn.on{border-color:rgba(225,240,232,.28)}
+:root[data-theme=dark] .btn.pri,:root[data-theme=dark] .btn.ok,:root[data-theme=dark] .stbtn .btn.sel{border-color:rgba(225,240,232,.22)}
+:root[data-theme=dark] input[type=text],:root[data-theme=dark] input[type=password],:root[data-theme=dark] input[type=number],:root[data-theme=dark] input[type=time],:root[data-theme=dark] input[type=date],:root[data-theme=dark] input[type=month],:root[data-theme=dark] select,:root[data-theme=dark] textarea{background:rgba(10,14,12,.55);box-shadow:inset 0 1px 3px rgba(0,0,0,.35),inset 0 -1px 0 rgba(225,240,232,.05)}
+:root[data-theme=dark] input:focus,:root[data-theme=dark] select:focus,:root[data-theme=dark] textarea:focus{background:rgba(10,14,12,.75);box-shadow:inset 0 1px 3px rgba(0,0,0,.3),0 0 0 4px rgba(var(--toneRGB),.22)}
+:root[data-theme=dark] .tabs{background:linear-gradient(180deg,rgba(225,240,232,.08),rgba(225,240,232,.03))}
+:root[data-theme=dark] .tab:hover:not(.on){background:rgba(225,240,232,.08);box-shadow:inset 0 1px 0 rgba(225,240,232,.1)}
+:root[data-theme=dark] .pill[class*=p-],:root[data-theme=dark] .chip{background-image:linear-gradient(180deg,rgba(225,240,232,.08),rgba(225,240,232,0));box-shadow:inset 0 0 0 1px rgba(225,240,232,.06)}
+:root[data-theme=dark] .p-mute,:root[data-theme=dark] .chip{background-color:rgba(225,240,232,.09)}
+:root[data-theme=dark] .chip.liveN{background-color:var(--violetBg);color:var(--violet)}
+:root[data-theme=dark] th,:root[data-theme=dark] tr.tot td{background:rgba(28,36,33,.9)}
+:root[data-theme=dark] tr.today td{background:rgba(var(--toneRGB),.16)}
+:root[data-theme=dark] .tbl{background:linear-gradient(180deg,rgba(30,38,35,.7),rgba(22,29,26,.6))}
+:root[data-theme=dark] .cal{background:linear-gradient(180deg,rgba(30,38,35,.66),rgba(22,29,26,.55))}
+:root[data-theme=dark] .cal-h div{background:rgba(225,240,232,.04)}
+:root[data-theme=dark] .cell.out{background:rgba(0,0,0,.18);color:#4A5450}
+:root[data-theme=dark] .cell.sun{background:rgba(var(--toneRGB),.07)}
+:root[data-theme=dark] .cell:hover:not(:disabled){background:rgba(225,240,232,.07);box-shadow:inset 0 1px 0 rgba(225,240,232,.08)}
+:root[data-theme=dark] .cell.today{background:rgba(225,240,232,.08);box-shadow:inset 0 0 0 2px var(--brandL)}
+:root[data-theme=dark] .callout{color:var(--clay);border-color:rgba(225,240,232,.1);background-image:linear-gradient(180deg,rgba(225,240,232,.06),rgba(225,240,232,0) 60%)}
+:root[data-theme=dark] .callout.sage{color:var(--sage)}
+:root[data-theme=dark] .callout.amber{color:var(--amber)}
+:root[data-theme=dark] .whobtn:not(.on) .av{background-color:var(--brandBg);color:var(--clay)}
+:root[data-theme=dark] .modal-bg{background:rgba(3,5,4,.55)}
+:root[data-theme=dark] .modal{background:linear-gradient(150deg,rgba(30,38,35,.94),rgba(22,28,26,.92));box-shadow:inset 0 1px 0 rgba(225,240,232,.1),0 30px 80px -20px rgba(0,0,0,.7)}
+:root[data-theme=dark] .ytip{background:linear-gradient(180deg,rgba(32,41,37,.95),rgba(26,33,30,.92));box-shadow:var(--glassHi),0 12px 30px -10px rgba(0,0,0,.6)}
+:root[data-theme=dark] .ycol:hover,:root[data-theme=dark] .ycol:focus-visible{background:rgba(225,240,232,.06);box-shadow:inset 0 1px 0 rgba(225,240,232,.08)}
+:root[data-theme=dark] .toast{background:rgba(38,48,44,.85);border-color:rgba(225,240,232,.14)}
+:root[data-theme=dark] .choice .btn.pri small{color:rgba(255,255,255,.82)}
+</style>
+<script>
+/* apply the saved theme (or the system one) before the first paint, so there is no light flash */
+(function(){let t=null;try{t=localStorage.getItem('gvg-theme')}catch(e){}
+  const mq=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)');
+  document.documentElement.dataset.theme=t||(mq&&mq.matches?'dark':'light');
+})();
+</script>
+</head>
+<body>
+<div id="app"><div class="login center"><span class="spin"></span><p class="muted">Đang tải…</p></div></div>
+<div id="modal"></div>
+<div id="toast"></div>
+<script>
+/*__QR__*/
+</script>
+<script>
+'use strict';
+const LOGO_B='/*__LOGO_B__*/';
+const LOGO_W='/*__LOGO_W__*/';
+const isDark=()=>document.documentElement.dataset.theme==='dark';
+const logo=()=>isDark()?LOGO_W:LOGO_B;
+const themeBtn=()=>`<button class="btn sm ghost thm" data-act="theme" title="${isDark()?'Chế độ sáng':'Chế độ tối'}" aria-label="${isDark()?'Chuyển sang chế độ sáng':'Chuyển sang chế độ tối'}">${isDark()?'☀':'☾'}</button>`;
+/* ================= CONSTANTS ================= */
+const BANKS=[
+['970436','Vietcombank'],['970415','VietinBank'],['970418','BIDV'],['970405','Agribank'],['970407','Techcombank'],
+['970422','MB Bank'],['970416','ACB'],['970432','VPBank'],['970423','TPBank'],['970403','Sacombank'],['970441','VIB'],
+['970443','SHB'],['970437','HDBank'],['970448','OCB'],['970426','MSB'],['970440','SeABank'],['970431','Eximbank'],
+['970449','LPBank'],['970428','Nam A Bank'],['970409','Bac A Bank'],['970425','ABBANK'],['970454','BVBank (Bản Việt)'],
+['970412','PVcomBank'],['970452','KienlongBank'],['970427','VietABank'],['970419','NCB'],['970429','SCB'],['970400','Saigonbank'],
+['970438','BaoViet Bank'],['970430','PGBank'],['970408','GPBank'],['970433','Vietbank'],['970457','Woori Bank'],
+['970424','Shinhan Bank'],['546034','CAKE by VPBank'],['546035','Ubank by VPBank'],['963388','Timo']];
+const bankName=bin=>(BANKS.find(b=>b[0]===bin)||[,bin?('BIN '+bin):''])[1];
+const DOW=['CN','T2','T3','T4','T5','T6','T7'];
+const STATUS={work:'Đi làm',half:'Nửa buổi',paid:'Nghỉ phép có lương',off:'Nghỉ không lương'};
+const SEGT={main:'Ca chính',liveD:'Live trưa',liveN:'Live tối'};
+const KIND={month:'Lương tháng theo công',hour:'Lương theo giờ + live'};
+const IDLE_MIN=15;
+const STATUS_SHORT={work:'Đi làm',half:'Nửa buổi',paid:'Phép',off:'Nghỉ KL'};
+/* pg*: Fanpage on-duty windows (same day). The monthly Fanpage allowance is fixed and pays the T2–CN windows; a Saturday's window
+   starts at the actual end of its main shift (pgSat's start is the fallback). A day off still on page runs from Sunday's start: the extra hours are paid on top. */
+const DEF_SCHED={wd:['09:00','16:00'],sat:['09:30','12:30'],liveD:['12:00','14:00'],liveN:['19:00','21:00'],pgWd:['16:00','23:00'],pgSat:['12:30','23:00'],pgSun:['09:00','23:00']};
+const PG_KEYS=['pgWd','pgSat','pgSun'];
+const GRACE_START=15,GRACE_END=30;
+/* a stored pgWd ending at or before its start marks the old overnight windows: fall back to the defaults (pgSun's old 09:00→10:00 looks valid on its own) */
+const sched=sal=>{const s={...DEF_SCHED,...((sal&&sal.sched)||{})};if(toMin(s.pgWd[1])<=toMin(s.pgWd[0]))PG_KEYS.forEach(k=>s[k]=DEF_SCHED[k]);return s};
+function schedFor(sal,ym,d,t){const s=sched(sal);if(t==='liveD')return s.liveD;if(t==='liveN')return s.liveN;const w=dowOf(ym,d);return w===0?null:w===6?s.sat:s.wd}
+const pgOn=sal=>!!sal&&sal.kind==='hour'&&+sal.page>0;
+const pgWin=(sal,w)=>{const s=sched(sal);return w===0?s.pgSun:w===6?s.pgSat:s.pgWd};
+const spanH=([a,b])=>Math.max(0,toMin(b)-toMin(a))/60;
+/* extra hours of a day off on weekday w = from Sunday's window start to that day's window start */
+const pgGapH=(sal,w)=>Math.max(0,toMin(pgWin(sal,w)[0])-toMin(pgWin(sal,0)[0]))/60;
+function pgDayH(sal,ym,d,rec){const w=dowOf(ym,d),win=pgWin(sal,w);if(w!==6)return spanH(win);
+  const outs=effSegs(rec,sal,ym,d).filter(s=>s.t==='main'&&s.in&&s.out&&toMin(s.out)>toMin(s.in)).map(s=>toMin(s.out));
+  return outs.length?Math.max(0,toMin(win[1])-Math.max(...outs))/60:spanH(win)}
+function pgRate(sal,ym,days){const{n}=ymParts(ym);let h=0;for(let d=1;d<=n;d++)h+=pgDayH(sal,ym,d,days[pad(d)]);return{h,rate:h?(+sal.page||0)/h:0}}
+const initials=n=>stripVN(n).split(' ').filter(Boolean).map(x=>x[0]).join('').slice(-2).toUpperCase()||'?';
+
+/* ================= UTILS ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const fmt=n=>Math.round(+n||0).toLocaleString('vi-VN');
+const money=n=>fmt(n)+' đ';
+const pct=(x,d=1)=>(Math.round((+x||0)*100*10**d)/10**d).toLocaleString('vi-VN')+'%';
+const parseMoney=s=>{const v=Number(String(s??'').replace(/[^\d]/g,''));return isFinite(v)?v:0};
+const parsePct=s=>{const v=parseFloat(String(s??'').replace(',','.'));return isFinite(v)?v/100:0};
+const parseNum=s=>{const v=parseFloat(String(s??'').replace(',','.'));return isFinite(v)?v:0};
+const hrs=h=>(Math.round(h*100)/100).toLocaleString('vi-VN');
+const clone=o=>o==null?o:JSON.parse(JSON.stringify(o));
+function nowParts(){const d=new Date();return{ym:d.getFullYear()+'-'+pad(d.getMonth()+1),d:d.getDate(),hm:pad(d.getHours())+':'+pad(d.getMinutes()),iso:d.toISOString()}}
+function ymParts(ym){const[y,m]=ym.split('-').map(Number);return{y,m,n:new Date(y,m,0).getDate()}}
+const ymLabel=ym=>{const{y,m}=ymParts(ym);return'Tháng '+m+'/'+y};
+const dowOf=(ym,d)=>{const{y,m}=ymParts(ym);return new Date(y,m-1,d).getDay()};
+/* every marked day counts the same: Đi làm / phép = 1 công, nửa buổi = 0,5 (Saturday and Sunday too). dayStd only says whether a day is expected to be marked. */
+function dayStd(ym,d){return dowOf(ym,d)===0?0:1}
+const STD_MONTH=24;
+function stdCong(md){return md&&+md.std>0?+md.std:STD_MONTH}
+/* every month recalculates from one profile, so a raise is dated: months before `from` keep the old salary. raises stay sorted by from. */
+const monthlyFor=(sal,ym)=>(sal.raises||[]).reduce((m,r)=>r.from<=ym?r.monthly:m,+sal.monthly||0);
+function dayState(ym,d){const t=nowParts();if(ym<t.ym)return'past';if(ym>t.ym)return'future';return d<t.d?'past':d===t.d?'today':'future'}
+const toMin=s=>{if(!s)return null;const[h,m]=String(s).split(':').map(Number);return h*60+m};
+function stripVN(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').replace(/[^A-Za-z0-9 ]/g,' ').replace(/\s+/g,' ').trim()}
+function monthsList(){const t=nowParts();const{y,m}=ymParts(t.ym);const out=[];for(let i=-12;i<=1;i++){const d=new Date(y,m-1+i,1);out.push(d.getFullYear()+'-'+pad(d.getMonth()+1))}return out.reverse()}
+
+/* ================= CRYPTO ================= */
+const TE=new TextEncoder(),TD=new TextDecoder();
+const b64=u8=>{let s='';const a=new Uint8Array(u8);for(let i=0;i<a.length;i+=0x8000)s+=String.fromCharCode.apply(null,a.subarray(i,i+0x8000));return btoa(s)};
+const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const rand=n=>crypto.getRandomValues(new Uint8Array(n));
+async function kdf(pw,saltB64){
+  const base=await crypto.subtle.importKey('raw',TE.encode(pw),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:unb64(saltB64),iterations:210000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+}
+async function encBytes(key,u8,aad){const iv=rand(12);const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:TE.encode(aad)},key,u8);return{iv:b64(iv),ct:b64(ct)}}
+async function decBytes(key,o,aad){return new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(o.iv),additionalData:TE.encode(aad)},key,unb64(o.ct)))}
+const encJSON=(k,obj,aad)=>encBytes(k,TE.encode(JSON.stringify(obj)),aad);
+const decJSON=async(k,o,aad)=>JSON.parse(TD.decode(await decBytes(k,o,aad)));
+const importDK=raw=>crypto.subtle.importKey('raw',raw,{name:'AES-GCM'},false,['encrypt','decrypt']);
+
+/* remembered login: this browser's IndexedDB keeps who + the password-derived key, never the password.
+   kdf() makes that key non-extractable, so it can be used here but not read out. */
+function loginTx(mode,fn){return new Promise((ok,no)=>{const o=indexedDB.open('gvg-login',1);
+  o.onupgradeneeded=()=>o.result.createObjectStore('kv');o.onerror=()=>no(o.error);
+  o.onsuccess=()=>{const db=o.result,t=db.transaction('kv',mode),r=fn(t.objectStore('kv'));
+    t.oncomplete=()=>{db.close();ok(r.result)};t.onabort=t.onerror=()=>{db.close();no(t.error)}}})}
+const readLogin=()=>loginTx('readonly',s=>s.get('login')).catch(()=>null);
+const saveLogin=(who,key)=>loginTx('readwrite',s=>s.put({who,key},'login')).then(()=>true,()=>false);
+const forgetLogin=()=>loginTx('readwrite',s=>s.delete('login')).catch(()=>{});
+
+/* ================= VIETQR ================= */
+function crc16(s){let c=0xFFFF;for(let i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(let j=0;j<8;j++)c=(c&0x8000)?((c<<1)^0x1021)&0xFFFF:(c<<1)&0xFFFF}return c.toString(16).toUpperCase().padStart(4,'0')}
+const tlv=(id,v)=>id+pad(String(v).length)+v;
+function vietqr(bin,acct,amount,info){
+  const acc=tlv('00','A000000727')+tlv('01',tlv('00',bin)+tlv('01',acct))+tlv('02','QRIBFTTA');
+  let p=tlv('00','01')+tlv('01',amount>0?'12':'11')+tlv('38',acc)+tlv('53','704');
+  if(amount>0)p+=tlv('54',String(Math.round(amount)));
+  p+=tlv('58','VN');
+  if(info)p+=tlv('62',tlv('08',stripVN(info).slice(0,50)));
+  p+='6304';return p+crc16(p);
+}
+function qrCanvas(text,px=6,margin=3){
+  const q=new QRLib.QRCode(-1,QRLib.ECL.M);q.addData(text);q.make();
+  const n=q.getModuleCount(),sz=(n+margin*2)*px;const c=document.createElement('canvas');c.width=c.height=sz;
+  const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,sz,sz);g.fillStyle='#000';
+  for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(q.isDark(r,k))g.fillRect((k+margin)*px,(r+margin)*px,px,px);
+  return c;
+}
+
+/* ================= STATE ================= */
+const S={db:null,user:null,dl:null,cfg:null,kw:{},ym:nowParts().ym,role:null,ownerKey:null,dk:{},dkRaw:{},cache:{},mdoc:null,
+  tab:null,selStaff:null,modal:null,loginWho:null,keep:false,isOwnerAcct:false,loading:false,simRev:null};
+
+/* ================= DB HELPERS ================= */
+async function dget(path){const s=await S.db.doc(path).get();return s.exists?clone(s.data()):null}
+async function dset(path,obj){await S.db.doc(path).set(obj)}
+async function getEnc(path,id){const d=await dget(path);if(!d||!d.ct)return null;return decJSON(S.dk[id],d,path)}
+async function putEnc(path,id,obj){const e=await encJSON(S.dk[id],obj,path);await dset(path,{...e,at:Date.now()})}
+const P={sal:id=>'sal/'+id,sp:id=>'sp/'+id,sd:(id,ym)=>'sd/'+id+'_'+ym,bon:(id,ym)=>'bon/'+id+'_'+ym,kw:id=>'kw/'+id,month:ym=>'months/'+ym};
+const staffIds=()=>S.role==='owner'?S.cfg.staff.map(s=>s.id):[S.role];
+const staffMeta=id=>S.cfg.staff.find(s=>s.id===id);
+/* one colour per person, by position; owner orange. Hexes match the CSS tones. */
+const TONE={pink:{brand:'#B06A7E',dark:'#8C4D5F',text:'#7B4253',bg:'#F4E4E9'},green:{brand:'#709988',dark:'#537969',text:'#476C5C',bg:'#E5F0EC'},
+  orange:{brand:'#C07F56',dark:'#9A5E3A',text:'#87502F',bg:'#F6EAE1'},blue:{brand:'#6A83A0',dark:'#4E647E',text:'#425870',bg:'#E4EAF1'},purple:{brand:'#836F9B',dark:'#65527A',text:'#58466D',bg:'#EAE5F0'}};
+const TONE_ORDER=['pink','green','blue','purple','orange'];
+function toneOf(id){if(!id)return'green';if(id==='owner')return'orange';return TONE_ORDER[Math.max(0,S.cfg.staff.findIndex(s=>s.id===id))%TONE_ORDER.length]}
+/* the page takes the tone of whoever it is about: the signed-in staff member, the staff the owner is viewing, or the person picked at login */
+function pageTone(){if(!S.cfg)return'green';if(!S.role)return S.loginWho?toneOf(S.loginWho):'green';
+  if(S.role!=='owner')return toneOf(S.role);return S.tab==='cc'&&S.selStaff?toneOf(S.selStaff):'orange'}
+
+async function loadCfg(){S.cfg=await dget('cfg/main')}
+async function loadMonth(){
+  S.loading=true;render();
+  try{
+    S.mdoc=(await dget(P.month(S.ym)))||{revenue:0,locked:{},paid:{}};
+    S.mdoc.locked=S.mdoc.locked||{};S.mdoc.paid=S.mdoc.paid||{};
+    await Promise.all(staffIds().map(async id=>{
+      const[sal,sp,sd,bon]=await Promise.all([getEnc(P.sal(id),id),getEnc(P.sp(id),id),getEnc(P.sd(id,S.ym),id),getEnc(P.bon(id,S.ym),id)]);
+      S.cache[id]={sal:sal||{kind:'month',monthly:0,hourly:0,page:0,share:0,lunch:false,live:false},sp:sp||{},days:(sd&&sd.days)||{},req:(sd&&sd.req)||[],bon:(bon&&bon.items)||[]};
+    }));
+  }catch(e){console.error(e);toast('Không tải được dữ liệu: '+(e.message||e.code||e),true)}
+  S.loading=false;render();
+  if(S.tab==='tong'&&S.showYear)loadYear();
+}
+/* 12-month overview (owner, under Báo cáo lương): the 12 periods ending this month, each recomputed with calcPay() from that
+ * month's sd/bon/months docs. Salary profiles (sal) are not stored per month, so past months use the current profile —
+ * same as reopening a past period. Old rows stay on screen while reloading. */
+async function loadYear(){
+  const end=nowParts().ym;if(!S.year||S.year.end!==end){S.year={end};render()}
+  try{
+    const{y,m}=ymParts(end);const yms=[];
+    for(let i=11;i>=0;i--){const d=new Date(y,m-1-i,1);yms.push(d.getFullYear()+'-'+pad(d.getMonth()+1))}
+    const rows=await Promise.all(yms.map(async ym=>{
+      const md=ym===S.ym?S.mdoc:await dget(P.month(ym));
+      const per=await Promise.all(staffIds().map(async id=>{
+        const[sd,bon]=await Promise.all([getEnc(P.sd(id,ym),id),getEnc(P.bon(id,ym),id)]);
+        return{id,days:(sd&&sd.days)||{},bon:(bon&&bon.items)||[]};
+      }));
+      const empty=!md&&per.every(p=>!Object.keys(p.days).length&&!p.bon.length);
+      const mdn={revenue:0,...(md||{}),locked:(md&&md.locked)||{},paid:(md&&md.paid)||{}};
+      const Rs=empty?[]:per.map(p=>calcPay(p.id,ym,mdn,{...S.cache[p.id],days:p.days,bon:p.bon,req:[]}));
+      return{ym,empty,rev:+mdn.revenue||0,Rs};
+    }));
+    if(S.year&&S.year.end===end)S.year={end,rows};
+  }catch(e){console.error(e);toast('Không tải được tổng quan: '+(e.message||e.code||e),true);S.year=null}
+  render();
+}
+async function mutateDays(id,fn){
+  const path=P.sd(id,S.ym);
+  const cur=(await getEnc(path,id))||{days:{}};cur.days=cur.days||{};
+  fn(cur.days);
+  await putEnc(path,id,cur);S.cache[id].days=cur.days;render();
+}
+/* Requests (tạm ứng / đề xuất thưởng) live in sd/{id}_{ym}.req — staff can already write sd. */
+async function mutateReq(id,fn){
+  const path=P.sd(id,S.ym);
+  const cur=(await getEnc(path,id))||{days:{}};cur.days=cur.days||{};cur.req=cur.req||[];
+  fn(cur.req);
+  await putEnc(path,id,cur);S.cache[id].req=cur.req;S.cache[id].days=cur.days;render();
+}
+const REQT={deduct:'Xin tạm ứng',bonus:'Đề xuất thưởng'};
+const REQST={pending:['p-warn','Chờ duyệt'],ok:['p-ok','Đã duyệt'],no:['p-bad','Từ chối']};
+const pendingReqs=ids=>ids.flatMap(i=>((S.cache[i]&&S.cache[i].req)||[]).filter(r=>r.st==='pending').map(r=>({...r,id:i})));
+const reqWhen=r=>new Date(r.at).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
+async function saveMonthDoc(patch){
+  const cur=(await dget(P.month(S.ym)))||{revenue:0,locked:{},paid:{}};
+  const next={...cur,...patch,locked:{...(cur.locked||{}),...(patch.locked||{})},paid:{...(cur.paid||{}),...(patch.paid||{})}};
+  await dset(P.month(S.ym),next);S.mdoc=next;render();
+  if(S.tab==='tong'&&S.showYear)loadYear();
+}
+
+/* ================= CALCULATIONS ================= */
+function commission(rev,c){
+  rev=Math.max(0,+rev||0);
+  const b1=Math.min(rev,c.t1)*c.r1,b2=Math.max(0,Math.min(rev,c.t2)-c.t1)*c.r2,b3=Math.max(0,rev-c.t2)*c.r3;
+  const fund=b1+b2+b3;const margin=Math.max(0,rev*(1-c.cogs-c.ads-c.damage-c.other));const cap=c.capPct*margin;
+  return{rev,b1,b2,b3,fund,margin,cap,paid:Math.min(fund,cap),capped:fund>cap+0.5};
+}
+function effSegs(rec,sal,ym,d){
+  const segs=((rec&&rec.seg)||[]).map(s=>({...s}));const st=dayState(ym,d);
+  if(st==='past')segs.forEach(s=>{if(s.in&&!s.out){const sc=schedFor(sal,ym,d,s.t);if(sc&&toMin(sc[1])>toMin(s.in)){s.out=sc[1];s.autoOut=true}}});
+  return segs;
+}
+function hourDay(rec,sal,ym,d){
+  const segs=effSegs(rec,sal,ym,d);const R={mainH:0,ldH:0,lnH:0,ldX:0,lnX:0,open:0,bad:0,auto:segs.filter(s=>s.autoOut||s.src==='auto'||s.srcOut==='auto').length,segs};
+  const mains=segs.filter(s=>s.t==='main'&&s.in&&s.out&&toMin(s.out)>toMin(s.in)).map(s=>[toMin(s.in),toMin(s.out)]);
+  mains.forEach(([a,b])=>R.mainH+=(b-a)/60);
+  segs.forEach(s=>{if(s.in&&!s.out)R.open++;else if(s.in&&s.out&&toMin(s.out)<=toMin(s.in))R.bad++});
+  for(const s of segs){
+    if(s.t==='main'||!s.in||!s.out)continue;const a=toMin(s.in),b=toMin(s.out);if(b<=a)continue;
+    let ov=0;mains.forEach(([x,y])=>ov+=Math.max(0,Math.min(b,y)-Math.max(a,x)));
+    const L=(b-a),rate=s.t==='liveD'?+S.cfg.rates.liveDay:+S.cfg.rates.liveNight;
+    const extra=ov/60*Math.max(0,rate-(+sal.hourly||0))+(L-ov)/60*rate;
+    if(s.t==='liveD'){R.ldH+=L/60;R.ldX+=extra}else{R.lnH+=L/60;R.lnX+=extra}
+  }
+  R.pay=R.mainH*(+sal.hourly||0)+R.ldX+R.lnX;return R;
+}
+/* ym/md/C default to the period on screen; the 12-month overview passes other months */
+function calcPay(id,ym=S.ym,md=S.mdoc||{},C=S.cache[id]){
+  const st=staffMeta(id),sal=C.sal,days=C.days||{};
+  const{n}=ymParts(ym);
+  const R={id,name:st.name,title:st.title,kind:sal.kind,warn:[],edited:0,base:0,lunch:0,liveD:0,liveN:0,lunchDays:0};
+  const cm=commission(md.revenue,S.cfg.comm);R.cm=cm;R.share=+sal.share||0;R.comm=Math.round(cm.paid*R.share);
+  if(sal.kind==='month'){
+    const std=stdCong(md);let cong=0,lunchDays=0,unmarked=0;
+    for(let d=1;d<=n;d++){
+      const rec=days[pad(d)],s=dayStd(ym,d),state=dayState(ym,d);
+      if(!rec||!rec.st){if(s>0&&state!=='future')unmarked++;continue}
+      cong+=(rec.st==='work'||rec.st==='paid')?1:rec.st==='half'?0.5:0;
+      const w=dowOf(ym,d);
+      if(sal.lunch&&rec.lunch&&(rec.st==='work'||rec.st==='half')&&w>=1&&w<=5)lunchDays++;
+      if(rec.late||rec.by==='owner')R.edited++;
+    }
+    R.std=std;R.cong=cong;R.unit=std>0?monthlyFor(sal,ym)/std:0;R.base=Math.round(cong*R.unit);
+    R.lunchDays=lunchDays;R.lunch=lunchDays*(+S.cfg.rates.lunch||0);R.unmarked=unmarked;
+  }else{
+    let mainH=0,ldH=0,lnH=0,ldX=0,lnX=0,open=0,bad=0,wd=0,offD=0,offH=0;
+    for(let d=1;d<=n;d++){
+      const rec=days[pad(d)];if(!rec)continue;const h=hourDay(rec,sal,ym,d);if(h.auto)R.auto=(R.auto||0)+h.auto;
+      mainH+=h.mainH;ldH+=h.ldH;lnH+=h.lnH;ldX+=h.ldX;lnX+=h.lnX;bad+=h.bad;
+      if(dayState(ym,d)!=='today')open+=h.open;
+      if(h.mainH>0)wd++;if(rec.late||rec.by==='owner')R.edited++;
+      if(rec.pg&&pgOn(sal)&&!h.mainH){const w=dowOf(ym,d);if(w){offD++;offH+=pgGapH(sal,w)}}
+    }
+    R.hours=mainH;R.base=Math.round(mainH*(+sal.hourly||0));R.ldH=ldH;R.lnH=lnH;R.liveD=Math.round(ldX);R.liveN=Math.round(lnX);R.workDays=wd;
+    if(pgOn(sal)){const p=pgRate(sal,ym,days);R.pgH=p.h;R.pgRate=p.rate;R.pgOffD=offD;R.pgOffH=offH;R.pgOff=Math.round(offH*p.rate)}
+    if(open)R.warn.push(open+' ca thiếu giờ ra');if(R.auto)R.warn.push(R.auto+' ca tự điền giờ');if(bad)R.warn.push(bad+' ca giờ ra ≤ giờ vào');
+  }
+  R.pageBase=Math.round(+sal.page||0);R.page=R.pageBase+(R.pgOff||0);
+  R.bonusItems=C.bon||[];
+  R.bonus=R.bonusItems.filter(b=>b.type!=='deduct').reduce((a,b)=>a+(+b.amt||0),0);
+  R.deduct=R.bonusItems.filter(b=>b.type==='deduct').reduce((a,b)=>a+(+b.amt||0),0);
+  R.net=R.base+R.lunch+R.liveD+R.liveN+R.page+R.comm+R.bonus-R.deduct;
+  R.locked=!!(md.locked||{})[id];R.paid=(md.paid||{})[id]||null;
+  return R;
+}
+
+/* ================= UI PRIMITIVES ================= */
+let toastT;
+function toast(msg,err){const t=$('#toast');t.innerHTML='<div class="toast'+(err?' err':'')+'">'+esc(msg)+'</div>';clearTimeout(toastT);toastT=setTimeout(()=>t.innerHTML='',err?5000:2400)}
+function openModal(html,wide){S.modal={html,wide};renderModal()}
+function closeModal(){S.modal=null;renderModal()}
+function renderModal(){
+  const m=$('#modal');if(!S.modal){m.innerHTML='';return}
+  m.innerHTML='<div class="modal-bg" data-act="bgClose"><div class="modal'+(S.modal.wide?' wide':'')+'">'+S.modal.html+'</div></div>';
+  m.querySelectorAll('[data-qr]').forEach(el=>{try{el.replaceWith(qrCanvas(el.dataset.qr))}catch(e){el.textContent='QR lỗi'}});
+}
+async function busy(btn,fn){
+  if(btn){btn.disabled=true;btn.dataset.l=btn.innerHTML;btn.innerHTML='<span class="spin"></span>'}
+  try{await fn()}catch(e){if(!e.userMsg)console.error(e);toast(e.userMsg||('Lỗi: '+(e.message||e.code||e)),true)}
+  finally{if(btn&&btn.isConnected){btn.disabled=false;btn.innerHTML=btn.dataset.l}}
+}
+const uerr=m=>{const e=new Error(m);e.userMsg=m;return e};
+const canEditDays=id=>S.role==='owner'||!(S.mdoc&&S.mdoc.locked[id]);
+const bankOpts=sel=>'<option value="">— Chọn ngân hàng —</option>'+BANKS.map(b=>`<option value="${b[0]}"${b[0]===sel?' selected':''}>${esc(b[1])}</option>`).join('');
+
+/* ================= RENDER: ROOT ================= */
+function render(){
+  const app=$('#app');
+  document.documentElement.dataset.tone=pageTone();
+  if(!S.db){app.innerHTML=noDbView();return}
+  if(!S.cfg){app.innerHTML=S.isOwnerAcct?setupView():'<div class="login"><div class="card"><h2>Chưa thiết lập</h2><p class="muted">Chủ cửa hàng cần mở trang này và thiết lập lần đầu.</p></div></div>';return}
+  if(!S.role){app.innerHTML=loginView();const pw=$('#pw');if(pw&&S.loginWho)pw.focus();return}
+  const v=S.loading?'<div class="center" style="padding:60px"><span class="spin"></span></div>':(S.role==='owner'?ownerView():staffView());
+  // views with their own toolbar row embed ymSel() there; others get a right-aligned bar
+  app.innerHTML=topBar()+'<div class="wrap">'+(v.includes('data-chg="ym"')?'':`<div class="ymbar">${ymSel()}</div>`)+v+'</div>';
+  app.querySelectorAll('[data-qr]').forEach(el=>{try{el.replaceWith(qrCanvas(el.dataset.qr))}catch(e){el.textContent='QR lỗi'}});
+}
+function noDbView(){return`<div class="login"><div class="card"><h2>Cần đăng nhập</h2><p class="muted">Trang chấm công lưu dữ liệu trên máy chủ, vì vậy cần mở bằng tài khoản Claude đã được chủ cửa hàng mời (quyền chỉnh sửa). Hãy đăng nhập rồi tải lại trang.</p></div></div>`}
+const OWNER_TABS=[['tong','Báo cáo lương'],['cc','Chấm công'],['thuong','Thưởng & khấu trừ'],['hh','Hoa hồng'],['cd','Cài đặt']];
+const STAFF_TABS=[['cc','Chấm công'],['luong','Lương của tôi'],['hh','Cách tính hoa hồng'],['tk','Tài khoản']];
+const ymSel=()=>`<select data-chg="ym" aria-label="Kỳ lương">${monthsList().map(m=>`<option value="${m}"${m===S.ym?' selected':''}>${ymLabel(m)}</option>`).join('')}</select>`;
+function topBar(){
+  const nm=S.role==='owner'?'Chủ cửa hàng':staffMeta(S.role).name;
+  const tabs=S.role==='owner'?OWNER_TABS:STAFF_TABS;
+  const pend=S.role==='owner'&&!S.loading?pendingReqs(staffIds()).length:0;
+  return`<div class="top"><div class="in">
+  <div class="brand"><img src="${logo()}" alt="${esc(S.cfg.company||'Gốm Vũ Gia')}"></div>
+  <div class="tabs">${tabs.map(([k,v])=>`<button class="tab${S.tab===k?' on':''}" data-act="tab" data-v="${k}">${v}${k==='thuong'&&pend?`<span class="cnt">${pend}</span>`:''}</button>`).join('')}</div>
+  <div class="sp"></div>
+  <span class="who"><span class="av">${S.role==='owner'?'★':initials(nm)}</span><b>${esc(nm)}</b></span>
+  ${themeBtn()}
+  <button class="btn sm" data-act="logout">Đăng xuất</button>
+  </div></div>`;
+}
+
+/* ================= SETUP ================= */
+function setupView(){
+  const def=[
+    {name:'An',title:'Marketing 1',kind:'month',monthly:9600000,hourly:0,page:0,share:30,lunch:true,live:false},
+    {name:'Bình',title:'Marketing 2',kind:'month',monthly:9600000,hourly:0,page:0,share:30,lunch:true,live:false},
+    {name:'Chi',title:'Sales',kind:'hour',monthly:0,hourly:50000,page:1000000,share:40,lunch:false,live:true}];
+  return`<div class="wrap" style="max-width:860px"><div style="margin:36px 0 18px" class="brand"><img src="${logo()}" alt="" style="height:52px"><div class="sub"><b>Thiết lập lần đầu</b>Thông số mẫu — chỉnh theo cửa hàng của bạn.</div></div>
+  <form id="setupForm" class="grid">
+  <div class="card"><h3>1. Mật khẩu chủ cửa hàng</h3><p class="small muted">Dùng để xem báo cáo của cả 3 người, đặt lại mật khẩu nhân viên. <b>Hãy ghi nhớ</b> — nếu quên, dữ liệu đã mã hóa không thể mở lại.</p>
+   <div class="grid g3"><label class="f">Tên cửa hàng<input type="text" name="company" value="Gốm Vũ Gia"></label>
+   <label class="f">Mật khẩu chủ<input type="password" name="opw" autocomplete="new-password" required minlength="6"></label>
+   <label class="f">Nhập lại<input type="password" name="opw2" autocomplete="new-password" required></label></div></div>
+  ${def.map((d,i)=>`<div class="card"><h3>${i+2}. Nhân viên ${i+1}</h3>
+   <div class="grid g4" style="margin-top:10px">
+   <label class="f">Tên<input type="text" name="name${i}" value="${d.name}" required></label>
+   <label class="f">Vị trí<input type="text" name="title${i}" value="${d.title}"></label>
+   <label class="f">Hình thức<select name="kind${i}"><option value="month"${d.kind==='month'?' selected':''}>${KIND.month}</option><option value="hour"${d.kind==='hour'?' selected':''}>${KIND.hour}</option></select></label>
+   <label class="f">Mật khẩu ban đầu<input type="text" name="pw${i}" value="" placeholder="tối thiểu 4 ký tự" required minlength="4"></label>
+   <label class="f">Lương tháng (đ)<input type="text" inputmode="numeric" name="monthly${i}" value="${fmt(d.monthly)}"></label>
+   <label class="f">Lương giờ (đ/giờ)<input type="text" inputmode="numeric" name="hourly${i}" value="${fmt(d.hourly)}"></label>
+   <label class="f">Phụ cấp Fanpage (đ/tháng)<input type="text" inputmode="numeric" name="page${i}" value="${fmt(d.page)}"></label>
+   <label class="f">Tỷ trọng quỹ hoa hồng (%)<input type="text" name="share${i}" value="${d.share}"></label>
+   </div><div class="row" style="margin-top:10px"><label class="row small"><input type="checkbox" name="lunch${i}"${d.lunch?' checked':''}> Hưởng phụ cấp tự túc ăn trưa</label><label class="row small"><input type="checkbox" name="live${i}"${d.live?' checked':''}> Có ca livestream</label></div></div>`).join('')}
+  <div class="card"><h3>5. Doanh thu ${ymLabel(S.ym).toLowerCase()}</h3><p class="small muted">Dùng để tính quỹ hoa hồng. Có thể sửa lại bất cứ lúc nào trong mục Báo cáo.</p>
+   <label class="f" style="max-width:280px">Doanh thu thuần (đ)<input type="text" inputmode="numeric" name="rev" value="400.000.000"></label></div>
+  <div class="row"><button class="btn pri big" type="submit">Tạo hệ thống chấm công</button></div>
+  </form></div>`;
+}
+async function doSetup(form){
+  const f=new FormData(form);const g=k=>String(f.get(k)||'').trim();
+  if(g('opw').length<6)throw uerr('Mật khẩu chủ tối thiểu 6 ký tự');
+  if(g('opw')!==g('opw2'))throw uerr('Hai lần nhập mật khẩu chủ không khớp');
+  const oSalt=b64(rand(16));const oKey=await kdf(g('opw'),oSalt);
+  const cfg={v:1,company:g('company')||'Gốm Vũ Gia',owner:{salt:oSalt,check:await encJSON(oKey,{ok:1},'owner-check')},staff:[],
+    rates:{lunch:30000,liveDay:100000,liveNight:150000,satFactor:0.5},
+    comm:{t1:100000000,t2:300000000,r1:0.01,r2:0.02,r3:0.03,capPct:0.15,cogs:0.50,ads:0.20,damage:0.10,other:0}};
+  const shares=[0,1,2].map(i=>parsePct(g('share'+i)));
+  if(Math.abs(shares.reduce((a,b)=>a+b,0)-1)>0.0001)throw uerr('Tổng tỷ trọng hoa hồng phải bằng 100%');
+  for(let i=0;i<3;i++){
+    if(g('pw'+i).length<4)throw uerr('Mật khẩu của '+(g('name'+i)||'nhân viên '+(i+1))+' tối thiểu 4 ký tự');
+    if(!g('name'+i))throw uerr('Thiếu tên nhân viên '+(i+1));
+  }
+  for(let i=0;i<3;i++){
+    const id='nv'+(i+1);const raw=rand(32);const dk=await importDK(raw);
+    const salt=b64(rand(16));const kek=await kdf(g('pw'+i),salt);
+    cfg.staff.push({id,name:g('name'+i),title:g('title'+i),wO:await encBytes(oKey,raw,'wrap:'+id)});
+    await dset(P.kw(id),{salt,wS:await encBytes(kek,raw,'wrap:'+id)});
+    S.dk[id]=dk;
+    await putEnc(P.sal(id),id,{kind:g('kind'+i),monthly:parseMoney(g('monthly'+i)),hourly:parseMoney(g('hourly'+i)),page:parseMoney(g('page'+i)),share:shares[i],lunch:!!f.get('lunch'+i),live:!!f.get('live'+i)});
+    await putEnc(P.sp(id),id,{bin:'',acct:'',holder:''});
+  }
+  await dset(P.month(S.ym),{revenue:parseMoney(g('rev')),locked:{},paid:{}});
+  await dset('cfg/main',cfg);
+  S.dk={};S.cfg=cfg;toast('Đã tạo xong. Đăng nhập bằng mật khẩu chủ để bắt đầu.');render();
+}
+
+/* ================= LOGIN ================= */
+function loginView(){
+  const w=S.loginWho;
+  return`<div class="login"><div class="row" style="justify-content:flex-end;margin:-28px 0 4px">${themeBtn()}</div><img class="login-logo" src="${logo()}" alt="${esc(S.cfg.company)}">
+  <p class="center eyebrow" style="margin-top:8px">Chấm công & bảng lương</p>
+  <div class="card" style="margin-top:18px"><div class="small muted">Bạn là ai?</div>
+  <div class="whogrid">${S.cfg.staff.map(s=>`<button class="whobtn t-${toneOf(s.id)}${w===s.id?' on':''}" data-act="pickWho" data-id="${s.id}"><span class="av">${initials(s.name)}</span><span><b>${esc(s.name)}</b><span>${esc(s.title||'')}</span></span></button>`).join('')}
+  <button class="whobtn t-orange${w==='owner'?' on':''}" data-act="pickWho" data-id="owner"><span class="av">★</span><span><b>Chủ cửa hàng</b><span>Báo cáo cả 3 người</span></span></button></div>
+  <form id="loginForm" class="${w?'':'hide'}"><label class="f">Mật khẩu<input type="password" id="pw" autocomplete="current-password" required></label>
+  <label class="row small" style="margin-top:12px"><input type="checkbox" id="keepLogin" checked> Ghi nhớ đăng nhập trên máy này</label>
+  <button class="btn pri big" style="width:100%;justify-content:center;margin-top:12px" type="submit">Vào</button></form>
+  </div><p class="small faint center" style="margin-top:14px">Dữ liệu lương của mỗi người được mã hóa bằng mật khẩu riêng. Nếu không ghi nhớ đăng nhập, sẽ tự đăng xuất sau ${IDLE_MIN} phút không thao tác.</p></div>`;
+}
+/* key: the password-derived key of a remembered login, instead of pw. Returns the key. */
+async function unlock(who,pw,key){
+  if(who==='owner'){
+    key=key||await kdf(pw,S.cfg.owner.salt);
+    try{await decJSON(key,S.cfg.owner.check,'owner-check')}catch(e){throw uerr('Sai mật khẩu')}
+    S.ownerKey=key;
+    for(const s of S.cfg.staff){const raw=await decBytes(key,s.wO,'wrap:'+s.id);S.dkRaw[s.id]=raw;S.dk[s.id]=await importDK(raw)}
+    S.tab='tong';S.selStaff=S.cfg.staff[0].id;
+  }else{
+    const kw=await dget(P.kw(who));if(!kw)throw uerr('Chưa có tài khoản');
+    key=key||await kdf(pw,kw.salt);let raw;
+    try{raw=await decBytes(key,kw.wS,'wrap:'+who)}catch(e){throw uerr('Sai mật khẩu')}
+    S.dkRaw[who]=raw;S.dk[who]=await importDK(raw);S.tab='cc';
+  }
+  if(S.user&&S.user.signIn)await S.user.signIn(who,S.dkRaw);   // own server only (server/runtime.js); the artifact runtime knows the viewer already
+  S.role=who;S.cache={};return key;
+}
+async function doLogin(pw,keep){
+  const who=S.loginWho,key=await unlock(who,pw);
+  S.keep=keep&&await saveLogin(who,key);if(!S.keep)forgetLogin();
+  await loadMonth();
+}
+/* a password change makes the saved key stop opening wS/check, so the login is dropped; a network error keeps it for the next load */
+async function restoreLogin(){
+  const saved=await readLogin();if(!saved)return;
+  try{await unlock(saved.who,null,saved.key);S.keep=true}
+  catch(e){if(e.userMsg)forgetLogin();return}
+  await loadMonth();
+}
+function logout(){if(S.user&&S.user.signOut)S.user.signOut();S.showYear=false;S.year=null;S.role=null;S.ownerKey=null;S.dk={};S.dkRaw={};S.cache={};S.loginWho=null;S.keep=false;forgetLogin();S.modal=null;renderModal();render()}
+
+/* ================= TIMEKEEPING VIEWS ================= */
+function pgLabel(sal,w,days){const r=pgRate(sal,S.ym,days).rate;
+  return`<span><b>Nghỉ ở công ty nhưng vẫn trực page</b><span class="small muted">Cộng thêm ${hrs(pgGapH(sal,w))} giờ × ${money(r)} — chỉ tính khi ngày này không có ca chính</span></span>`}
+const lunchLabel=()=>`<span><b>Xưởng không phát cơm — tôi tự mua</b><span class="small muted">Được hỗ trợ ${money(S.cfg.rates.lunch)} cho ngày này (chỉ T2–T6, khi có đi làm)</span></span>`;
+function todayCard(id){
+  const t=nowParts();if(t.ym!==S.ym)return'';
+  const sal=S.cache[id].sal,rec=S.cache[id].days[pad(t.d)]||{},w=dowOf(S.ym,t.d),locked=!canEditDays(id);
+  const head=`<div class="row"><div><div class="eyebrow">Hôm nay</div><h3>${['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'][w]}, ${pad(t.d)}/${S.ym.slice(5)}</h3></div><div class="sp"></div>${locked?'<span class="pill p-mute">🔒 Kỳ lương đã chốt</span>':''}</div>`;
+  if(sal.kind==='month'){
+    if(w===0)return`<div class="card today-card">${head}<p class="muted">Chủ nhật nghỉ — không cần chấm công.</p></div>`;
+    return`<div class="card today-card">${head}<p class="small muted" style="margin-top:6px">Chọn trạng thái hôm nay · Đi làm tính 1 công · nửa buổi 0,5 công</p>
+    <div class="stbtn">${Object.entries(STATUS).map(([k,v])=>`<button class="btn${rec.st===k?' sel':''}" data-act="setSt" data-id="${id}" data-d="${pad(t.d)}" data-v="${k}"${locked?' disabled':''}>${rec.st===k?'✓ ':''}${v}</button>`).join('')}</div>
+    ${sal.lunch&&w>=1&&w<=5?`<label class="lunch-toggle"><input type="checkbox" data-chg="lunch" data-id="${id}" data-d="${pad(t.d)}"${rec.lunch?' checked':''}${locked?' disabled':''}>${lunchLabel()}</label>`:''}
+    ${rec.ts?`<p class="small faint" style="margin-top:8px">Đã ghi lúc ${new Date(rec.ts).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}</p>`:''}</div>`;
+  }
+  const segs=rec.seg||[];const open=k=>segs.find(s=>s.t===k&&s.in&&!s.out);
+  const btn=(k,lbl)=>{const o=open(k),sc=schedFor(sal,S.ym,t.d,k);
+    return`<button class="btn big ${o?'pri':''}" data-act="punch" data-id="${id}" data-t="${k}"${locked?' disabled':''}>${o?'⏹ Kết thúc '+lbl:'▶ Bắt đầu '+lbl}<small>${o?'đang làm từ '+o.in:sc?'giờ chuẩn '+sc[0]+'–'+sc[1]:'ngoài lịch'}</small></button>`};
+  const h=hourDay(rec,sal,S.ym,t.d);
+  return`<div class="card today-card">${head}<p class="small muted" style="margin-top:6px">Bấm khi bắt đầu và kết thúc. <b>Quên bấm?</b> Cứ bấm khi nhớ ra — hệ thống sẽ hỏi và tự điền theo giờ chuẩn của ca.</p>
+  <div class="punch">${btn('main','ca chính')}${sal.live?btn('liveD','live trưa')+btn('liveN','live tối'):''}</div>
+  ${pgOn(sal)&&w?`<label class="lunch-toggle"><input type="checkbox" data-chg="pg" data-id="${id}" data-d="${pad(t.d)}"${rec.pg?' checked':''}${locked?' disabled':''}>${pgLabel(sal,w,S.cache[id].days)}</label>`:''}
+  <div style="margin-top:12px">${segs.length?segChips(segs):'<span class="faint small">Chưa có ca nào hôm nay.</span>'}</div>
+  <p class="small muted" style="margin-top:6px">Hôm nay: ${hrs(h.mainH)} giờ ca chính${sal.live?` · ${hrs(h.ldH+h.lnH)} giờ live`:''} · <b>${money(h.pay)}</b></p></div>`;
+}
+const segChips=segs=>segs.map(s=>`<span class="chip ${s.t!=='main'?s.t:''} ${s.in&&!s.out?'open':''} ${(s.src==='auto'||s.autoOut||s.srcOut==='auto')?'auto':''}" title="${s.src==='auto'?'Giờ tự điền theo ca chuẩn':s.autoOut?'Quên bấm kết thúc — tự đóng theo giờ chuẩn':''}">${s.t==='main'?'':SEGT[s.t]+' '}${s.in||'?'}–${s.out||'…'}${(s.src==='auto'||s.autoOut||s.srcOut==='auto')?' ⏱':''}</span>`).join('');
+function editedFlag(rec){if(!rec||rec.by==='owner')return'';if(rec.late)return`<span class="flag" title="Chấm bù vào ${rec.ts?new Date(rec.ts).toLocaleDateString('vi-VN'):''}">chấm bù</span>`;return''}
+function attTable(id){
+  const C=S.cache[id],sal=C.sal,{y,m,n}=ymParts(S.ym),edit=canEditDays(id);
+  const off=(dowOf(S.ym,1)+6)%7;const prevN=new Date(y,m-1,0).getDate();
+  let cells='';
+  for(let i=0;i<off;i++)cells+=`<div class="cell out"><div class="dn"><span>${prevN-off+1+i}</span></div></div>`;
+  for(let d=1;d<=n;d++){
+    const w=dowOf(S.ym,d),st=dayState(S.ym,d),rec=C.days[pad(d)],s=dayStd(S.ym,d);
+    const cls=`cell ${w===0?'sun':''} ${st}`;const dis=st==='future'?' disabled':'';
+    let inner='';
+    if(sal.kind==='month'){
+      const stc=rec&&rec.st;
+      if(w===0&&!stc)inner='<span class="small faint">Nghỉ</span>';
+      else if(stc)inner=`<span class="st ${stc} sh${d%8}" title="${STATUS[stc]}" aria-label="${STATUS[stc]}"></span>`;
+      else if(st!=='future'&&s>0)inner='<span class="st none" title="Chưa chấm" aria-label="Chưa chấm"></span>';
+      const meta=[];if(rec&&rec.lunch&&sal.lunch&&w>=1&&w<=5&&(stc==='work'||stc==='half'))meta.push('🍚 Tự túc');if(rec&&rec.note)meta.push('📝');
+      inner+=`<div class="meta">${meta.join(' ')} ${editedFlag(rec)}</div>`;
+    }else{
+      const h=hourDay(rec,sal,S.ym,d);
+      if(rec&&rec.seg&&rec.seg.length)inner+=`<div class="chips">${segChips(h.segs)}</div>`;
+      if(h.open&&st!=='today')inner+='<span class="pill p-bad">Thiếu giờ ra</span>';
+      if(h.pay)inner+=`<div class="money num">${hrs(h.mainH+h.ldH+h.lnH)}h · ${fmt(h.pay)}</div>`;
+      else if(rec&&rec.note)inner+='<div class="meta">📝</div>';
+      inner+=`<div class="meta">${rec&&rec.pg&&pgOn(sal)?'📱 Trực page ':''}${editedFlag(rec)}</div>`;
+    }
+    cells+=`<button class="${cls}" data-act="dayCell" data-id="${id}" data-d="${pad(d)}"${dis} title="${DOW[w]} ${pad(d)}/${pad(m)}"><div class="dn"><span>${d}</span></div>${inner}</button>`;
+  }
+  const tail=(7-(off+n)%7)%7;for(let i=1;i<=tail;i++)cells+=`<div class="cell out"><div class="dn"><span>${i}</span></div></div>`;
+  const legend=sal.kind==='month'?[...Object.entries(STATUS_SHORT),['none','Chưa chấm']].map(([k,v],i)=>`<span><span class="st ${k}${k==='none'?'':' sh'+[2,1,5,3][i]}"></span>${v}</span>`).join('')+'<span>🍚 Tự túc ăn trưa (xưởng không phát cơm)</span>'
+    :'<span><span class="chip">09:00–16:00</span> ca chính</span><span><span class="chip liveD">Live trưa</span></span><span><span class="chip liveN">Live tối</span></span><span><span class="chip auto">⏱</span> giờ tự điền theo ca chuẩn</span>'+(pgOn(sal)?'<span>📱 Trực page ngày nghỉ công ty</span>':'');
+  return`<div class="cal"><div class="cal-h">${['T2','T3','T4','T5','T6','T7','CN'].map(x=>`<div>${x}</div>`).join('')}</div><div class="cal-g">${cells}</div></div>
+  <div class="legend">${legend}</div>${!edit?'<p class="small muted">🔒 Kỳ lương đã chốt — chỉ xem.</p>':''}`;
+}
+function dayEditor(id,d){
+  const sal=S.cache[id].sal;const rec=S.cache[id].days[d]||{};const w=dowOf(S.ym,+d);const edit=canEditDays(id);
+  const title=`<div class="modal-h"><div><div class="eyebrow">${esc(staffMeta(id).name)}</div><h3>${['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'][w]}, ${d}/${S.ym.slice(5)}</h3></div><div class="sp"></div><button class="btn sm ghost" data-act="close">✕</button></div>`;
+  const dis=edit?'':' disabled';
+  if(sal.kind==='month'){
+    openModal(`${title}<form id="mdayForm" data-id="${id}" data-d="${d}">
+    <p class="small muted">Đi làm / nghỉ phép có lương: <b>1</b> công · nửa buổi: <b>0,5</b> công${w===0?' (Chủ nhật — có đi làm thì chấm như ngày thường)':''}</p>
+    <div class="stbtn">${[['','Chưa chấm'],...Object.entries(STATUS)].map(([k,v])=>`<label class="btn${(rec.st||'')===k?' sel':''}" style="cursor:pointer"><input type="radio" name="st" value="${k}"${(rec.st||'')===k?' checked':''} style="display:none"${dis}>${v}</label>`).join('')}</div>
+    ${sal.lunch&&w>=1&&w<=5?`<label class="lunch-toggle"><input type="checkbox" name="lunch"${rec.lunch?' checked':''}${dis}>${lunchLabel()}</label>`:''}
+    <label class="f" style="margin-top:12px">Ghi chú${dayState(S.ym,+d)==='past'&&S.role!=='owner'?' / lý do chấm bù':''}<input type="text" name="note" value="${esc(rec.note||'')}"${dis}></label>
+    ${rec.ts?`<p class="small faint">Ghi lần cuối ${new Date(rec.ts).toLocaleString('vi-VN')} ${editedFlag(rec)}</p>`:''}
+    <div class="row" style="justify-content:flex-end;margin-top:12px"><button type="button" class="btn" data-act="close">Đóng</button>${edit?'<button class="btn pri" type="submit">Lưu</button>':''}</div></form>`);
+    return;
+  }
+  const segs=clone(rec.seg||[]);
+  const segRow=(s)=>`<div class="row seg" style="margin-bottom:8px"><select${dis}>${Object.entries(SEGT).filter(([k])=>k==='main'||sal.live||s.t===k).map(([k,v])=>`<option value="${k}"${s.t===k?' selected':''}>${v}</option>`).join('')}</select>
+   <input type="time" class="tin" value="${s.in||''}"${dis}> → <input type="time" class="tout" value="${s.out||''}"${dis}>${s.src==='auto'?'<span class="flag" title="Giờ tự điền theo ca chuẩn">⏱</span>':''}${edit?'<button type="button" class="btn sm ghost" data-act="rmSeg">✕</button>':''}<input type="hidden" class="tsrc" value="${s.src||''}"></div>`;
+  const sc=sched(sal);const scMain=schedFor(sal,S.ym,+d,'main');
+  openModal(`${title}<form id="dayForm" data-id="${id}" data-d="${d}"><div id="segs">${segs.map(segRow).join('')||'<p class="small faint" id="noseg">Chưa có ca.</p>'}</div>
+  ${edit?`<div class="row"><button type="button" class="btn sm" data-act="addSeg" data-t="main">+ Ca chính</button>${scMain?`<button type="button" class="btn sm" data-act="addSeg" data-t="main" data-in="${scMain[0]}" data-out="${scMain[1]}">⏱ Điền ca chuẩn ${scMain[0]}–${scMain[1]}</button>`:''}${sal.live?`<button type="button" class="btn sm" data-act="addSeg" data-t="liveD" data-in="${sc.liveD[0]}" data-out="${sc.liveD[1]}">+ Live trưa</button><button type="button" class="btn sm" data-act="addSeg" data-t="liveN" data-in="${sc.liveN[0]}" data-out="${sc.liveN[1]}">+ Live tối</button>`:''}</div>`:''}
+  ${pgOn(sal)&&w?`<label class="lunch-toggle"><input type="checkbox" name="pg"${rec.pg?' checked':''}${dis}>${pgLabel(sal,w,S.cache[id].days)}</label>`:''}
+  <label class="f" style="margin-top:12px">Ghi chú / lý do chấm bù<input type="text" name="note" value="${esc(rec.note||'')}"${dis}></label>
+  <p class="small muted">Live trùng giờ ca chính chỉ tính mức giá cao hơn. Ca quên bấm kết thúc sẽ tự đóng theo giờ chuẩn (⏱) để chủ cửa hàng đối soát.</p>
+  <div class="row" style="justify-content:flex-end;margin-top:10px"><button type="button" class="btn" data-act="close">Đóng</button>${edit?'<button class="btn pri" type="submit">Lưu</button>':''}</div></form>`);
+  S._segTpl=segRow;
+}
+async function saveDayForm(form){
+  const id=form.dataset.id,d=form.dataset.d;const f=new FormData(form);const segs=[];
+  form.querySelectorAll('.seg').forEach(row=>{const t=row.querySelector('select').value,i=row.querySelector('.tin').value,o=row.querySelector('.tout').value,src=row.querySelector('.tsrc').value||'manual';if(i||o)segs.push({t,in:i,out:o,src})});
+  for(const s of segs){if(s.in&&s.out&&toMin(s.out)<=toMin(s.in))throw uerr('Giờ ra phải sau giờ vào ('+SEGT[s.t]+' '+s.in+'–'+s.out+')')}
+  await mutateDays(id,days=>{const old=days[d]||{};days[d]={...old,seg:segs,pg:!!f.get('pg'),note:String(f.get('note')||'').trim(),...stamp(d)}});
+  closeModal();toast('Đã lưu');
+}
+async function saveMDayForm(form){
+  const id=form.dataset.id,d=form.dataset.d;const f=new FormData(form);const st=f.get('st')||'';
+  await mutateDays(id,days=>{const o={...(days[d]||{})};if(st)o.st=st;else delete o.st;o.lunch=!!f.get('lunch');o.note=String(f.get('note')||'').trim();days[d]={...o,...stamp(d)}});
+  closeModal();toast('Đã lưu');
+}
+/* punch with forgot-to-press handling */
+async function writePunch(id,t,mode,tin,tout){
+  const n=nowParts();const d=pad(n.d);
+  await mutateDays(id,days=>{const o=days[d]||{};const seg=(o.seg||[]).map(s=>({...s}));const open=seg.find(s=>s.t===t&&s.in&&!s.out);
+    if(mode==='end'&&open){open.out=tout;if(tout!==n.hm)open.srcOut='auto'}
+    else if(mode==='full')seg.push({t,in:tin,out:tout,src:'auto',at:n.iso});
+    else seg.push({t,in:tin,out:'',src:tin===n.hm?'punch':'auto',at:n.iso});
+    days[d]={...o,seg,ts:n.iso,by:S.role==='owner'?'owner':(o.by||'self'),late:o.late||false}});
+}
+function punch(el){
+  const{id,t}=el.dataset;const n=nowParts();const sal=S.cache[id].sal;const rec=S.cache[id].days[pad(n.d)]||{};
+  const open=(rec.seg||[]).find(s=>s.t===t&&s.in&&!s.out);const sc=schedFor(sal,S.ym,n.d,t);const now=toMin(n.hm);
+  const ask=(q,opts)=>openModal(`<div class="modal-h"><h3>${q}</h3><div class="sp"></div><button class="btn sm ghost" data-act="close">✕</button></div><div class="choice">${opts.map((o,i)=>`<button class="btn${i===0?' pri':''}" data-act="punchPick" data-id="${id}" data-t="${t}" data-mode="${o.mode}" data-in="${o.in||''}" data-out="${o.out||''}">${o.label}<small>${o.sub}</small></button>`).join('')}</div>`);
+  if(open){
+    if(sc&&now>toMin(sc[1])+GRACE_END&&toMin(sc[1])>toMin(open.in))
+      return ask('Kết thúc '+SEGT[t].toLowerCase()+'?',[{mode:'end',out:sc[1],label:'Tôi quên bấm — kết thúc lúc '+sc[1],sub:'Theo giờ chuẩn của ca, tính '+open.in+'–'+sc[1]},{mode:'end',out:n.hm,label:'Tôi vừa làm xong — kết thúc lúc '+n.hm,sub:'Tính '+open.in+'–'+n.hm}]);
+    return busy(el,async()=>{await writePunch(id,t,'end',null,n.hm);toast('Đã ghi kết thúc lúc '+n.hm)});
+  }
+  if(sc&&now>toMin(sc[0])+GRACE_START){
+    const opts=[];
+    if(now>=toMin(sc[1]))opts.push({mode:'full',in:sc[0],out:sc[1],label:'Tôi quên bấm — đã làm đủ ca '+sc[0]+'–'+sc[1],sub:'Tự điền cả ca theo giờ chuẩn'});
+    else opts.push({mode:'start',in:sc[0],label:'Tôi quên bấm — đã làm từ '+sc[0],sub:'Tự điền giờ bắt đầu theo giờ chuẩn, ca vẫn đang tiếp tục'});
+    opts.push({mode:'start',in:n.hm,label:'Tôi bắt đầu từ bây giờ ('+n.hm+')',sub:'Ghi giờ thực tế'});
+    return ask('Bạn bắt đầu '+SEGT[t].toLowerCase()+' lúc nào?',opts);
+  }
+  busy(el,async()=>{await writePunch(id,t,'start',n.hm);toast('Đã ghi bắt đầu lúc '+n.hm)});
+}
+function stamp(d){const t=nowParts();return{ts:t.iso,by:S.role==='owner'?'owner':'self',late:S.role!=='owner'&&!(t.ym===S.ym&&pad(t.d)===d)}}
+
+/* ================= PAY BREAKDOWN & SLIP ================= */
+function breakdownRows(R){
+  const L=[];
+  if(R.kind==='month'){
+    L.push(['Công hưởng lương',hrs(R.cong)+' / '+hrs(R.std)+' công',null]);
+    L.push(['Lương theo công',`${hrs(R.cong)} × ${fmt(R.unit)}`,R.base]);
+    if(R.lunchDays||S.cache[R.id].sal.lunch)L.push(['Phụ cấp tự túc ăn trưa',`${R.lunchDays} ngày xưởng không phát cơm × ${fmt(S.cfg.rates.lunch)}`,R.lunch]);
+  }else{
+    L.push(['Giờ làm ca chính',hrs(R.hours)+' giờ · '+R.workDays+' ngày',null]);
+    L.push(['Lương theo giờ',`${hrs(R.hours)} × ${fmt(S.cache[R.id].sal.hourly)}`,R.base]);
+    if(S.cache[R.id].sal.live){L.push(['Live trưa',hrs(R.ldH)+' giờ',R.liveD]);L.push(['Live tối',hrs(R.lnH)+' giờ',R.liveN])}
+  }
+  if(R.pageBase)L.push(['Phụ cấp Fanpage',R.pgRate?`trực ngoài giờ T2–CN · ${hrs(R.pgH)} giờ ≈ ${fmt(R.pgRate)}/giờ`:'khoán tháng',R.pageBase]);
+  if(R.pgOffD)L.push(['Trực page ngày nghỉ công ty',`${R.pgOffD} ngày · ${hrs(R.pgOffH)} giờ × ${fmt(R.pgRate)}`,R.pgOff]);
+  L.push(['Hoa hồng doanh thu',pct(R.share,0)+' quỹ '+fmt(R.cm.paid),R.comm]);
+  R.bonusItems.filter(b=>b.type!=='deduct').forEach(b=>L.push(['Thưởng',b.reason,+b.amt]));
+  R.bonusItems.filter(b=>b.type==='deduct').forEach(b=>L.push(['Khấu trừ',b.reason,-b.amt]));
+  return L;
+}
+function breakdownHTML(R){
+  return breakdownRows(R).map(([k,sub,v])=>`<div class="kv${v<0?' neg':''}"><div><div class="k">${esc(k)}</div><div class="small faint">${esc(sub)}</div></div><div class="v num">${v==null?'':money(v)}</div></div>`).join('')+
+  `<div class="kv" style="border-top:2px solid var(--ink);margin-top:4px;padding-top:10px"><div class="k" style="color:var(--ink);font-weight:700">THỰC NHẬN</div><div class="v num" style="font-size:18px;color:var(--clay)">${money(R.net)}</div></div>`;
+}
+function slipInfo(R){const sp=S.cache[R.id].sp||{};const{m,y}=ymParts(S.ym);return{sp,desc:`LUONG T${m} ${y} ${stripVN(R.name).toUpperCase()}`,ok:!!(sp.bin&&sp.acct)}}
+function slipHTML(R,withQR){
+  const{sp,desc,ok}=slipInfo(R);
+  return`<div class="slip" id="slip"><div class="slip-top"><img src="${LOGO_W}" alt="${esc(S.cfg.company||'')}"><div class="t2">PHIẾU LƯƠNG<b>${ymLabel(S.ym)}</b></div></div>
+  <div class="slip-body"><div class="slip-name">${esc(R.name)}</div><div class="small muted" style="margin-bottom:8px">${esc(R.title||'')} · ${KIND[R.kind]}</div>
+  ${breakdownRows(R).map(([k,sub,v])=>`<div class="kv${v<0?' neg':''}"><div><div class="k">${esc(k)}</div><div class="small faint">${esc(sub)}</div></div><div class="v num">${v==null?'':fmt(v)}</div></div>`).join('')}
+  <div class="slip-net"><span style="font-weight:700">THỰC NHẬN</span><b class="num">${money(R.net)}</b></div>
+  ${ok?`<div class="slip-bank"><div class="small muted">Tài khoản nhận lương</div><span class="num">${esc(sp.acct)}</span><div class="small">${esc(bankName(sp.bin))}${sp.holder?' · '+esc(sp.holder):''}</div></div>`:''}
+  ${withQR?(ok&&R.net>0?`<div class="slip-qr"><span data-qr="${esc(vietqr(sp.bin,sp.acct,R.net,desc))}"></span><div class="small"><b>Quét để chuyển khoản</b><br><span class="num">${money(R.net)}</span><br><span class="faint">ND: ${esc(desc)}</span></div></div>`:`<div class="callout amber" style="margin-top:12px">${ok?'Thực nhận ≤ 0 — không tạo QR.':'Chưa có thông tin ngân hàng của nhân viên — nhập trong mục Cài đặt.'}</div>`):''}
+  <div class="small faint" style="margin-top:10px">${R.locked?'Đã chốt':'Tạm tính'}${R.paid?' · Đã chuyển '+new Date(R.paid).toLocaleDateString('vi-VN'):''} · Xuất ${new Date().toLocaleDateString('vi-VN')}</div></div></div>`;
+}
+/* Canvas rendering of the slip for PNG/PDF export (no external libs) */
+async function slipCanvas(R){
+  try{await document.fonts.ready}catch(e){}
+  const rows=breakdownRows(R);const{sp,desc,ok}=slipInfo(R);
+  const W=880,s=2,padX=36;const hasQR=ok&&R.net>0;
+  const H=180+rows.length*64+110+(ok?150:0)+(hasQR?320:0)+200;
+  const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');
+  const F=(w,sz,fam)=>`${w} ${sz}px ${fam==='serif'?'"Cormorant Garamond", Georgia, serif':'"Be Vietnam Pro", system-ui, sans-serif'}`;
+  const tn=TONE[toneOf(R.id)];
+  g.fillStyle='#FFFFFF';g.fillRect(0,0,W,H);
+  g.fillStyle=tn.dark;g.fillRect(0,0,W,130);
+  const logo=await new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=LOGO_W});
+  let lx=padX;if(logo){const lh=92,lw=logo.width*lh/logo.height;g.drawImage(logo,padX,19,lw,lh);lx=padX+lw+28;g.fillStyle='rgba(255,255,255,.35)';g.fillRect(lx-14,28,2,74)}
+  g.fillStyle='#fff';g.font=F(500,20);g.globalAlpha=.9;g.fillText('PHIẾU LƯƠNG',lx,58);g.globalAlpha=1;g.font=F(700,40,'serif');g.fillText(ymLabel(S.ym),lx,100);
+  let y=190;g.fillStyle='#1F2925';g.font=F(700,48,'serif');g.fillText(R.name,padX,y);
+  y+=34;g.fillStyle='#5F6A65';g.font=F(400,22);g.fillText((R.title?R.title+' · ':'')+KIND[R.kind],padX,y);y+=20;
+  const fit=(t,max)=>{if(g.measureText(t).width<=max)return t;while(t.length&&g.measureText(t+'…').width>max)t=t.slice(0,-1);return t+'…'};
+  for(const[k,sub,v]of rows){
+    y+=40;g.fillStyle='#5F6A65';g.font=F(500,24);g.fillText(k,padX,y);
+    g.fillStyle=v<0?'#B4574F':'#1F2925';g.font=F(600,24);g.textAlign='right';if(v!=null)g.fillText(fmt(v),W-padX,y);g.textAlign='left';
+    g.fillStyle='#A2AAA6';g.font=F(400,19);g.fillText(fit(String(sub||''),W-padX*2-220),padX,y+24);
+    y+=24;g.strokeStyle='#E3E7E5';g.setLineDash([5,5]);g.beginPath();g.moveTo(padX,y+10);g.lineTo(W-padX,y+10);g.stroke();g.setLineDash([]);
+  }
+  y+=34;g.fillStyle=tn.dark;g.fillRect(padX,y,W-padX*2,4);y+=56;g.fillStyle='#1F2925';
+  g.font=F(700,26);g.fillText('THỰC NHẬN',padX,y);g.fillStyle=tn.dark;g.font=F(700,54,'serif');g.textAlign='right';g.fillText(money(R.net),W-padX,y+4);g.textAlign='left';
+  y+=40;
+  if(ok){
+    y+=10;g.fillStyle=tn.bg;g.fillRect(padX,y,W-padX*2,124);
+    g.fillStyle='#5F6A65';g.font=F(500,20);g.fillText('Tài khoản nhận lương',padX+22,y+36);
+    g.fillStyle='#1F2925';g.font=F(700,34);g.fillText(fit(sp.acct,W-padX*2-44),padX+22,y+78);
+    g.fillStyle='#5F6A65';g.font=F(400,21);g.fillText(fit(bankName(sp.bin)+(sp.holder?' · '+sp.holder:''),W-padX*2-44),padX+22,y+108);
+    y+=124+20;
+  }
+  if(hasQR){
+    y+=10;g.fillStyle='#fff';g.strokeStyle='#D5DBD8';g.setLineDash([8,6]);g.lineWidth=2;g.strokeRect(padX,y,W-padX*2,290);g.setLineDash([]);g.lineWidth=1;
+    const q=qrCanvas(vietqr(sp.bin,sp.acct,R.net,desc),1,2);const px=Math.floor(250/q.width);const qs=q.width*px;g.imageSmoothingEnabled=false;g.drawImage(q,padX+20+(250-qs)/2,y+20+(250-qs)/2,qs,qs);
+    let tx=padX+300,ty=y+100;g.fillStyle='#1F2925';g.font=F(700,26);g.fillText('Quét để chuyển khoản',tx,ty);
+    ty+=44;g.fillStyle=tn.dark;g.font=F(700,30);g.fillText(money(R.net),tx,ty);
+    ty+=40;g.fillStyle='#A2AAA6';g.font=F(400,19);g.fillText(fit('ND: '+desc,W-tx-padX-10),tx,ty);
+    y+=290;
+  }
+  y+=40;g.fillStyle='#A2AAA6';g.font=F(400,19);g.fillText((R.locked?'Đã chốt':'Tạm tính')+(R.paid?' · Đã chuyển '+new Date(R.paid).toLocaleDateString('vi-VN'):'')+' · Xuất '+new Date().toLocaleString('vi-VN'),padX,y);
+  const out=document.createElement('canvas');out.width=W;out.height=Math.ceil(y+36);out.getContext('2d').drawImage(c,0,0);
+  return out;
+}
+/* One-page PDF wrapping the slip as a JPEG (DCTDecode); page is A5 width, height to fit */
+function canvasPDF(cv){
+  const jpg=atob(cv.toDataURL('image/jpeg',.95).split(',')[1]);
+  const pw=420,ph=Math.round(cv.height*pw/cv.width),content=`q ${pw} 0 0 ${ph} 0 0 cm /Im0 Do Q`;
+  const objs=['<< /Type /Catalog /Pages 2 0 R >>','<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+    `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pw} ${ph}] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>`,
+    `<< /Type /XObject /Subtype /Image /Width ${cv.width} /Height ${cv.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpg.length} >>\nstream\n${jpg}\nendstream`,
+    `<< /Length ${content.length} >>\nstream\n${content}\nendstream`];
+  let pdf='%PDF-1.4\n';const off=[];
+  objs.forEach((o,i)=>{off.push(pdf.length);pdf+=`${i+1} 0 obj\n${o}\nendobj\n`});
+  const xref=pdf.length;
+  pdf+=`xref\n0 ${objs.length+1}\n0000000000 65535 f \n`+off.map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<< /Size ${objs.length+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;
+  const bytes=new Uint8Array(pdf.length);for(let i=0;i<pdf.length;i++)bytes[i]=pdf.charCodeAt(i)&255;
+  return new Blob([bytes],{type:'application/pdf'});
+}
+/* Preview of the exact image that gets exported, then download as PNG or PDF */
+async function previewSlip(id){
+  const R=calcPay(id),cv=await slipCanvas(R),url=cv.toDataURL('image/png');
+  const png=await new Promise(r=>cv.toBlob(r,'image/png'));
+  S._slipOut={png,pdf:canvasPDF(cv),base:`the-luong-${stripVN(R.name).replace(/ /g,'-')}-${S.ym}`};
+  openModal(`<div class="modal-h"><h3>Xem trước phiếu lương · ${esc(R.name)}</h3><div class="sp"></div><button class="btn sm ghost" data-act="close">✕</button></div>
+  <div class="row" style="align-items:flex-start;gap:18px"><img class="slip-prev" src="${url}" alt="Phiếu lương ${esc(R.name)}">
+  <div style="flex:1;min-width:200px" class="grid">
+   <button class="btn pri" data-act="saveSlip" data-fmt="png">⬇ Tải ảnh PNG</button>
+   <button class="btn pri" data-act="saveSlip" data-fmt="pdf">⬇ Tải file PDF</button>
+   <button class="btn" data-act="slip" data-id="${id}">← Quay lại</button>
+   <div id="pngOut"></div></div></div>`,true);
+}
+function openSlip(id){
+  const R=calcPay(id);
+  openModal(`<div class="modal-h"><h3>Thẻ lương · ${esc(R.name)}</h3><div class="sp"></div><button class="btn sm ghost" data-act="close">✕</button></div>
+  <div class="row" style="align-items:flex-start;gap:18px">${slipHTML(R,S.role==='owner')}
+  <div style="flex:1;min-width:200px" class="grid">
+   ${R.warn.length?`<div class="callout amber">⚠ ${R.warn.map(esc).join(' · ')}<br><span class="small">Kiểm tra lại trước khi chốt.</span></div>`:''}
+   ${S.role==='owner'?`<button class="btn pri" data-act="exportSlip" data-id="${id}">⬇ Xuất phiếu lương</button>
+   <button class="btn" data-act="toggleLock" data-id="${id}">${R.locked?'🔓 Mở chốt kỳ lương':'🔒 Chốt lương kỳ này'}</button>
+   <button class="btn ${R.paid?'':'ok'}" data-act="togglePaid" data-id="${id}">${R.paid?'↺ Bỏ đánh dấu đã trả':'✓ Đánh dấu đã chuyển khoản'}</button>
+   <p class="small muted">Chốt lương sẽ khóa không cho nhân viên sửa chấm công của kỳ này.</p>`:''}
+   <div id="pngOut"></div></div></div>`,true);
+}
+
+/* ================= COMMISSION EXPLAINER ================= */
+function tierRows(cm,c){
+  return[[1,'0 – '+fmt(c.t1),c.r1,Math.min(cm.rev,c.t1),cm.b1],[2,fmt(c.t1)+' – '+fmt(c.t2),c.r2,Math.max(0,Math.min(cm.rev,c.t2)-c.t1),cm.b2],[3,'Trên '+fmt(c.t2),c.r3,Math.max(0,cm.rev-c.t2),cm.b3]];
+}
+function commissionView(ids){
+  const c=S.cfg.comm,rev=+S.mdoc.revenue||0,cm=commission(rev,c),owner=S.role==='owner';
+  const me=ids.length===1?ids[0]:null;const share=me?(+S.cache[me].sal.share||0):null;
+  const sim=S.simRev==null?rev:S.simRev,sc=commission(sim,c);
+  const tr=tierRows(cm,c);
+  const barMax=Math.max(rev,c.t2*1.35);
+  const seg=(from,to,color,lbl)=>{const w=Math.max(0,Math.min(to,barMax)-from)/barMax*100;return w>0?`<div style="width:${w}%;background:${color}">${w>9?lbl:''}</div>`:''};
+  const miles=[50e6,100e6,150e6,200e6,250e6,300e6,400e6];
+  return`<div class="sec-h" style="margin-top:20px"><h2>Cách tính hoa hồng theo doanh thu</h2><span class="muted">${ymLabel(S.ym)}</span></div>
+  <div class="split"><div class="card">
+   <div class="step"><span class="stepnum">1</span><div style="flex:1"><b>Doanh thu thuần của cửa hàng</b><div class="bigmoney num" style="margin-top:4px">${money(rev)}</div><div class="small muted">Doanh thu sau giảm giá, chưa gồm VAT — chủ cửa hàng cập nhật cuối kỳ.</div></div></div>
+   <div class="step"><span class="stepnum">2</span><div style="flex:1"><b>Quỹ thưởng lũy tiến</b> <span class="small muted">— mỗi phần doanh thu được tính theo tỷ lệ của bậc chứa nó (giống thuế lũy tiến, không phải cả doanh thu nhân một tỷ lệ).</span>
+    <div class="tier-bar">${seg(0,c.t1,'var(--brandL)','Bậc 1 · '+pct(c.r1))}${seg(c.t1,c.t2,'var(--brand)','Bậc 2 · '+pct(c.r2))}${seg(c.t2,barMax,'var(--brandD)','Bậc 3 · '+pct(c.r3))}</div>
+    <div style="position:relative;height:16px"><div style="position:absolute;left:calc(${Math.min(100,rev/barMax*100)}% - 6px);font-size:11px;color:var(--brandD)">▲</div></div>
+    <div class="tbl" style="margin-top:4px"><table><thead><tr><th>Bậc</th><th>Khoảng doanh thu</th><th class="r">Tỷ lệ</th><th class="r">DT trong bậc</th><th class="r">Thưởng</th></tr></thead><tbody>
+    ${tr.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="r">${pct(r[2])}</td><td class="r num">${fmt(r[3])}</td><td class="r num">${fmt(r[4])}</td></tr>`).join('')}
+    <tr class="tot"><td colspan="4">Quỹ thưởng trước trần</td><td class="r num">${fmt(cm.fund)}</td></tr></tbody></table></div></div></div>
+   <div class="step"><span class="stepnum">3</span><div style="flex:1"><b>Kiểm tra trần</b> <span class="small muted">— quỹ không vượt quá ${pct(c.capPct,0)} lãi đóng góp của cửa hàng${owner?` (doanh thu − giá vốn ${pct(c.cogs,0)} − quảng cáo ${pct(c.ads,0)} − hỏng/hủy ${pct(c.damage,0)}${c.other?` − khác ${pct(c.other)}`:''})`:''}.</span>
+    ${owner?`<div class="kv"><span class="k">Lãi đóng góp</span><span class="v num">${money(cm.margin)}</span></div><div class="kv"><span class="k">Trần ${pct(c.capPct,0)}</span><span class="v num">${money(cm.cap)}</span></div>`:''}
+    <div style="margin-top:6px">${cm.capped?`<span class="pill p-warn">Đã chạm trần — quỹ thực chia ${money(cm.paid)}</span>`:`<span class="pill p-ok">✓ Chưa chạm trần — chia đủ ${money(cm.paid)}</span>`}</div></div></div>
+   <div class="step"><span class="stepnum">4</span><div style="flex:1"><b>Chia quỹ theo tỷ trọng</b>
+    ${ids.map(id=>{const s=+S.cache[id].sal.share||0;return`<div class="kv"><span class="k">${esc(staffMeta(id).name)} · ${pct(s,0)} quỹ</span><span class="v num">${money(Math.round(cm.paid*s))}</span></div>`}).join('')}
+    ${!owner?`<div class="small muted" style="margin-top:4px">Phần còn lại của quỹ chia cho các vị trí khác theo tỷ trọng đã thỏa thuận.</div>`:''}</div></div>
+  </div>
+  <div class="card"><h3>${me?'Nếu doanh thu đạt…':'Mô phỏng doanh thu'}</h3><p class="small muted">Kéo để xem hoa hồng thay đổi thế nào.</p>
+   <input type="range" min="0" max="500000000" step="5000000" value="${sim}" data-chg="sim" aria-label="Doanh thu mô phỏng">
+   <div class="row" style="justify-content:space-between"><span class="muted small">Doanh thu</span><b class="num" id="simRevLbl">${money(sim)}</b></div>
+   <div class="callout ${me?'':'sage'}" style="margin-top:10px">${me?`Bạn nhận <b class="num">${money(Math.round(sc.paid*share))}</b> hoa hồng<br><span class="small">≈ ${pct(sim?sc.paid*share/sim:0,2)} doanh thu · quỹ ${money(sc.paid)}${sc.capped?' (đã chạm trần)':''}</span>`:
+    `Quỹ thực chia <b class="num">${money(sc.paid)}</b>${sc.capped?' (chạm trần)':''}<br>${ids.map(id=>`${esc(staffMeta(id).name)}: <b class="num">${money(Math.round(sc.paid*S.cache[id].sal.share))}</b>`).join(' · ')}`}</div>
+   <div class="tbl" style="margin-top:14px"><table><thead><tr><th>Doanh thu</th><th class="r">Quỹ</th>${me?'<th class="r">Bạn nhận</th>':ids.map(id=>`<th class="r">${esc(staffMeta(id).name)}</th>`).join('')}</tr></thead><tbody>
+   ${miles.map(m=>{const x=commission(m,c);return`<tr${Math.abs(m-rev)<1?' class="today"':''}><td class="num">${fmt(m/1e6)} tr</td><td class="r num">${fmt(x.paid)}${x.capped?'*':''}</td>${me?`<td class="r num"><b>${fmt(x.paid*share)}</b></td>`:ids.map(id=>`<td class="r num">${fmt(x.paid*S.cache[id].sal.share)}</td>`).join('')}</tr>`}).join('')}
+   </tbody></table></div>
+   ${me?`<p class="small muted" style="margin-top:10px">Ở bậc hiện tại, mỗi 10 triệu doanh thu tăng thêm mang về cho bạn khoảng <b>${money(Math.round((commission(rev+1e7,c).paid-cm.paid)*share))}</b>.</p>`:'<p class="small faint" style="margin-top:8px">* chạm trần lãi đóng góp</p>'}
+  </div></div>`;
+}
+
+/* ================= STAFF VIEW ================= */
+function staffView(){
+  const id=S.role,R=calcPay(id),st=staffMeta(id);
+  let body='';
+  if(S.tab==='cc'){
+    body=`<div class="hero">${todayCard(id)||`<div class="card"><h3>${ymLabel(S.ym)}</h3><p class="muted">Đang xem kỳ khác — chọn tháng hiện tại để chấm công hôm nay.</p></div>`}
+    <div class="card"><div class="small muted">Tạm tính ${ymLabel(S.ym).toLowerCase()}</div><div class="bigmoney num">${money(R.net)}</div>
+     <div class="small muted" style="margin-top:4px">${R.kind==='month'?`${hrs(R.cong)} / ${hrs(R.std)} công`:`${hrs(R.hours)} giờ ca chính`} · hoa hồng ${money(R.comm)}</div>
+     <div class="row" style="margin-top:10px">${R.locked?'<span class="pill p-mute">🔒 Đã chốt</span>':'<span class="pill p-clay">Đang tạm tính</span>'}${R.paid?'<span class="pill p-ok">✓ Đã nhận lương</span>':''}${R.warn.map(w=>`<span class="pill p-warn">${esc(w)}</span>`).join('')}</div>
+     <button class="btn sm" style="margin-top:12px" data-act="tab" data-v="luong">Xem chi tiết →</button>
+     ${R.kind==='hour'?(()=>{const sc=sched(S.cache[id].sal);return`<div class="sched" style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)"><span>Ca chính T2–T6</span><b>${sc.wd[0]}–${sc.wd[1]}</b><span>Ca chính T7</span><b>${sc.sat[0]}–${sc.sat[1]}</b>${S.cache[id].sal.live?`<span>Live trưa</span><b>${sc.liveD[0]}–${sc.liveD[1]}</b><span>Live tối</span><b>${sc.liveN[0]}–${sc.liveN[1]}</b>`:''}${pgOn(S.cache[id].sal)?`<span>Trực page T2–T6</span><b>${sc.pgWd[0]}–${sc.pgWd[1]}</b><span>Trực page T7</span><b>hết ca thực tế–${sc.pgSat[1]}</b><span>Trực page CN</span><b>${sc.pgSun[0]}–${sc.pgSun[1]}</b>`:''}</div>`})():''}</div></div>
+    <div class="sec"><div class="sec-h"><h2>Lịch công ${ymLabel(S.ym).toLowerCase()}</h2><span class="small muted">${R.kind==='month'?'Đi làm: 1 công · nửa buổi: 0,5 công · CN nghỉ':'Ghi giờ vào/ra thực tế · bấm vào ngày để chấm bù'}</span></div>${attTable(id)}</div>`;
+  }else if(S.tab==='luong'){
+    body=`<div class="split" style="margin-top:20px"><div class="card"><div class="sec-h"><h2>Lương ${ymLabel(S.ym).toLowerCase()}</h2>${R.locked?'<span class="pill p-mute">🔒 Đã chốt</span>':'<span class="pill p-clay">Tạm tính</span>'}</div>${breakdownHTML(R)}
+    ${R.warn.length?`<div class="callout amber" style="margin-top:12px">⚠ ${R.warn.map(esc).join(' · ')}</div>`:''}</div>
+    <div>${slipHTML(R,false)}<p class="small muted" style="margin-top:8px">Thẻ lương chính thức (kèm mã QR) do chủ cửa hàng xuất khi chốt kỳ.</p></div></div>
+    ${reqView(id,R)}`;
+  }else if(S.tab==='hh'){body=commissionView([id])}
+  else{body=accountView(id)}
+  return body;
+}
+function reqView(id,R){
+  const reqs=S.cache[id].req||[];
+  const form=R.locked?'<p class="small muted" style="margin-top:8px">🔒 Kỳ lương đã chốt — không gửi thêm yêu cầu cho tháng này.</p>'
+   :`<form id="reqForm" data-id="${id}" class="grid" style="margin-top:10px"><div class="grid g2"><label class="f">Loại<select name="type"><option value="deduct">Xin tạm ứng</option><option value="bonus">Đề xuất thưởng</option></select></label>
+    <label class="f">Số tiền (đ)<input type="text" inputmode="numeric" name="amt" required></label></div>
+    <label class="f">Lý do (bắt buộc)<input type="text" name="reason" required></label><div><button class="btn pri" type="submit">Gửi yêu cầu</button></div></form>`;
+  return`<div class="split" style="margin-top:20px"><div class="card"><h3>Gửi yêu cầu</h3><p class="small muted">Chủ cửa hàng duyệt xong thì khoản này mới vào lương ${ymLabel(S.ym).toLowerCase()}. Tạm ứng sẽ trừ vào thực nhận.</p>${form}</div>
+  <div class="card"><h3>Yêu cầu đã gửi</h3>${reqs.length?reqs.slice().reverse().map(r=>`<div class="kv${r.type==='deduct'?' neg':''}"><div><div>${esc(r.reason)}</div><div class="small faint">${REQT[r.type]} · gửi ${reqWhen(r)}</div></div>
+   <div class="acts"><span class="v num">${r.type==='deduct'?'−':''}${fmt(r.amt)}</span><span class="pill ${REQST[r.st][0]}">${REQST[r.st][1]}</span>${r.st==='pending'&&!R.locked?`<button class="btn sm ghost" data-act="cancelReq" data-id="${id}" data-r="${r.rid}" title="Hủy yêu cầu">✕</button>`:''}</div></div>`).join(''):'<div class="small faint" style="margin-top:8px">Chưa gửi yêu cầu nào trong tháng này.</div>'}</div></div>`;
+}
+function accountView(id){
+  const sp=S.cache[id].sp||{};
+  return`<div class="split" style="margin-top:20px"><div class="card"><h3>Tài khoản nhận lương</h3><p class="small muted">Dùng để tạo mã QR chuyển khoản trên thẻ lương.</p>
+  <form id="bankForm" data-id="${id}" class="grid" style="margin-top:10px"><label class="f">Ngân hàng<select name="bin">${bankOpts(sp.bin)}</select></label>
+  <label class="f">Số tài khoản<input type="text" name="acct" inputmode="numeric" value="${esc(sp.acct||'')}"></label>
+  <label class="f">Tên chủ tài khoản<input type="text" name="holder" value="${esc(sp.holder||'')}" placeholder="VD: NGUYEN THI NHAI"></label>
+  <div><button class="btn pri" type="submit">Lưu</button></div></form></div>
+  <div class="card"><h3>Đổi mật khẩu</h3><form id="pwForm" data-id="${id}" class="grid" style="margin-top:10px">
+  <label class="f">Mật khẩu mới<input type="password" name="p1" autocomplete="new-password" required minlength="4"></label>
+  <label class="f">Nhập lại<input type="password" name="p2" autocomplete="new-password" required></label>
+  <div><button class="btn pri" type="submit">Đổi mật khẩu</button></div></form></div></div>`;
+}
+
+/* ================= OWNER VIEW ================= */
+function ownerView(){
+  const ids=staffIds();let body='';
+  const warnAcct=S.isOwnerAcct?'':'<div class="callout amber" style="margin-top:14px">Tài khoản Claude đang dùng không phải chủ trang — bạn xem được nhưng không lưu được thay đổi của chủ (doanh thu, chốt lương, thưởng, cài đặt).</div>';
+  if(S.tab==='tong'){
+    const Rs=ids.map(id=>calcPay(id));const tot=k=>Rs.reduce((a,r)=>a+(+r[k]||0),0);const rev=+S.mdoc.revenue||0;
+    body=`${warnAcct}<div class="card" style="margin-top:20px"><form id="revForm" class="row" style="align-items:flex-end">
+     <label class="f">Doanh thu thuần ${ymLabel(S.ym).toLowerCase()} (đ)<input type="text" inputmode="numeric" name="rev" value="${fmt(rev)}" style="width:200px"></label>
+     <label class="f">Công chuẩn tháng<input type="text" name="std" value="${S.mdoc.std?hrs(S.mdoc.std):''}" placeholder="${STD_MONTH} (mặc định)" style="width:130px"></label>
+     <button class="btn pri" type="submit">Cập nhật</button><div class="sp"></div>
+     <div class="small muted">Quỹ hoa hồng: <b class="num">${money(Rs[0]?Rs[0].cm.paid:0)}</b>${Rs[0]&&Rs[0].cm.capped?' (chạm trần)':''}</div></form>
+     <p class="small faint" style="margin-top:6px">Công chuẩn để trống = ${STD_MONTH} công/tháng. Nhập số khác nếu tháng có ngày lễ.</p></div>
+    <div class="sec"><div class="sec-h"><h2>Báo cáo lương ${ymLabel(S.ym).toLowerCase()}</h2><div class="sp"></div><button class="btn sm${S.showYear?' pri':''}" data-act="toggleYear">📊 ${S.showYear?'Ẩn tổng quan 12 tháng':'Tổng quan 12 tháng'}</button><button class="btn sm" data-act="exportCSV">⬇ Xuất CSV</button></div>
+    <div class="tbl"><table><thead><tr><th>Nhân viên</th><th class="r">Công / giờ</th><th class="r">Lương công/giờ</th><th class="r">Tự túc ăn trưa</th><th class="r">Live</th><th class="r">Fanpage</th><th class="r">Hoa hồng</th><th class="r">Thưởng</th><th class="r">Khấu trừ</th><th class="r">Thực nhận</th><th>Tình trạng</th><th></th></tr></thead><tbody>
+    ${Rs.map(R=>`<tr><td><b><span class="ysw" style="background:${TONE[toneOf(R.id)].brand}"></span> ${esc(R.name)}</b><div class="small muted">${esc(R.title||'')}</div></td>
+     <td class="r num">${R.kind==='month'?hrs(R.cong)+' / '+hrs(R.std)+' công':hrs(R.hours)+' giờ'}</td><td class="r num">${fmt(R.base)}</td><td class="r num">${fmt(R.lunch)}</td><td class="r num">${fmt(R.liveD+R.liveN)}</td><td class="r num">${fmt(R.page)}</td><td class="r num">${fmt(R.comm)}</td><td class="r num">${fmt(R.bonus)}</td><td class="r num">${R.deduct?'−'+fmt(R.deduct):'0'}</td>
+     <td class="r num"><b>${fmt(R.net)}</b></td>
+     <td>${R.paid?'<span class="pill p-ok">✓ Đã trả</span>':R.locked?'<span class="pill p-mute">🔒 Đã chốt</span>':'<span class="pill p-clay">Tạm tính</span>'} ${R.warn.map(w=>`<span class="pill p-warn">${esc(w)}</span>`).join(' ')}${R.edited?` <span class="flag" title="Số ngày chấm bù hoặc chủ sửa">${R.edited} ngày sửa</span>`:''}</td>
+     <td class="r"><button class="btn sm pri" data-act="slip" data-id="${R.id}">Thẻ lương</button></td></tr>`).join('')}
+    <tr class="tot"><td>Tổng cộng</td><td></td><td class="r num">${fmt(tot('base'))}</td><td class="r num">${fmt(tot('lunch'))}</td><td class="r num">${fmt(tot('liveD')+tot('liveN'))}</td><td class="r num">${fmt(tot('page'))}</td><td class="r num">${fmt(tot('comm'))}</td><td class="r num">${fmt(tot('bonus'))}</td><td class="r num">${tot('deduct')?'−'+fmt(tot('deduct')):'0'}</td><td class="r num">${fmt(tot('net'))}</td><td colspan="2" class="small muted">${rev?pct(tot('net')/rev)+' doanh thu':''}</td></tr>
+    </tbody></table></div>
+    <p class="small muted" style="margin-top:8px">"Ngày sửa" = số ngày nhân viên chấm bù hoặc chủ đã sửa. Nhân viên chưa chấm không bị coi là nghỉ không lương; hãy đối soát trước khi chốt.</p></div>
+    ${S.showYear?`<div id="yearBox">${yearView(ids)}</div>`:''}`;
+  }else if(S.tab==='cc'){
+    const id=S.selStaff;const R=calcPay(id);
+    body=`<div class="row" style="margin-top:20px">${ids.map(i=>`<button class="btn t-${toneOf(i)}${i===id?' pri':''}" data-act="selStaff" data-id="${i}">${esc(staffMeta(i).name)}</button>`).join('')}<div class="sp"></div>
+     ${R.locked?'<span class="pill p-mute">🔒 Đã chốt — nhân viên không sửa được</span>':''}${R.warn.map(w=>`<span class="pill p-warn">${esc(w)}</span>`).join('')}${ymSel()}</div>
+     <div class="sec">${attTable(id)}</div>`;
+  }else if(S.tab==='thuong'){
+    const pend=pendingReqs(ids);
+    const done=ids.flatMap(i=>S.cache[i].bon.map((b,k)=>({...b,id:i,k})));
+    const amtTd=b=>`<td class="r num">${b.type==='deduct'?'−':''}${fmt(b.amt)}</td>`;
+    body=`${warnAcct}<div class="card" style="margin-top:20px"><div class="sec-h"><h3>Thưởng / khấu trừ ${ymLabel(S.ym).toLowerCase()}</h3>${pend.length?`<span class="pill p-warn">${pend.length} chờ duyệt</span>`:''}</div>
+    ${pend.length||done.length?`<div class="tbl bontbl" style="margin-top:10px"><table><thead><tr><th>Nhân viên</th><th>Loại</th><th>Lý do</th><th>Ngày</th><th class="r">Số tiền</th><th>Trạng thái</th><th></th></tr></thead><tbody>
+    ${pend.map(r=>`<tr><td><b>${esc(staffMeta(r.id).name)}</b></td><td>${REQT[r.type]}</td><td class="why">${esc(r.reason)}</td><td class="small muted">gửi ${reqWhen(r)}</td>${amtTd(r)}
+     <td><span class="pill p-warn">Chờ duyệt</span></td><td class="r act"><div class="acts"><button class="btn sm pri" data-act="approveReq" data-id="${r.id}" data-r="${r.rid}">Duyệt</button><button class="btn sm ghost" data-act="rejectReq" data-id="${r.id}" data-r="${r.rid}">Từ chối</button></div></td></tr>`).join('')}
+    ${done.map(b=>`<tr><td><b>${esc(staffMeta(b.id).name)}</b></td><td>${b.type==='deduct'?'Khấu trừ':'Thưởng'}${b.rq?' <span class="small faint">· theo yêu cầu</span>':''}</td><td class="why">${esc(b.reason)}</td><td class="small muted">${esc(b.d||'')}</td>${amtTd(b)}
+     <td><span class="pill p-ok">Đã duyệt</span></td><td class="r act"><button class="btn sm ghost del" data-act="rmBon" data-id="${b.id}" data-k="${b.k}">Xóa</button></td></tr>`).join('')}
+    </tbody></table></div>`:'<div class="small faint" style="margin-top:8px">Chưa có thưởng / khấu trừ nào trong tháng.</div>'}</div>
+    <div class="card" style="margin-top:20px;max-width:640px"><h3>Thêm thưởng / khấu trừ</h3><p class="small muted">Thưởng ngoài hoa hồng phải có lý do. Khấu trừ dùng cho tạm ứng, phạt…</p>
+    <form id="bonForm" class="grid" style="margin-top:10px"><div class="grid g2"><label class="f">Nhân viên<select name="id">${ids.map(i=>`<option value="${i}">${esc(staffMeta(i).name)}</option>`).join('')}</select></label>
+    <label class="f">Loại<select name="type"><option value="bonus">Thưởng</option><option value="deduct">Khấu trừ / tạm ứng</option></select></label>
+    <label class="f">Số tiền (đ)<input type="text" inputmode="numeric" name="amt" required></label><label class="f">Ngày<input type="date" name="d" value="${S.ym}-${pad(Math.min(nowParts().d,ymParts(S.ym).n))}"></label></div>
+    <label class="f">Lý do (bắt buộc)<input type="text" name="reason" required></label><div><button class="btn pri" type="submit">Thêm & duyệt</button></div></form></div>
+    `;
+  }else if(S.tab==='hh'){body=commissionView(ids)}
+  else body=warnAcct+settingsView(ids);
+  return body;
+}
+function settingsView(ids){
+  const c=S.cfg.comm,r=S.cfg.rates;
+  return`<div class="card" style="margin-top:20px"><h3>Hoa hồng & phụ cấp chung</h3>
+  <form id="cfgForm" class="grid g4" style="margin-top:12px">
+   <label class="f">Ngưỡng bậc 1 (đ)<input type="text" name="t1" value="${fmt(c.t1)}"></label><label class="f">Ngưỡng bậc 2 (đ)<input type="text" name="t2" value="${fmt(c.t2)}"></label>
+   <label class="f">Tỷ lệ bậc 1 (%)<input type="text" name="r1" value="${c.r1*100}"></label><label class="f">Tỷ lệ bậc 2 (%)<input type="text" name="r2" value="${c.r2*100}"></label>
+   <label class="f">Tỷ lệ bậc 3 (%)<input type="text" name="r3" value="${c.r3*100}"></label><label class="f">Trần (% lãi đóng góp)<input type="text" name="capPct" value="${c.capPct*100}"></label>
+   <label class="f">Giá vốn (% DT)<input type="text" name="cogs" value="${c.cogs*100}"></label><label class="f">Quảng cáo (% DT)<input type="text" name="ads" value="${c.ads*100}"></label>
+   <label class="f">Hỏng/hủy (% DT)<input type="text" name="damage" value="${c.damage*100}"></label><label class="f">Biến phí khác (% DT)<input type="text" name="other" value="${c.other*100}"></label>
+   <label class="f">Tự túc ăn trưa (đ/ngày)<input type="text" name="lunch" value="${fmt(r.lunch)}"></label>
+   <label class="f">Live trưa (đ/giờ)<input type="text" name="liveDay" value="${fmt(r.liveDay)}"></label><label class="f">Live tối (đ/giờ)<input type="text" name="liveNight" value="${fmt(r.liveNight)}"></label>
+   <label class="f">Tên cửa hàng<input type="text" name="company" value="${esc(S.cfg.company)}"></label>
+   <div style="align-self:end"><button class="btn pri" type="submit">Lưu cài đặt</button></div></form></div>
+  ${ids.map(id=>{const st=staffMeta(id),sal=S.cache[id].sal,sp=S.cache[id].sp||{};return`<div class="card"><h3>${esc(st.name)} <span class="muted small" style="font-family:inherit;font-weight:400">· ${esc(st.title||'')}</span></h3>
+   <form class="staffForm grid g4" data-id="${id}" style="margin-top:12px">
+    <label class="f">Tên<input type="text" name="name" value="${esc(st.name)}"></label><label class="f">Vị trí<input type="text" name="title" value="${esc(st.title||'')}"></label>
+    <label class="f">Hình thức<select name="kind"><option value="month"${sal.kind==='month'?' selected':''}>${KIND.month}</option><option value="hour"${sal.kind==='hour'?' selected':''}>${KIND.hour}</option></select></label>
+    <label class="f">Tỷ trọng hoa hồng (%)<input type="text" name="share" value="${Math.round(sal.share*1000)/10}"></label>
+    <label class="f">Lương tháng (đ)<input type="text" name="monthly" value="${fmt(sal.monthly)}"></label><label class="f">Lương giờ (đ)<input type="text" name="hourly" value="${fmt(sal.hourly)}"></label>
+    <label class="f">Phụ cấp Fanpage (đ/tháng)<input type="text" name="page" value="${fmt(sal.page)}"></label>
+    <div class="grid" style="align-content:end;gap:4px"><label class="row small"><input type="checkbox" name="lunch"${sal.lunch?' checked':''}> Phụ cấp tự túc ăn trưa</label><label class="row small"><input type="checkbox" name="live"${sal.live?' checked':''}> Có livestream</label></div>
+    ${sal.kind==='month'?`<label class="f">Tăng lương: lương tháng mới (đ)<input type="text" inputmode="numeric" name="raiseAmt"></label><label class="f">Áp dụng từ tháng<input type="month" name="raiseFrom"></label>
+    <div class="row small" style="grid-column:span 2;align-self:end">${(sal.raises||[]).map(r=>`<span class="chip">Từ ${ymLabel(r.from).toLowerCase()}: ${fmt(r.monthly)} đ <button type="button" class="btn sm ghost" data-act="rmRaise" data-id="${id}" data-from="${r.from}" title="Xóa">✕</button></span>`).join('')}</div>`:''}
+    <label class="f">Ngân hàng<select name="bin">${bankOpts(sp.bin)}</select></label><label class="f">Số tài khoản<input type="text" name="acct" value="${esc(sp.acct||'')}"></label>
+    <label class="f">Chủ tài khoản<input type="text" name="holder" value="${esc(sp.holder||'')}"></label>
+    ${(()=>{const sc=sched(sal);const tp=(k,lbl)=>`<label class="f">${lbl}<span class="row" style="gap:4px;flex-wrap:nowrap"><input type="time" name="${k}0" value="${sc[k][0]}"><input type="time" name="${k}1" value="${sc[k][1]}"></span></label>`;
+      return sal.kind==='hour'?`<div style="grid-column:1/-1" class="small muted">Giờ ca chuẩn — dùng để tự điền khi quên bấm bắt đầu/kết thúc:</div>${tp('wd','Ca chính T2–T6')}${tp('sat','Ca chính T7')}${sal.live?tp('liveD','Live trưa')+tp('liveN','Live tối'):''}${pgOn(sal)?`<div style="grid-column:1/-1" class="small muted">Giờ trực page ngoài công ty. Phụ cấp Fanpage cố định, chia cho giờ trực T2–CN ra đơn giá/giờ. T7 tính từ giờ ra thực tế của ca chính (giờ bắt đầu dưới đây chỉ dùng khi T7 chưa có ca); ngày nghỉ công ty mà vẫn trực page được cộng thêm phần giờ từ đầu khung CN theo đơn giá đó:</div>${tp('pgWd','Trực page T2–T6')}${tp('pgSat','Trực page T7')}${tp('pgSun','Trực page CN')}`:''}`:''})()}
+    <div style="align-self:end" class="row"><button class="btn pri" type="submit">Lưu</button><button type="button" class="btn" data-act="resetPw" data-id="${id}">Đặt lại mật khẩu</button></div>
+   </form><p class="small faint" style="margin-top:6px">Sửa ô lương sẽ tính lại mọi tháng, kể cả tháng đã chốt.${sal.kind==='month'?' Muốn giữ nguyên các tháng trước thì nhập ở ô Tăng lương.':''}</p></div>`}).join('')}
+  <div class="card"><h3>Mật khẩu chủ cửa hàng</h3><form id="opwForm" class="row" style="align-items:flex-end;margin-top:10px">
+   <label class="f">Mật khẩu mới<input type="password" name="p1" autocomplete="new-password" required minlength="6"></label><label class="f">Nhập lại<input type="password" name="p2" autocomplete="new-password" required></label>
+   <button class="btn pri" type="submit">Đổi</button></form></div>
+  <div class="card"><h3>Sao lưu dữ liệu</h3><p class="small muted" style="margin-top:6px">Tải toàn bộ dữ liệu về một file để cất giữ hoặc chuyển sang máy chủ khác. Dữ liệu lương trong file vẫn được mã hóa, mọi người giữ nguyên mật khẩu.</p><button class="btn" style="margin-top:10px" data-act="backupAll">⬇ Tải file sao lưu</button></div>`;
+}
+/* every doc as stored, still encrypted. The db has no listing, so read the known paths for the last 3 years. */
+async function collectBackup(){
+  const ids=S.cfg.staff.map(s=>s.id),{y,m}=ymParts(nowParts().ym),yms=[];
+  for(let i=-36;i<=1;i++){const d=new Date(y,m-1+i,1);yms.push(d.getFullYear()+'-'+pad(d.getMonth()+1))}
+  const paths=['cfg/main',...ids.flatMap(id=>[P.kw(id),P.sal(id),P.sp(id)]),...yms.map(P.month),...yms.flatMap(ym=>ids.flatMap(id=>[P.sd(id,ym),P.bon(id,ym)]))];
+  const docs={};
+  for(let i=0;i<paths.length;i+=20)await Promise.all(paths.slice(i,i+20).map(async p=>{const d=await dget(p);if(d)docs[p]=d}));
+  return{v:1,at:new Date().toISOString(),docs};
+}
+
+/* ================= 12-MONTH OVERVIEW ================= */
+const ycol=i=>TONE[toneOf(S.cfg.staff[i%S.cfg.staff.length].id)].brand;   // fixed order by staff position, in each person's tone
+const yShort=ym=>{const{y,m}=ymParts(ym);return'T'+m+'/'+String(y).slice(2)};
+const yNet=r=>r.Rs.reduce((a,R)=>a+R.net,0);
+function yStatus(r){
+  if(r.empty)return'<span class="small faint">Chưa có dữ liệu</span>';
+  const n=r.Rs.length,paid=r.Rs.filter(R=>R.paid).length,locked=r.Rs.filter(R=>R.locked).length;
+  return paid===n?'<span class="pill p-ok">✓ Đã trả đủ</span>':paid?`<span class="pill p-warn">${paid}/${n} đã trả</span>`:locked===n?'<span class="pill p-mute">🔒 Đã chốt</span>':'<span class="pill p-clay">Tạm tính</span>';
+}
+function yearTotals(ids,rows){
+  return ids.map(id=>{const Rs=rows.filter(r=>!r.empty).map(r=>r.Rs.find(R=>R.id===id)).filter(Boolean);const s=k=>Rs.reduce((a,R)=>a+(+R[k]||0),0);
+    return{id,name:staffMeta(id).name,n:Rs.length,base:s('base'),lunch:s('lunch'),live:s('liveD')+s('liveN'),page:s('page'),comm:s('comm'),bonus:s('bonus'),deduct:s('deduct'),net:s('net'),paid:Rs.filter(R=>R.paid).reduce((a,R)=>a+R.net,0)}});
+}
+function yearView(ids){
+  const Y=S.year;
+  const head=`<div class="sec-h" style="margin-top:36px"><h2>Tổng quan 12 tháng</h2>${Y&&Y.rows?`<span class="muted">${ymLabel(Y.rows[0].ym)} – ${ymLabel(Y.rows[11].ym).toLowerCase()}</span><div class="sp"></div><button class="btn sm" data-act="exportYearCSV">⬇ Xuất CSV</button>`:''}</div>`;
+  if(!Y||!Y.rows)return head+'<div class="center" style="padding:60px"><span class="spin"></span></div>';
+  const rows=Y.rows,full=rows.filter(r=>!r.empty),T=yearTotals(ids,rows);
+  const totNet=T.reduce((a,t)=>a+t.net,0),totRev=full.reduce((a,r)=>a+r.rev,0),totPaid=T.reduce((a,t)=>a+t.paid,0);
+  const kpi=(k,v,sub)=>`<div class="card"><div class="eyebrow">${k}</div><div class="bigmoney num" style="font-size:28px;margin-top:6px">${v}</div><div class="small muted">${sub}</div></div>`;
+  // y-axis: 1/2/2.5/5 steps, at most 5 gridlines
+  const top=Math.max(1,...full.map(yNet));const mag=10**Math.floor(Math.log10(top/4));
+  const step=[1,2,2.5,5,10].map(x=>x*mag).find(s=>top/s<=5);const ymax=Math.ceil(top/step)*step;
+  const ticks=[];for(let v=0;v<=ymax+step/2;v+=step)ticks.push(v);
+  const tr=v=>(v/1e6).toLocaleString('vi-VN',{maximumFractionDigits:1})+' tr';
+  const cols=rows.map((r,k)=>{
+    const tot=yNet(r),edge=k<2?' l':k>9?' r':'';
+    const tip=r.empty?`<div class="ytip${edge}"><b>${ymLabel(r.ym)}</b><div class="faint">Chưa có dữ liệu</div></div>`
+      :`<div class="ytip${edge}"><b>${ymLabel(r.ym)}</b>${r.Rs.map((R,i)=>`<div class="kv"><span class="k"><span class="ysw" style="background:${ycol(i)}"></span> ${esc(R.name)}</span><span class="v num">${fmt(R.net)}</span></div>`).join('')}
+       <div class="kv"><span class="k">Tổng chi lương</span><span class="v num">${fmt(tot)}</span></div><div class="kv"><span class="k">Doanh thu</span><span class="v num">${fmt(r.rev)}</span></div></div>`;
+    const stack=r.empty||tot<=0?'':`<div class="ystack" style="height:${tot/ymax*100}%">${r.Rs.map((R,i)=>R.net>0?`<i style="flex-grow:${R.net};background:${ycol(i)}"></i>`:'').join('')}</div>`;
+    return`<button class="ycol" data-act="yearMonth" data-ym="${r.ym}" aria-label="${ymLabel(r.ym)}: ${r.empty?'chưa có dữ liệu':money(tot)}">${stack}${tip}</button>`;
+  }).join('');
+  const chart=`<div class="card" style="margin-top:16px"><div class="sec-h" style="margin-bottom:0"><h3>Tổng chi lương theo tháng</h3><span class="small muted">bấm vào cột để mở báo cáo tháng đó</span></div>
+   <div class="ylegend">${ids.map((id,i)=>`<span><span class="ysw" style="background:${ycol(i)}"></span>${esc(staffMeta(id).name)}</span>`).join('')}</div>
+   <div class="ychart"><div class="yaxis">${ticks.map(v=>`<span class="num" style="bottom:${v/ymax*100}%">${tr(v)}</span>`).join('')}</div>
+   <div class="yplot">${ticks.map(v=>`<div class="ygrid" style="bottom:${v/ymax*100}%"></div>`).join('')}<div class="ycols">${cols}</div></div>
+   <div></div><div class="ylbls">${rows.map(r=>`<span class="${r.ym===S.ym?'on':''}${r.empty?' faint':''}">T${ymParts(r.ym).m}<span class="yy">/${String(ymParts(r.ym).y).slice(2)}</span></span>`).join('')}</div></div></div>`;
+  const byMonth=`<div class="sec"><div class="sec-h"><h3>Theo tháng</h3></div><div class="tbl"><table><thead><tr><th>Kỳ lương</th><th class="r">Doanh thu</th>${ids.map(id=>`<th class="r">${esc(staffMeta(id).name)}</th>`).join('')}<th class="r">Tổng chi lương</th><th class="r">% doanh thu</th><th>Tình trạng</th><th></th></tr></thead><tbody>
+   ${rows.slice().reverse().map(r=>{const tot=yNet(r);return`<tr${r.ym===S.ym?' class="today"':''}><td><b>${ymLabel(r.ym)}</b></td><td class="r num">${r.empty?'—':fmt(r.rev)}</td>
+    ${ids.map(id=>{const R=r.Rs.find(x=>x.id===id);return`<td class="r num">${R?fmt(R.net):'—'}</td>`}).join('')}
+    <td class="r num"><b>${r.empty?'—':fmt(tot)}</b></td><td class="r num">${r.rev?pct(tot/r.rev):'—'}</td><td>${yStatus(r)}</td>
+    <td class="r">${r.empty?'':`<button class="btn sm" data-act="yearMonth" data-ym="${r.ym}">Xem →</button>`}</td></tr>`}).join('')}
+   <tr class="tot"><td>Cộng 12 tháng</td><td class="r num">${fmt(totRev)}</td>${T.map(t=>`<td class="r num">${fmt(t.net)}</td>`).join('')}<td class="r num">${fmt(totNet)}</td><td class="r num">${totRev?pct(totNet/totRev):'—'}</td><td colspan="2"></td></tr>
+   </tbody></table></div></div>`;
+  const byStaff=`<div class="sec"><div class="sec-h"><h3>Theo nhân viên</h3><span class="small muted">cộng dồn 12 tháng</span></div><div class="tbl"><table><thead><tr><th>Nhân viên</th><th class="r">Số kỳ</th><th class="r">Lương công/giờ</th><th class="r">Tự túc ăn trưa</th><th class="r">Live</th><th class="r">Fanpage</th><th class="r">Hoa hồng</th><th class="r">Thưởng</th><th class="r">Khấu trừ</th><th class="r">Thực nhận</th><th class="r">Đã trả</th><th class="r">Chưa trả</th></tr></thead><tbody>
+   ${T.map((t,i)=>`<tr><td style="white-space:nowrap"><span class="ysw" style="background:${ycol(i)}"></span> <b>${esc(t.name)}</b></td><td class="r num">${t.n}</td><td class="r num">${fmt(t.base)}</td><td class="r num">${fmt(t.lunch)}</td><td class="r num">${fmt(t.live)}</td><td class="r num">${fmt(t.page)}</td><td class="r num">${fmt(t.comm)}</td><td class="r num">${fmt(t.bonus)}</td><td class="r num">${t.deduct?'−'+fmt(t.deduct):'0'}</td><td class="r num"><b>${fmt(t.net)}</b></td><td class="r num">${fmt(t.paid)}</td><td class="r num">${fmt(t.net-t.paid)}</td></tr>`).join('')}
+   <tr class="tot"><td>Tổng cộng</td><td></td>${['base','lunch','live','page','comm','bonus'].map(k=>`<td class="r num">${fmt(T.reduce((a,t)=>a+t[k],0))}</td>`).join('')}<td class="r num">${(()=>{const d=T.reduce((a,t)=>a+t.deduct,0);return d?'−'+fmt(d):'0'})()}</td><td class="r num">${fmt(totNet)}</td><td class="r num">${fmt(totPaid)}</td><td class="r num">${fmt(totNet-totPaid)}</td></tr>
+   </tbody></table></div>
+   <p class="small muted" style="margin-top:8px">Mỗi tháng được tính lại theo hồ sơ lương <b>hiện tại</b> (như khi mở lại kỳ đó ở Báo cáo lương). Tháng chưa có dữ liệu không được tính. "Đã trả" = tổng thực nhận của các kỳ đã đánh dấu chuyển khoản.</p></div>`;
+  return head+`<div class="grid g4" style="margin-top:16px">
+   ${kpi('Tổng chi lương',money(totNet),full.length+' tháng có dữ liệu · '+yShort(rows[0].ym)+' – '+yShort(rows[11].ym))}
+   ${kpi('Trung bình mỗi tháng',money(full.length?totNet/full.length:0),'trên các tháng có dữ liệu')}
+   ${kpi('Doanh thu 12 tháng',money(totRev),totRev?'quỹ lương = '+pct(totNet/totRev)+' doanh thu':'chưa nhập doanh thu')}
+   ${kpi('Còn phải trả',money(totNet-totPaid),'đã chuyển '+money(totPaid))}</div>`+chart+byMonth+byStaff;
+}
+
+/* ================= ACTIONS ================= */
+const ACT={
+  bgClose:(el,e)=>{if(e.target===el)closeModal()},
+  close:()=>closeModal(),
+  pickWho:el=>{S.loginWho=el.dataset.id;render()},
+  logout:()=>logout(),
+  backupAll:(el)=>busy(el,async()=>{const data=JSON.stringify(await collectBackup());const fn='gom-vu-gia-sao-luu-'+nowParts().ym+'.json';
+    if(S.dl){try{await S.dl.save({filename:fn,data});toast('Đã xuất '+fn)}catch(e){if(e.code!=='declined')toast('Không xuất được: '+e.code,true)}}else toast('Trình xem này không hỗ trợ tải file',true)}),
+  theme:()=>{const t=isDark()?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.setItem('gvg-theme',t)}catch(e){}render();renderModal()},
+  tab:el=>{S.tab=el.dataset.v;S.simRev=null;render();window.scrollTo(0,0);if(S.tab==='tong'&&S.showYear)loadYear()},
+  toggleYear:async()=>{S.showYear=!S.showYear;render();if(!S.showYear)return;await loadYear();const b=$('#yearBox');if(b)b.scrollIntoView({behavior:'smooth',block:'start'})},
+  yearMonth:el=>{S.ym=el.dataset.ym;S.simRev=null;window.scrollTo(0,0);loadMonth()},
+  exportYearCSV:(el)=>busy(el,async()=>{const ids=staffIds(),rows=S.year.rows,T=yearTotals(ids,rows);
+    const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+    const H=['Kỳ lương','Doanh thu',...ids.map(id=>staffMeta(id).name),'Tổng chi lương','Tình trạng'];
+    const lines=[H.map(q).join(',')].concat(rows.map(r=>[ymLabel(r.ym),r.empty?'':r.rev,...ids.map(id=>{const R=r.Rs.find(x=>x.id===id);return R?R.net:''}),r.empty?'':yNet(r),
+      r.empty?'Chưa có dữ liệu':r.Rs.every(R=>R.paid)?'Đã trả đủ':r.Rs.filter(R=>R.paid).length+'/'+r.Rs.length+' đã trả'].map(q).join(',')),
+      [['Cộng 12 tháng',rows.reduce((a,r)=>a+(r.empty?0:r.rev),0),...T.map(t=>t.net),T.reduce((a,t)=>a+t.net,0),''].map(q).join(',')]);
+    const csv='﻿'+lines.join('\r\n');const fn=`tong-quan-luong-${rows[0].ym}_${rows[11].ym}.csv`;
+    if(S.dl){try{await S.dl.save({filename:fn,data:csv});toast('Đã xuất '+fn)}catch(e){if(e.code!=='declined')toast('Không xuất được: '+e.code,true)}}else toast('Trình xem này không hỗ trợ tải file',true)}),
+  selStaff:el=>{S.selStaff=el.dataset.id;render()},
+  setSt:(el)=>busy(el,async()=>{const{id,d,v}=el.dataset;await mutateDays(id,days=>{const o=days[d]||{};days[d]={...o,st:v,lunch:!!o.lunch,...stamp(d)}});toast('Đã chấm: '+STATUS[v])}),
+  punch:el=>punch(el),
+  punchPick:(el)=>busy(el,async()=>{const{id,t,mode}=el.dataset;await writePunch(id,t,mode,el.dataset.in,el.dataset.out);closeModal();toast(mode==='end'?'Đã ghi kết thúc lúc '+el.dataset.out:mode==='full'?'Đã điền ca '+el.dataset.in+'–'+el.dataset.out:'Đã ghi bắt đầu lúc '+el.dataset.in)}),
+  dayCell:el=>dayEditor(el.dataset.id,el.dataset.d),
+  editDay:el=>dayEditor(el.dataset.id,el.dataset.d),
+  addSeg:el=>{const box=$('#segs');const ns=$('#noseg');if(ns)ns.remove();box.insertAdjacentHTML('beforeend',S._segTpl({t:el.dataset.t||'main',in:el.dataset.in||'',out:el.dataset.out||'',src:el.dataset.in&&el.dataset.t==='main'?'auto':''}))},
+  rmSeg:el=>el.closest('.seg').remove(),
+  slip:el=>openSlip(el.dataset.id),
+  exportSlip:(el)=>busy(el,()=>previewSlip(el.dataset.id)),
+  saveSlip:(el)=>busy(el,async()=>{const o=S._slipOut,f=el.dataset.fmt,fn=`${o.base}.${f}`;
+    if(S.dl){try{await S.dl.save({filename:fn,data:o[f]});toast('Đã xuất '+fn);return}catch(e){if(e&&e.code==='declined')return}}
+    $('#pngOut').innerHTML=`<p class="small muted"><a href="${URL.createObjectURL(o[f])}" download="${esc(fn)}" target="_blank">Mở / lưu ${esc(fn)}</a> — hoặc nhấn giữ / chuột phải vào ảnh xem trước để lưu.</p>`}),
+  exportCSV:(el)=>busy(el,async()=>{const Rs=staffIds().map(id=>calcPay(id));
+    const H=['Nhân viên','Vị trí','Hình thức','Công/giờ','Lương công/giờ','Tự túc ăn trưa','Live trưa','Live tối','Fanpage','Hoa hồng','Thưởng','Khấu trừ','Thực nhận','Ngân hàng','Số TK','Chủ TK','Trạng thái'];
+    const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+    const lines=[H.map(q).join(',')].concat(Rs.map(R=>{const sp=S.cache[R.id].sp||{};return[R.name,R.title,KIND[R.kind],R.kind==='month'?R.cong:Math.round(R.hours*100)/100,R.base,R.lunch,R.liveD,R.liveN,R.page,R.comm,R.bonus,R.deduct,R.net,bankName(sp.bin),sp.acct||'',sp.holder||'',R.paid?'Đã trả':R.locked?'Đã chốt':'Tạm tính'].map(q).join(',')}));
+    const csv='﻿'+lines.join('\r\n');const fn=`bang-luong-${S.ym}.csv`;
+    if(S.dl){try{await S.dl.save({filename:fn,data:csv});toast('Đã xuất '+fn)}catch(e){if(e.code!=='declined')toast('Không xuất được: '+e.code,true)}}else toast('Trình xem này không hỗ trợ tải file',true)}),
+  toggleLock:(el)=>{const id=el.dataset.id;const R=calcPay(id);
+    if(!R.locked&&R.warn.length&&el.dataset.confirm!=='1'){el.dataset.confirm='1';el.innerHTML='⚠ Còn cảnh báo — bấm lần nữa để vẫn chốt';return}
+    busy(el,async()=>{await saveMonthDoc({locked:{[id]:!R.locked}});openSlip(id);toast(R.locked?'Đã mở chốt':'Đã chốt lương')})},
+  togglePaid:(el)=>busy(el,async()=>{const id=el.dataset.id;const R=calcPay(id);await saveMonthDoc({paid:{[id]:R.paid?null:new Date().toISOString()},locked:R.paid?{}:{[id]:true}});openSlip(id)}),
+  approveReq:(el)=>busy(el,async()=>{const{id,r}=el.dataset;const q=(S.cache[id].req||[]).find(x=>x.rid===r);if(!q)return;
+    const path=P.bon(id,S.ym);const cur=(await getEnc(path,id))||{items:[]};
+    if(!cur.items.some(b=>b.rq===r)){cur.items.push({type:q.type,amt:q.amt,reason:q.reason,d:q.d,at:new Date().toISOString(),rq:r});await putEnc(path,id,cur)}
+    S.cache[id].bon=cur.items;await mutateReq(id,req=>{const x=req.find(x=>x.rid===r);if(x){x.st='ok';x.done=new Date().toISOString()}});toast('Đã duyệt')}),
+  rejectReq:(el)=>busy(el,async()=>{const{id,r}=el.dataset;await mutateReq(id,req=>{const x=req.find(x=>x.rid===r);if(x){x.st='no';x.done=new Date().toISOString()}});toast('Đã từ chối')}),
+  cancelReq:(el)=>busy(el,async()=>{const{id,r}=el.dataset;await mutateReq(id,req=>{const k=req.findIndex(x=>x.rid===r&&x.st==='pending');if(k>=0)req.splice(k,1)});toast('Đã hủy yêu cầu')}),
+  rmRaise:(el)=>busy(el,async()=>{const{id,from}=el.dataset;const sal={...S.cache[id].sal,raises:S.cache[id].sal.raises.filter(r=>r.from!==from)};await putEnc(P.sal(id),id,sal);S.cache[id].sal=sal;render()}),
+  rmBon:(el)=>{if(el.dataset.confirm!=='1'){el.dataset.confirm='1';el.textContent='Xóa thật?';return}
+    busy(el,async()=>{const{id,k}=el.dataset;const path=P.bon(id,S.ym);const cur=(await getEnc(path,id))||{items:[]};cur.items.splice(+k,1);await putEnc(path,id,cur);S.cache[id].bon=cur.items;render();toast('Đã xóa')})},
+  resetPw:(el)=>{const id=el.dataset.id;openModal(`<div class="modal-h"><h3>Đặt lại mật khẩu · ${esc(staffMeta(id).name)}</h3><div class="sp"></div><button class="btn sm ghost" data-act="close">✕</button></div>
+    <form id="resetForm" data-id="${id}" class="grid"><label class="f">Mật khẩu mới<input type="text" name="p" required minlength="4"></label><p class="small muted">Báo mật khẩu mới cho nhân viên; họ có thể tự đổi trong mục Tài khoản.</p><div class="row" style="justify-content:flex-end"><button class="btn pri" type="submit">Đặt lại</button></div></form>`)}
+};
+const CHG={
+  ym:async el=>{S.ym=el.value;S.simRev=null;await loadMonth()},
+  st:el=>{const{id,d}=el.dataset;const v=el.value;busy(null,()=>mutateDays(id,days=>{const o=days[d]||{};if(!v){const{st,...rest}=o;days[d]={...rest,...stamp(d)}}else days[d]={...o,st:v,lunch:!!o.lunch,...stamp(d)}}))},
+  lunch:el=>{const{id,d}=el.dataset;busy(null,()=>mutateDays(id,days=>{const o=days[d]||{};days[d]={...o,lunch:el.checked,...stamp(d)}}))},
+  pg:el=>{const{id,d}=el.dataset;busy(null,()=>mutateDays(id,days=>{const o=days[d]||{};days[d]={...o,pg:el.checked,...stamp(d)}}))},
+  note:el=>{const{id,d}=el.dataset;busy(null,()=>mutateDays(id,days=>{const o=days[d]||{};days[d]={...o,note:el.value.trim(),...(o.ts?{}:stamp(d))}}))},
+  sim:el=>{S.simRev=+el.value;const y=window.scrollY;render();window.scrollTo(0,y);const r=document.querySelector('[data-chg=sim]');if(r)r.focus()}
+};
+const SUBMIT={
+  setupForm:f=>doSetup(f),
+  loginForm:async f=>{await doLogin($('#pw').value,$('#keepLogin').checked)},
+  dayForm:f=>saveDayForm(f),
+  mdayForm:f=>saveMDayForm(f),
+  revForm:async f=>{const fd=new FormData(f);const std=parseNum(fd.get('std'));await saveMonthDoc({revenue:parseMoney(fd.get('rev')),std:std>0?std:null});toast('Đã cập nhật doanh thu')},
+  bankForm:async f=>{const fd=new FormData(f),id=f.dataset.id;const sp={bin:fd.get('bin'),acct:String(fd.get('acct')).replace(/\s/g,''),holder:String(fd.get('holder')).trim().toUpperCase()};await putEnc(P.sp(id),id,sp);S.cache[id].sp=sp;render();toast('Đã lưu tài khoản')},
+  pwForm:async f=>{const fd=new FormData(f),id=f.dataset.id;const p1=fd.get('p1');if(p1.length<4)throw uerr('Tối thiểu 4 ký tự');if(p1!==fd.get('p2'))throw uerr('Hai lần nhập không khớp');await rewrapStaff(id,p1);f.reset();toast('Đã đổi mật khẩu')},
+  resetForm:async f=>{const id=f.dataset.id,p=new FormData(f).get('p');if(p.length<4)throw uerr('Tối thiểu 4 ký tự');await rewrapStaff(id,p);closeModal();toast('Đã đặt lại mật khẩu cho '+staffMeta(id).name)},
+  bonForm:async f=>{const fd=new FormData(f),id=fd.get('id');const amt=parseMoney(fd.get('amt'));const reason=String(fd.get('reason')).trim();if(!amt)throw uerr('Nhập số tiền');if(!reason)throw uerr('Bắt buộc có lý do');
+    const path=P.bon(id,S.ym);const cur=(await getEnc(path,id))||{items:[]};cur.items.push({type:fd.get('type'),amt,reason,d:fd.get('d'),at:new Date().toISOString()});await putEnc(path,id,cur);S.cache[id].bon=cur.items;render();toast('Đã thêm')},
+  reqForm:async f=>{const fd=new FormData(f),id=f.dataset.id;const amt=parseMoney(fd.get('amt'));const reason=String(fd.get('reason')).trim();if(!amt)throw uerr('Nhập số tiền');if(!reason)throw uerr('Bắt buộc có lý do');
+    if(S.mdoc.locked[id])throw uerr('Kỳ lương đã chốt');const t=nowParts();
+    await mutateReq(id,req=>req.push({rid:Date.now().toString(36)+Math.random().toString(36).slice(2,6),type:fd.get('type'),amt,reason,d:t.ym===S.ym?S.ym+'-'+pad(t.d):S.ym+'-01',at:t.iso,st:'pending'}));toast('Đã gửi yêu cầu')},
+  cfgForm:async f=>{const fd=new FormData(f),g=k=>fd.get(k);const cfg=clone(S.cfg);
+    cfg.comm={t1:parseMoney(g('t1')),t2:parseMoney(g('t2')),r1:parsePct(g('r1')),r2:parsePct(g('r2')),r3:parsePct(g('r3')),capPct:parsePct(g('capPct')),cogs:parsePct(g('cogs')),ads:parsePct(g('ads')),damage:parsePct(g('damage')),other:parsePct(g('other'))};
+    if(cfg.comm.t2<=cfg.comm.t1)throw uerr('Ngưỡng bậc 2 phải lớn hơn bậc 1');
+    const r0=S.cfg.rates||{};cfg.rates={lunch:parseMoney(g('lunch')),satFactor:r0.satFactor,liveDay:parseMoney(g('liveDay')),liveNight:parseMoney(g('liveNight'))};
+    cfg.company=String(g('company')).trim()||cfg.company;await dset('cfg/main',cfg);S.cfg=cfg;render();toast('Đã lưu cài đặt')},
+  staffForm:async f=>{const fd=new FormData(f),id=f.dataset.id,g=k=>fd.get(k);
+    const prev=S.cache[id].sal;const sc=sched(prev);['wd','sat','liveD','liveN',...PG_KEYS].forEach(k=>{if(g(k+'0')&&g(k+'1')){if(toMin(g(k+'1'))<=toMin(g(k+'0')))throw uerr('Giờ kết thúc ca phải sau giờ bắt đầu');sc[k]=[g(k+'0'),g(k+'1')]}});
+    const raiseAmt=parseMoney(g('raiseAmt')),raiseFrom=g('raiseFrom')||'';
+    if((raiseAmt||raiseFrom)&&!(raiseAmt&&/^\d{4}-\d{2}$/.test(raiseFrom)))throw uerr('Nhập đủ lương mới và tháng áp dụng');
+    const raises=(prev.raises||[]).filter(r=>r.from!==raiseFrom);if(raiseAmt)raises.push({from:raiseFrom,monthly:raiseAmt});raises.sort((a,b)=>a.from<b.from?-1:1);
+    const sal={sched:sc,kind:g('kind'),monthly:parseMoney(g('monthly')),hourly:parseMoney(g('hourly')),page:parseMoney(g('page')),share:parsePct(g('share')),lunch:!!g('lunch'),live:!!g('live'),raises};
+    const others=S.cfg.staff.filter(s=>s.id!==id).reduce((a,s)=>a+(+S.cache[s.id].sal.share||0),0);
+    if(others+sal.share>1.0001)throw uerr('Tổng tỷ trọng hoa hồng vượt 100% ('+pct(others+sal.share)+')');
+    const sp={bin:g('bin'),acct:String(g('acct')).replace(/\s/g,''),holder:String(g('holder')).trim().toUpperCase()};
+    await putEnc(P.sal(id),id,sal);await putEnc(P.sp(id),id,sp);S.cache[id].sal=sal;S.cache[id].sp=sp;
+    const st=staffMeta(id);if(st.name!==g('name').trim()||st.title!==g('title').trim()){const cfg=clone(S.cfg);const x=cfg.staff.find(s=>s.id===id);x.name=g('name').trim()||x.name;x.title=g('title').trim();await dset('cfg/main',cfg);S.cfg=cfg}
+    render();toast('Đã lưu '+staffMeta(id).name)},
+  opwForm:async f=>{const fd=new FormData(f);const p1=fd.get('p1');if(p1.length<6)throw uerr('Tối thiểu 6 ký tự');if(p1!==fd.get('p2'))throw uerr('Hai lần nhập không khớp');
+    const cfg=clone(S.cfg);const salt=b64(rand(16));const key=await kdf(p1,salt);cfg.owner={salt,check:await encJSON(key,{ok:1},'owner-check')};
+    for(const s of cfg.staff)s.wO=await encBytes(key,S.dkRaw[s.id],'wrap:'+s.id);
+    await dset('cfg/main',cfg);S.cfg=cfg;S.ownerKey=key;if(S.keep)await saveLogin('owner',key);f.reset();toast('Đã đổi mật khẩu chủ')}
+};
+async function rewrapStaff(id,pw){const salt=b64(rand(16));const kek=await kdf(pw,salt);await dset(P.kw(id),{salt,wS:await encBytes(kek,S.dkRaw[id],'wrap:'+id)});if(S.keep&&S.role===id)await saveLogin(id,kek)}
+
+document.addEventListener('click',e=>{const a=e.target.closest('[data-act]');if(!a)return;const fn=ACT[a.dataset.act];if(fn){if(a.tagName==='BUTTON')e.preventDefault();fn(a,e)}});
+document.addEventListener('change',e=>{const a=e.target.closest('[data-chg]');if(a&&CHG[a.dataset.chg]&&a.dataset.chg!=='sim')CHG[a.dataset.chg](a)});
+document.addEventListener('change',e=>{const r=e.target;if(r.name==='st'&&r.type==='radio'){r.closest('.stbtn').querySelectorAll('label').forEach(l=>l.classList.toggle('sel',l.contains(r)))}});
+document.addEventListener('input',e=>{const a=e.target;if(a.dataset&&a.dataset.chg==='sim'){S.simRev=+a.value;const l=$('#simRevLbl');if(l)l.textContent=money(S.simRev)}});
+document.addEventListener('change',e=>{const a=e.target;if(a.dataset&&a.dataset.chg==='sim')CHG.sim(a)});
+// always block native submit: a GET submit reloads the page and drops the session back to the default tab
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target;const key=f.getAttribute('id')||[...f.classList].find(c=>SUBMIT[c]);if(!SUBMIT[key])return;busy(f.querySelector('[type=submit]'),()=>SUBMIT[key](f))});
+/* idle logout */
+let idleT;function bumpIdle(){clearTimeout(idleT);if(S.role&&!S.keep)idleT=setTimeout(()=>{logout();toast('Đã tự đăng xuất do không thao tác')},IDLE_MIN*60000)}
+['click','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,bumpIdle,{passive:true}));
+
+/* ================= BOOT ================= */
+(async function boot(){
+  let tries=0;while(!(window.claude&&window.claude.use)&&tries<100){await new Promise(r=>setTimeout(r,100));tries++}
+  if(!(window.claude&&window.claude.use)){render();return}
+  const[db,user,dl]=await Promise.all([window.claude.use('db'),window.claude.use('user'),window.claude.use('downloads')]);
+  S.db=db;S.user=user;S.dl=dl;S.isOwnerAcct=!!(user&&user.isOwner&&user.isOwner());
+  if(!db){render();return}
+  try{await loadCfg()}catch(e){console.error(e);toast('Không tải được cấu hình',true)}
+  if(S.cfg)await restoreLogin();
+  render();
+})();
+</script>
+</body>
+</html>
